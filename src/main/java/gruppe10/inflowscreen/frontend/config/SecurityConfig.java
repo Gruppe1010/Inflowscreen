@@ -30,8 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.
                 authorizeRequests()
                 .antMatchers("/resources/**", "/static/**", "/css/slideshow.css", "/images/**", "/js/slideshow.js").permitAll()
-                .antMatchers("1/slideshow").permitAll()
-                .antMatchers("1", "1/**").hasAnyAuthority("USER", "ADMIN") // hvis der kommer flere brugertyper
+                .antMatchers("/1/slideshow").permitAll()
+                .antMatchers("/1", "/1/**").hasAnyAuthority("USER", "ADMIN") // hvis der kommer flere brugertyper
                 .anyRequest()
                 .authenticated()
                 .and()
