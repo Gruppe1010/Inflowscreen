@@ -1,11 +1,14 @@
 package gruppe10.inflowscreen.frontend.controllers;
 
+import gruppe10.inflowscreen.frontend.models.entities.Account;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
 
 
 @Controller
@@ -15,8 +18,12 @@ public class FrontendController {
 
 
     @GetMapping("")
-    public String index(@PathVariable String orgName, Model model){
+    public String index(@PathVariable String orgName, Model model, Principal principal){
         model.addAttribute("orgName", orgName);
+
+
+        System.out.println(principal.getName());
+        System.out.println("HEJ");
 
         return "index";
     }

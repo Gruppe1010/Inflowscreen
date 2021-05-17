@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class InitUsers implements CommandLineRunner {
+public class InitAccounts implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
