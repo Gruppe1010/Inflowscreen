@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+
+<!-------------------- ! HEADER -->
+<!-- th:remove="tag" == fjerner div'en og indsætter bare det som ER i div'en -->
+<div th:fragment="header(title)" th:remove="tag">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title th:text="${title}"></title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <!--<link href="../static/css/styles.css" rel="stylesheet" /> --> <!-- ! åben direkte -->
+    <link href="/css/styles.css" rel="stylesheet" /> <!-- ! på localhost -->
+
+</div>
+
+<!-------------------- ! NAVBAR -->
+<nav th:fragment="navbar(orgName, active)" class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top color">
+    <div class="container color">
+        <a class="navbar-brand line" th:href="${'/' + orgName + '/'}">Alle slides</a>
+        <a class="navbar-brand" th:href="${'/' + orgName + '/createSlide'}">Opret slide</a>
+        <a class="navbar-brand" th:href="${'/' + orgName + '/slideshow'}">Slideshow</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" th:href="${'/' + orgName + '/createAccount'}">Opret bruger</a></li>
+                <li class="nav-item"><a class="nav-link" href="/logout">Log Ud</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-------------------- ! SECTION -->
+
+<section th:fragment="section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5"><img class="img-fluid rounded-circle" src="https://i.imgur.com/omSAc4I.jpg" alt="corgi" /></div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="p-5">
+                    <h2 class="display-4">For those about to rock...</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--
+src="../static/images/corgi.jpg"
+
+src="https://imgur.com/a/ae02wpU"
+-->
+
+
+
+
+</body>
+</html>
