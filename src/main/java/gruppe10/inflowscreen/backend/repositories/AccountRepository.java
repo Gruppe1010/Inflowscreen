@@ -1,7 +1,7 @@
-package gruppe10.inflowscreen.frontend.repositories;
+package gruppe10.inflowscreen.backend.repositories;
 
 
-import gruppe10.inflowscreen.frontend.models.entities.Account;
+import gruppe10.inflowscreen.backend.models.entities.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

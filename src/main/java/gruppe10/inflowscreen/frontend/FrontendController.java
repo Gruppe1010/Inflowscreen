@@ -1,6 +1,6 @@
-package gruppe10.inflowscreen.frontend.controllers;
+package gruppe10.inflowscreen.frontend;
 
-import gruppe10.inflowscreen.frontend.models.entities.Account;
+import gruppe10.inflowscreen.backend.models.entities.Account;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;

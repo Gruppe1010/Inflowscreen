@@ -1,10 +1,10 @@
-package gruppe10.inflowscreen.frontend.config;
+package gruppe10.inflowscreen.backend.config;
 
 
-import gruppe10.inflowscreen.frontend.models.entities.Account;
-import gruppe10.inflowscreen.frontend.models.entities.Authority;
-import gruppe10.inflowscreen.frontend.repositories.AccountRepository;
-import gruppe10.inflowscreen.frontend.repositories.AuthorityRepository;
+import gruppe10.inflowscreen.backend.models.entities.Account;
+import gruppe10.inflowscreen.backend.models.entities.Authority;
+import gruppe10.inflowscreen.backend.repositories.AccountRepository;
+import gruppe10.inflowscreen.backend.repositories.AuthorityRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;

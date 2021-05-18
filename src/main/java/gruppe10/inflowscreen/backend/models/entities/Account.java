@@ -1,8 +1,6 @@
-package gruppe10.inflowscreen.frontend.models.entities;
+package gruppe10.inflowscreen.backend.models.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,31 +13,31 @@ import java.util.Set;
 @Builder
 @Entity
 public class Account {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    
     // @ValidEmail
     // https://www.baeldung.com/registration-with-spring-mvc-and-spring-security
     private String email;
     private String password;
-
-
+    
+    
     @ManyToOne
     @JoinColumn(name = "id_organisation")
     // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "filmId")
     private Organisation organisation;
-
-
+    
+    
     @Singular
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "account_authority",
             joinColumns = {@JoinColumn(name = "ID_ACCOUNT", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "ID_AUTHORITY", referencedColumnName = "ID")})
     private Set<Authority> authorities;
-
-
+    
+    
     // TODO research om de er nødvendige
     @Builder.Default
     private boolean accountNonExpired = true;
@@ -49,7 +47,7 @@ public class Account {
     private boolean credentialsNonExpired = true;
     @Builder.Default
     private boolean enabled = true;
-
+    
     public Organisation getOrganisation() {
         return organisation;
     }
@@ -104,15 +102,15 @@ public class Account {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
+    
     @Override
     public String toString() {
         return "Account{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", authorities=" + authorities + '\'' +
-                ", organisation=" + organisation + '\'' +
-                '}';
+                       "id=" + id +
+                       ", email='" + email + '\'' +
+                       ", password='" + password + '\'' +
+                       ", authorities=" + authorities + '\'' +
+                       ", organisation=" + organisation + '\'' +
+                       '}';
     }
 }

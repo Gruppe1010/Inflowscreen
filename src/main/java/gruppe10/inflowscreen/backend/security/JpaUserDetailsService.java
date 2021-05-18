@@ -1,9 +1,9 @@
-package gruppe10.inflowscreen.frontend.security;
+package gruppe10.inflowscreen.backend.security;
 
 
-import gruppe10.inflowscreen.frontend.models.entities.Account;
-import gruppe10.inflowscreen.frontend.models.entities.Authority;
-import gruppe10.inflowscreen.frontend.repositories.AccountRepository;
+import gruppe10.inflowscreen.backend.models.entities.Account;
+import gruppe10.inflowscreen.backend.models.entities.Authority;
+import gruppe10.inflowscreen.backend.repositories.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

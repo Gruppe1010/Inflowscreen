@@ -1,6 +1,6 @@
-package gruppe10.inflowscreen.frontend.repositories;
+package gruppe10.inflowscreen.backend.repositories;
 
-import gruppe10.inflowscreen.frontend.models.entities.Authority;
+import gruppe10.inflowscreen.backend.models.entities.Authority;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AuthorityRepository extends JpaRepository<Authority, Integer> {

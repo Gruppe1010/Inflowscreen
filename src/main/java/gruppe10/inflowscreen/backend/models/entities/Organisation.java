@@ -1,4 +1,4 @@
-package gruppe10.inflowscreen.frontend.models.entities;
+package gruppe10.inflowscreen.backend.models.entities;
 
 import com.sun.istack.NotNull;
 import lombok.*;
