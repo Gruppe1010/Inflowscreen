@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpResponse;
+import java.security.Principal;
 import java.util.Optional;
 
 @RestController
@@ -20,16 +21,25 @@ public class SlideRestController {
     
     
     @PostMapping("saveSlide")
-    public ResponseEntity<HttpStatus> saveSlide(@RequestBody Slide slide){
+    public ResponseEntity<HttpStatus> saveSlide(@RequestBody Slide slide, Principal principal){
        
         Optional<Slide> optionalSlide = slideRepository.findByTitle(slide.getTitle());
         
         if(optionalSlide.isEmpty()){
+            
+            principal
+            
             slideRepository.save(slide);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
         
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
+    
+    
+    
+    
+    
+    
 
 }

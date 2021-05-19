@@ -72,11 +72,6 @@ public class Init implements CommandLineRunner {
         // tilføjer accounts
         accountRepository.save(fysICentrumAccount);
         accountRepository.save(gruppe10Account);
-        
-       
-       
-        
-        
     }
     
     
