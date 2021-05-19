@@ -34,7 +34,6 @@ public class Organisation {
     private Set<Slide> slides;
 
     @OneToMany(mappedBy = "organisation")
-    // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "filmId")
     private Set<Account> accounts;
     
     
