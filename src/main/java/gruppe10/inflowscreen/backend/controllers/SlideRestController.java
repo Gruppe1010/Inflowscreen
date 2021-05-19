@@ -24,7 +24,7 @@ public class SlideRestController
     SlideRepository slideRepository;
     @Autowired
     OrganisationRepository organisationRepository; //hfh
-    // hej
+    // hejfskj
     
     @PostMapping("/saveSlide")
     public ResponseEntity<HttpStatus> saveSlide(@RequestBody Slide slide, Principal principal)
