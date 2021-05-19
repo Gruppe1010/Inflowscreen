@@ -7,6 +7,13 @@ public class SlideVideoDTO {
     private double x;
     private double y;
     
+    public SlideVideoDTO(){}
+    
+    public SlideVideoDTO(boolean fullscreen, double x, double y) {
+        this.fullscreen = fullscreen;
+        this.x = x;
+        this.y = y;
+    }
     
     public boolean isFullscreen()
     {
