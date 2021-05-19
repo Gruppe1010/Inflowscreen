@@ -3,7 +3,8 @@ package gruppe10.inflowscreen.backend.models.dto;
 import java.util.Set;
 
 public class CreateOrUpdateSlideDTO {
-    private int orgId;
+    
+    private int id;
     private String title;
     private int frequency;
     private boolean isActive;
@@ -14,10 +15,10 @@ public class CreateOrUpdateSlideDTO {
 
 
     public CreateOrUpdateSlideDTO() {}
-    public CreateOrUpdateSlideDTO(int orgId, String title, int frequency, boolean isActive,
+    public CreateOrUpdateSlideDTO(int id, String title, int frequency, boolean isActive,
                                   Set<TextBoxDTO> textBoxes, Set<SlideImageDTO> slideImages,
                                   Set<SlideVideoDTO> slideVideos, String themePath) {
-        this.orgId = orgId;
+        this.id = id;
         this.title = title;
         this.frequency = frequency;
         this.isActive = isActive;
@@ -27,11 +28,11 @@ public class CreateOrUpdateSlideDTO {
         this.themePath = themePath;
     }
 
-    public int getOrgId() {
-        return orgId;
+    public int getId() {
+        return id;
     }
-    public void setOrgId(int orgId) {
-        this.orgId = orgId;
+    public void setId(int id) {
+        this.id = id;
     }
     public String getTitle() {
         return title;
@@ -78,7 +79,7 @@ public class CreateOrUpdateSlideDTO {
 
     @Override
     public String toString() {
-        return "CreateOrUpdateSlideDTO{" + "orgId=" + orgId + ", title='" + title + '\'' + ", frequency=" + frequency
+        return "CreateOrUpdateSlideDTO{" + "orgId=" + id + ", title='" + title + '\'' + ", frequency=" + frequency
                 + ", isActive=" + isActive + ", textBoxes=" + textBoxes + ", slideImages=" + slideImages
                 + ", slideVideos=" + slideVideos + ", themePath='" + themePath + '\'' + '}';
     }
