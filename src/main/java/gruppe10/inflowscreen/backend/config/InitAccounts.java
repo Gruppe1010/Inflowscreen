@@ -1,4 +1,4 @@
-package gruppe10.inflowscreen.backend.config;
+/*package gruppe10.inflowscreen.backend.config;
 
 
 import gruppe10.inflowscreen.backend.models.entities.Account;
@@ -53,6 +53,8 @@ public class InitAccounts implements CommandLineRunner {
                 .build());
     }
 }
+
+ */
 
 
 

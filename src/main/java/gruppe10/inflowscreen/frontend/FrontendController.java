@@ -1,6 +1,8 @@
 package gruppe10.inflowscreen.frontend;
 
 import gruppe10.inflowscreen.backend.models.entities.Account;
+import gruppe10.inflowscreen.backend.repositories.AccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,28 +11,34 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.Optional;
 
 
 @Controller
 @CrossOrigin(value = "*")
 public class FrontendController {
+    
+    @Autowired
+    AccountRepository accountRepository;
 
 
     @GetMapping("")
-    public String index(@PathVariable String orgName, Model model, Principal principal){
-        model.addAttribute("orgName", orgName);
-
-
-        System.out.println(principal.getName());
-        System.out.println("HEJ");
-
+    public String index(Model model, Principal principal){
+        
+        Optional<Account> optLoggedInAccount = accountRepository.findByEmail(principal.getName());
+        
+        Account loggedInAccount = optLoggedInAccount.get();
+        
+        model.addAttribute("logoPath", loggedInAccount.getOrganisation().getLogoPath());
+    
+        System.out.println(loggedInAccount.getOrganisation().getLogoPath());
+        
         return "index";
     }
 
     @GetMapping("createSlide")
-    public String createSlide(@PathVariable String orgName, Model model){
-        model.addAttribute("orgName", orgName);
-
+    public String createSlide(Model model){
+     
         return "createSlide";
     }
 

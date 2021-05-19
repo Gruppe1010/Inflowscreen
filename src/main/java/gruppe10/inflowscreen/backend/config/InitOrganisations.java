@@ -1,7 +1,8 @@
-package gruppe10.inflowscreen.backend.config;
+/*package gruppe10.inflowscreen.backend.config;
 
 
 import gruppe10.inflowscreen.backend.models.entities.Account;
+import gruppe10.inflowscreen.backend.models.entities.Organisation;
 import gruppe10.inflowscreen.backend.repositories.OrganisationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,13 +25,19 @@ public class InitOrganisations implements CommandLineRunner {
     private void loadSecurityData() {
 
         // TODO indsæt organisationen med brugeren tilknyttet
-        //Organisation organisation = new Organisation("Fysioterapi i Centrum", "Hej");
-        //organisationRepository.save(organisation);
+        Organisation fysICentrum = new Organisation("Fysioterapi i Centrum", "Hej");
+        
+        organisationRepository.save(fysICentrum);
+    
+    
+        Organisation gruppe10 = new Organisation("Fysioterapi i Centrum", "Hej");
 
 
     }
 }
 
+
+ */
 
 
 

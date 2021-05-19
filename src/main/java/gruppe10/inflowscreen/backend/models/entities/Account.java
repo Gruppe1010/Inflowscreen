@@ -20,6 +20,7 @@ public class Account {
     
     // @ValidEmail
     // https://www.baeldung.com/registration-with-spring-mvc-and-spring-security
+    @Column(unique = true)
     private String email;
     private String password;
     

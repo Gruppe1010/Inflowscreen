@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Setter
@@ -34,7 +35,17 @@ public class Organisation {
     @OneToMany(mappedBy = "organisation")
     // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "filmId")
     private Set<Account> accounts;
-
+    
+    
+    public Organisation(String name, String logoPath)
+    {
+        this.name = name;
+        this.logoPath = logoPath;
+        
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "Organisation{" +
