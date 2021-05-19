@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(value = "*")
-@RequestMapping("{orgName}")
 public class SlideRestController {
     
     

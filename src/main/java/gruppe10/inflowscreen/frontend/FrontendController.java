@@ -12,7 +12,6 @@ import java.security.Principal;
 
 
 @Controller
-@RequestMapping("{orgName}")
 @CrossOrigin(value = "*")
 public class FrontendController {
 
