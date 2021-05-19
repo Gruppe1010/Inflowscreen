@@ -22,7 +22,7 @@ public class Slide {
     // vi laver et set for at fremtidsikre at vi kan tilføje en funktion med at man kan dele samme slide på tværs af
     // virksomheder
     @NotNull
-    @ManyToMany(mappedBy = "slides", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "slides")//, cascade = CascadeType.ALL)
     private Set<Organisation> organisations;
     
     @NotNull

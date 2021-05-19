@@ -27,8 +27,8 @@ public class Organisation {
     private String logoPath;
     
     @Singular
-    @ManyToMany(cascade = {CascadeType.MERGE})
-    @JoinTable(name = "slides_organisations",
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "organisations_slides",
             joinColumns = {@JoinColumn(name = "ID_ORGANISATION", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "ID_SLIDE", referencedColumnName = "ID")})
     private Set<Slide> slides;

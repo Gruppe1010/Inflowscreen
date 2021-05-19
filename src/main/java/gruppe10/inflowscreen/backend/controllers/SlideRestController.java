@@ -24,7 +24,7 @@ public class SlideRestController
     SlideRepository slideRepository;
     @Autowired
     OrganisationRepository organisationRepository; //hfh
-    // hejfskjhh
+    // hejfs
     
     @PostMapping("/saveSlide")
     public ResponseEntity<HttpStatus> saveSlide(@RequestBody Slide slide, Principal principal)
@@ -39,17 +39,19 @@ public class SlideRestController
             // vi henter organisationen som skal forbindes til slidet
             Organisation organisation = organisationRepository.findByEmail(principal.getName());
             
-            // hvis der endnu ikke er noget org på slidet - lav nyt Set
-            if(slide.getOrganisations() == null) {
-               slide.setOrganisations(new HashSet<>());
+            // if der IKKE allerede er nogle slides på orgen
+            if(organisation.getSlides() == null){
+                // oprettes nyt set
+                organisation.setSlides(new HashSet<>());
             }
-            // tilføj org til slide
-            slide.getOrganisations().add(organisationRepository.findByEmail(principal.getName()));
+    
+            // tilføj slide til org
+            organisation.getSlides().add(slide);
             
-            slideRepository.save(slide);
+            organisationRepository.save(organisation);
+            
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
-        
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 }
