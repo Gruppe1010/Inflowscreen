@@ -1,9 +1,9 @@
 
-var current = 0,
-    slides = document.getElementsByTagName("img");
+let current = 0,
+    slides = document.getElementsByClassName("fadeimage");
 
 setInterval(function() {
-    for (var i = 0; i < slides.length; i++) {
+    for (let i = 0; i < slides.length; i++) {
         slides[i].style.opacity = 0;
     }
     current = (current != slides.length - 1) ? current + 1 : 0;
@@ -11,43 +11,63 @@ setInterval(function() {
 }, 3000);
 
 
+//TODO link til ur3 http://jsfiddle.net/cse_tushar/fKKSb/311/
+(function () {
+    function checkTime(i) {
+        return (i < 10) ? "0" + i : i;
+    }
+
+    function startTime() {
+        let today = new Date(),
+            h = checkTime(today.getHours()),
+            m = checkTime(today.getMinutes()),
+            d = checkTime(today.getDate()),
+            mo = checkTime(today.getMonth()),
+            y = checkTime(today.getFullYear())
+        document.getElementById('time').innerHTML = h + ":" + m + " - " + d + "/" + mo + "/" + y;
+        t = setTimeout(function () {
+            startTime()
+        }, 500);
+    }
+    startTime();
+})();
+
 
 $(document).ready(function () {
 
     function time() {
-
-        var currentTime = new Date();
-        var hour = currentTime.getHours();
+        let meridiem = "AM";
+        let currentTime = new Date();
+        let hour = currentTime.getHours();
         if (hour < 10)
             hour = "0" + hour;
-        if (hour > 24)
-            if (hour === 0)
-                hour = 12;
+        if (hour > 12) {
+            hour = hour - 12;
+        }
+        if (hour === 0)
+            hour = 12;
 
-        var minute = currentTime.getMinutes();
+        let minute = currentTime.getMinutes();
         if (minute < 10)
             minute = "0" + minute;
-
-
-        second = "";
-        var day = currentTime.getDay();
+        let day = currentTime.getDay();
 
         if (day === 0)
-            day = "Sunday";
+            day = "Søndag";
         else if (day === 1)
-            day = "Monday";
+            day = "Mandag";
         else if (day === 2)
-            day = "Tuesday";
+            day = "Tirsdag";
         else if (day === 3)
-            day = "Wednesday";
+            day = "Onsdag";
         else if (day === 4)
-            day = "Thursday";
+            day = "Torsdag";
         else if (day === 5)
-            day = "Friday";
+            day = "Fredag";
         else if (day === 6)
-            day = "Saturday";
+            day = "Lørdag";
 
-        var month = currentTime.getMonth();
+        let month = currentTime.getMonth();
 
         if (month === 0)
             month = "JAN";
@@ -58,7 +78,7 @@ $(document).ready(function () {
         else if (month === 3)
             month = "APR";
         else if (month === 4)
-            month = "MAY";
+            month = "MAJ";
         else if (month === 5)
             month = "JUN";
         else if (month === 6)
@@ -68,21 +88,21 @@ $(document).ready(function () {
         else if (month === 8)
             month = "SEP";
         else if (month === 9)
-            month = "OCT";
+            month = "OKT";
         else if (month === 10)
             month = "NOV";
         else if (month === 11)
             month = "DEC";
 
-        var year = currentTime.getFullYear();
+        let year = currentTime.getFullYear();
 
-        var date = currentTime.getDate();
+        let date = currentTime.getDate();
 
-        var yearDiv = document.getElementById('year');
-        var monthDiv = document.getElementById('month');
-        var clockDiv = document.getElementById('clock');
-        var dayDiv = document.getElementById('day');
-        var dateDiv = document.getElementById('date');
+        let yearDiv = document.getElementById('year');
+        let monthDiv = document.getElementById('month');
+        let clockDiv = document.getElementById('clock');
+        let dayDiv = document.getElementById('day');
+        let dateDiv = document.getElementById('date');
 
         dayDiv.innerText = day;
         clockDiv.innerText = hour + ":" + minute;
@@ -92,5 +112,5 @@ $(document).ready(function () {
     }
     time();
     setInterval(time, 1000);
-
 });
+
