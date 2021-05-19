@@ -47,6 +47,11 @@
   box-sizing: border-box;
 }
 
+/* Tilføjet for at navbar ikke overlapper elementer */
+body {
+  padding-top: 120px;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;

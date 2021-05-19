@@ -6,3 +6,7 @@
     border-right: solid white;
 }
 
+body {
+    padding-top: 70px !important;
+}
+
