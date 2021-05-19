@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(value = "*")
-@RequestMapping("/{orgName}")
+@RequestMapping("{orgName}")
 public class SlideRestController {
     
     
@@ -20,9 +20,9 @@ public class SlideRestController {
     SlideRepository slideRepository;
     
     
-    @PostMapping("/saveSlide")
+    @PostMapping("saveSlide")
     public ResponseEntity<HttpStatus> saveSlide(@RequestBody Slide slide){
-    
+        System.out.println("Slide: " + slide);
         Optional<Slide> optionalSlide = slideRepository.findByTitle(slide.getTitle());
         
         if(optionalSlide.isEmpty()){

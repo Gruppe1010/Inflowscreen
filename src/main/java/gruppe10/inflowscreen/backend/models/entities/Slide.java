@@ -113,4 +113,19 @@ public class Slide {
     {
         this.themePath = themePath;
     }
+
+    @Override
+    public String toString() {
+        return "Slide{" +
+                "id=" + id +
+                ", organisations=" + organisations +
+                ", title='" + title + '\'' +
+                ", frequency=" + frequency +
+                ", isActive=" + isActive +
+                ", textBoxes=" + textBoxes +
+                ", slideImages=" + slideImages +
+                ", slideVideos=" + slideVideos +
+                ", themePath='" + themePath + '\'' +
+                '}';
+    }
 }
