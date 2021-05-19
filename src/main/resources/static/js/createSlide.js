@@ -2,9 +2,6 @@ const canvas = document.getElementById("canvas");
 
 
 
-
-
-
 function createTextBox(){
 
 }
