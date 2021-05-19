@@ -30,9 +30,9 @@
 <div th:fragment="navbar(orgName, active)">
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top color">
         <div class="container color">
-            <a class="navbar-brand line" th:href="${'/' + orgName + '/'}">Alle slides</a>
-            <a class="navbar-brand" th:href="${'/' + orgName + '/createSlide'}">Opret slide</a>
-            <a class="navbar-brand" th:href="${'/' + orgName + '/slideshow'}">Slideshow</a>
+            <a class="navbar-brand line" th:href="${'/'}">Alle slides</a>
+            <a class="navbar-brand" th:href="${'/createSlide'}">Opret slide</a>
+            <a class="navbar-brand" th:href="${'/slideshow'}">Slideshow</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
