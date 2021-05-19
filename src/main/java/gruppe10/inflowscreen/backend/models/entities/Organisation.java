@@ -27,7 +27,7 @@ public class Organisation {
     private String logoPath;
     
     @Singular
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(targetEntity = Slide.class, cascade = {CascadeType.MERGE})
     @JoinTable(name = "slides_organisations",
             joinColumns = {@JoinColumn(name = "ID_ORGANISATION", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "ID_SLIDE", referencedColumnName = "ID")})
@@ -50,7 +50,6 @@ public class Organisation {
     public String toString() {
         return "Organisation{" +
                 "id=" + id +
-                ", accounts=" + accounts +
                 '}';
     }
 }

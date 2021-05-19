@@ -9,21 +9,24 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpResponse;
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin(value = "*")
-public class SlideRestController {
+public class SlideRestController
+{
     
     
     @Autowired
     SlideRepository slideRepository;
     
     
-    
-    @PostMapping("saveSlide")
-    public ResponseEntity<HttpStatus> saveSlide(@RequestBody Slide slide, Principal principal){
-       
+    @PostMapping("/saveSlide")
+    public ResponseEntity<HttpStatus> saveSlide(@RequestBody Slide slide, Principal principal)
+    {
+        
+        // vi ser om der er et slide med samme titel, som de prøver at oprette
         Optional<Slide> optionalSlide = slideRepository.findByTitle(slide.getTitle());
         
         if(optionalSlide.isEmpty()){

@@ -1,10 +1,17 @@
 package gruppe10.inflowscreen.backend.models.entities;
 
 import com.sun.istack.NotNull;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name="slides")
 public class Slide {
@@ -15,7 +22,7 @@ public class Slide {
     // vi laver et set for at fremtidsikre at vi kan tilføje en funktion med at man kan dele samme slide på tværs af
     // virksomheder
     @NotNull
-    @ManyToMany(mappedBy = "slides")
+    @ManyToMany(mappedBy = "slides", cascade = CascadeType.ALL)
     private Set<Organisation> organisations;
     
     @NotNull
@@ -26,7 +33,16 @@ public class Slide {
     
     private boolean isActive;
     
-   
+    public Slide(int id, String title, int frequency, boolean isActive, String themePath)
+    {
+        this.id = id;
+        this.organisations = new HashSet<Organisation>();
+        this.title = title;
+        this.frequency = frequency;
+        this.isActive = isActive;
+        this.themePath = themePath;
+    }
+    
     @OneToMany(mappedBy = "slide")
     private Set<TextBox> textBoxes;
     
