@@ -6,7 +6,8 @@
 </head>
 <body>
     <!-- Navigation-->
-    <nav th:replace="fragments :: navbar(orgName=${orgName}, active='hej')"></nav>
+    <!-- TODO find ud af hvorfor der står hej -->
+    <nav th:replace="fragments :: navbar(active='hej')"></nav>
 
 <div>
 
@@ -100,7 +101,6 @@
 
             <canvas class="mt-2" id="canvas" width=1114 height=740 style="border: 1px solid black;"></canvas>
 
-
         </div>
     </section>
 </div>
@@ -109,13 +109,13 @@
 
 <!-- Footer-->
 <footer class="py-5 bg-black">
-    <div class="container"><p class="m-0 text-center text-white small">Copyright &copy; Your Website 2021</p></div>
+    <div class="container"><p class="m-0 text-center text-white small">Copyright &copy; Inflowscreen 2021</p></div>
 </footer>
+
 <!-- Bootstrap core JS-->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-
-
 <script src="/js/createSlide.js"></script>
+
 </body>
 </html>
