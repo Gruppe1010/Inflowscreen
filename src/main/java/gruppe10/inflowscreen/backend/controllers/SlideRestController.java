@@ -32,8 +32,5 @@ public class SlideRestController {
         
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
-    
-    
-    
-    
+
 }
