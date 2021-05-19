@@ -28,7 +28,7 @@
 
 <!-------------------- ! NAVBAR -->
 <div th:fragment="navbar(active)">
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top color">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-color">
         <div class="container color">
             <a class="navbar-brand line" th:href="${'/'}">Alle slides</a>
             <a class="navbar-brand" th:href="${'/createSlide'}">Opret slide</a>
@@ -62,12 +62,37 @@
     </div>
 </section>
 
+<!-------------------- ! slideshowFooter -->
+<div th:fragment="slideshowFooter">
+    <div class="navbar navbar-expand-lg navbar-dark slideshow-bottom fixed-bottom slideshow-footer-color">
+        <div class="container color">
+
+            <div id="day"></div>
+            <div id="clock"></div>
+            <div class="item">
+                <div id="month"></div>
+                <div id="year"></div>
+                <div id="date"></div>
+            </div>
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" >
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--
 src="../static/images/corgi.jpg"
 
 src="https://imgur.com/a/ae02wpU"
 -->
 
+
+
+<!--TODO link til ur https://codepen.io/geekayush/pen/KqarMj -->
 
 
 

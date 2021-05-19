@@ -50,7 +50,7 @@ public class FrontendController {
         return "editSlide";
     }
 
-    @GetMapping("slideshow")
+    @GetMapping("/slideshow")
     public String slideshow(Model model){
     
         return "slideshow";
