@@ -31,10 +31,10 @@ const url = `http://localhost:8081/saveSlide`;
 btnSave.addEventListener('click', saveSlide);
 
 function saveSlide(){
-    console.log("Title i saveSlide: " + title);
     retrieveInput();
 
-    if(title != null){
+    // hvis de har indtastet en titel
+    if(title.length > 0){
         const body = createJSONSlide(title);
 
         const requestOptions = {
@@ -71,10 +71,6 @@ function createJSONSlide(title){
        Fordi at body i requestOptions'en skal angives som string
      */
     return JSON.stringify(slide);
-}
-
-function titleError(){
-    alert("Der findes allerede et slide med denne title, vælg venligst en anden.");
 }
 
 function checkIfSuccess(response){
