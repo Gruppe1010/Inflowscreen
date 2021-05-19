@@ -1,6 +1,5 @@
 const canvas = document.getElementById("canvas");
 
-
 // henter alle knapper på siden
 // TODO hent også buttons fra dropdowns/giv dem id
 const inpTitle = document.getElementById("inpTitle");
@@ -25,8 +24,66 @@ const btnFullscreen = document.getElementById("btnFullscreen");
 
 const btnSave = document.getElementById("btnSave");
 
+let title;
 
+const url = `http://localhost:8081/createSlide/saveSlide`;
 
+btnSave.addEventListener('click', saveSlide);
+
+function saveSlide(){
+    console.log("Title i saveSlide: " + title);
+    retrieveInput();
+
+    if(title != null){
+        const body = createJSONSlide(title);
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // betyder == vi sender et json i string-format
+            },
+            body: body
+        };
+
+        fetch(url, requestOptions)
+            .then(response => response.json())
+            .then(data =>  checkIfSuccess(data))
+            .catch(error => console.log("error: ", error));
+    }
+    else{
+        alert("Indtast venligst en title.");
+    }
+
+}
+
+function retrieveInput(){
+    title = inpTitle.value;
+    console.log("Title er her: " + title);
+
+}
+
+function createJSONSlide(title){
+    // vi laver et object (JSON-obj er standard obj i js)
+    let slide = {
+        "title": title
+    };
+
+    /* Vi laver JSON om til en String
+       Fordi at body i requestOptions'en skal angives som string
+     */
+    return JSON.stringify(slide);
+}
+
+function checkIfSuccess(data){
+    if(data !== 0){
+        console.log("succes: ", data)
+        //window.location.replace("index.html");
+    }
+    else{
+        console.log("failed: ", data)
+        alert("Der findes allerede et slide med denne title, vælg venligst en anden.");
+    }
+}
 
 function createTextBox(){
 
