@@ -43,30 +43,28 @@ public class FrontendController {
     }
 
     @GetMapping("editSlide/{id}")
-    public String editSlide(@PathVariable String orgName, @PathVariable int id, Model model){
-        model.addAttribute("orgName", orgName);
+    public String editSlide(@PathVariable int id, Model model){
+   
         model.addAttribute("slideId", id);
 
         return "editSlide";
     }
 
     @GetMapping("slideshow")
-    public String slideshow(@PathVariable String orgName, Model model){
-        model.addAttribute("orgName", orgName);
-
+    public String slideshow(Model model){
+    
         return "slideshow";
     }
 
     @GetMapping("createAccount")
-    public String createAccount(@PathVariable String orgName, Model model){
-        model.addAttribute("orgName", orgName);
+    public String createAccount(Model model){
+     
 
         return "createAccount";
     }
 
     @GetMapping("t")
-    public String test(@PathVariable String orgName, Model model){
-        model.addAttribute("orgName", orgName);
+    public String test(Model model){
 
         return "test";
     }
