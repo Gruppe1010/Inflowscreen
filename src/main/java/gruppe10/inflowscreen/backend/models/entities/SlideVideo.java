@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="slide-videos")
+@Table(name="slide_videos")
 public class SlideVideo {
 
     @Id
