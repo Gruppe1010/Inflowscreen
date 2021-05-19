@@ -4,7 +4,6 @@ import java.util.Set;
 
 public class CreateOrUpdateSlideDTO {
     
-    private int id;
     private String title;
     private int frequency;
     private boolean isActive;
@@ -15,10 +14,9 @@ public class CreateOrUpdateSlideDTO {
 
 
     public CreateOrUpdateSlideDTO() {}
-    public CreateOrUpdateSlideDTO(int id, String title, int frequency, boolean isActive,
+    public CreateOrUpdateSlideDTO(String title, int frequency, boolean isActive,
                                   Set<TextBoxDTO> textBoxes, Set<SlideImageDTO> slideImages,
                                   Set<SlideVideoDTO> slideVideos, String themePath) {
-        this.id = id;
         this.title = title;
         this.frequency = frequency;
         this.isActive = isActive;
@@ -28,12 +26,7 @@ public class CreateOrUpdateSlideDTO {
         this.themePath = themePath;
     }
 
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
+  
     public String getTitle() {
         return title;
     }
@@ -79,7 +72,7 @@ public class CreateOrUpdateSlideDTO {
 
     @Override
     public String toString() {
-        return "CreateOrUpdateSlideDTO{" + "orgId=" + id + ", title='" + title + '\'' + ", frequency=" + frequency
+        return "CreateOrUpdateSlideDTO{title='" + title + '\'' + ", frequency=" + frequency
                 + ", isActive=" + isActive + ", textBoxes=" + textBoxes + ", slideImages=" + slideImages
                 + ", slideVideos=" + slideVideos + ", themePath='" + themePath + '\'' + '}';
     }
