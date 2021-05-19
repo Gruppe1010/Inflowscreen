@@ -24,11 +24,13 @@ public class Slide {
     
     private boolean isActive;
     
+    @OneToMany(mappedBy = "slide")
     private Set<TextBox> textBoxes;
     
-    @OneToMany()
+    @OneToMany(mappedBy = "slide")
     private Set<SlideImage> slideImages;
     
+    @OneToMany(mappedBy = "slide")
     private Set<SlideVideo> slideVideos;
     
     private String themePath;
