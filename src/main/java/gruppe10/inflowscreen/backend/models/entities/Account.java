@@ -32,7 +32,7 @@ public class Account {
     
     @Singular
     @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "account_authority",
+    @JoinTable(name = "accounts_authorities",
             joinColumns = {@JoinColumn(name = "ID_ACCOUNT", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "ID_AUTHORITY", referencedColumnName = "ID")})
     private Set<Authority> authorities;

@@ -16,7 +16,7 @@ public class SlideVideo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "id_slide")
     private Slide slide;
 
