@@ -5,7 +5,7 @@
 </head>
 <body>
     <!-- Navigation-->
-    <nav th:replace="fragments :: navbar(orgName=${orgName}, active='hej')"></nav>
+    <div th:insert="fragments :: navbar(orgName=${orgName}, active='hej')"></div>
 
     <div>
         <section th:replace="fragments :: section"></section>
@@ -22,14 +22,9 @@
     <footer class="py-5 bg-black">
         <div class="container"><p class="m-0 text-center text-white small">Copyright &copy; Your Website 2021</p></div>
     </footer>
-    <!-- Bootstrap core JS-->
-    <!-- <script src="../js/jquery.js"></script> --> <!-- ! åben direkte -->
-    <!-- <script src="../js/jsdelivr.js"></script> -->  <!-- ! åben direkte -->
 
 
-    <!-- <script src="jquery.js"></script> -->  <!-- ! på localhost -->
-    <!-- <script src="jsdelivr.js"></script> -->  <!-- ! på localhost -->
-
+    <!-- menubar -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 
