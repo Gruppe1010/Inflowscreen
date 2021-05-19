@@ -23,9 +23,13 @@ public class Organisation {
     private String name;
 
     private String logoPath;
-
-    // @OneToMany()
-    // private Set<Slide> slides;
+    
+    @Singular
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "slides_organisations",
+            joinColumns = {@JoinColumn(name = "ID_ORGANISATION", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ID_SLIDE", referencedColumnName = "ID")})
+    private Set<Slide> slides;
 
     @OneToMany(mappedBy = "organisation")
     // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "filmId")

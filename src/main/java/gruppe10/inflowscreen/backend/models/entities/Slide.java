@@ -14,6 +14,7 @@ public class Slide {
     // vi laver et set for at fremtidsikre at vi kan tilføje en funktion med at man kan dele samme slide på tværs af
     // virksomheder
     @NotNull
+    @ManyToMany(mappedBy = "slides")
     private Set<Organisation> organisations;
     
     @NotNull
@@ -24,6 +25,7 @@ public class Slide {
     
     private boolean isActive;
     
+   
     @OneToMany(mappedBy = "slide")
     private Set<TextBox> textBoxes;
     
