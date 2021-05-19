@@ -22,7 +22,7 @@ public class SlideRestController {
     
     @PostMapping("saveSlide")
     public ResponseEntity<HttpStatus> saveSlide(@RequestBody Slide slide){
-        System.out.println("Slide: " + slide);
+       
         Optional<Slide> optionalSlide = slideRepository.findByTitle(slide.getTitle());
         
         if(optionalSlide.isEmpty()){

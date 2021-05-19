@@ -47,7 +47,7 @@ function saveSlide(){
 
         fetch(url, requestOptions)
             .then(data => checkIfSuccess(data))
-            .catch(error => titleError(error));
+            .catch(error => console.log("Fejl i fetch, createSlide.js: ", error));
     }
     else{
         alert("Indtast venligst en title.");
@@ -73,30 +73,23 @@ function createJSONSlide(title){
     return JSON.stringify(slide);
 }
 
-function titleError(error){
-
+function titleError(){
     alert("Der findes allerede et slide med denne title, vælg venligst en anden.");
-    console.log(error);
-
-
 }
 
-function checkIfSuccess(data){
+function checkIfSuccess(response){
+    if(response.status >= 200 && response.status < 300){
 
-    const status = data.status;
+        const cookie = document.cookie;
 
-    const statusChar = status.charAt(0);
+        alert(cookie);
 
-    alert(statusChar);
-
-    if(statusChar == 2){
-        console.log("succes: ", data)
-        window.location.replace("index.html");
+        window.location.replace("/{}");
     }
-    else{
-        console.log("failed: ", data)
+    else if(response.status === 409){
         alert("Der findes allerede et slide med denne title, vælg venligst en anden.");
     }
+    // else bliver den catchet i fetch
 }
 
 function createTextBox(){
