@@ -46,9 +46,8 @@ function saveSlide(){
         };
 
         fetch(url, requestOptions)
-            .then(response => response.json())
-            .then(data =>  checkIfSuccess(data))
-            .catch(error => console.log("error: ", error));
+            .then(data => checkIfSuccess(data))
+            .catch(error => titleError(error));
     }
     else{
         alert("Indtast venligst en title.");
@@ -74,10 +73,25 @@ function createJSONSlide(title){
     return JSON.stringify(slide);
 }
 
+function titleError(error){
+
+    alert("Der findes allerede et slide med denne title, vælg venligst en anden.");
+    console.log(error);
+
+
+}
+
 function checkIfSuccess(data){
-    if(data !== 0){
+
+    const status = data.status;
+
+    const statusChar = status.charAt(0);
+
+    alert(statusChar);
+
+    if(statusChar == 2){
         console.log("succes: ", data)
-        //window.location.replace("index.html");
+        window.location.replace("index.html");
     }
     else{
         console.log("failed: ", data)
