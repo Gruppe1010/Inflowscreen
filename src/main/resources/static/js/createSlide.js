@@ -26,7 +26,7 @@ const btnSave = document.getElementById("btnSave");
 
 let title;
 
-const url = `http://localhost:8081/createSlide/saveSlide`;
+const url = `http://localhost:8081/saveSlide`;
 
 btnSave.addEventListener('click', saveSlide);
 
@@ -84,7 +84,7 @@ function checkIfSuccess(response){
 
         alert(cookie);
 
-        window.location.replace("/{}");
+        window.location.replace("/");
     }
     else if(response.status === 409){
         alert("Der findes allerede et slide med denne title, vælg venligst en anden.");

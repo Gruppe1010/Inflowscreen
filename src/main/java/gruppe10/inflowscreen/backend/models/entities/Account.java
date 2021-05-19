@@ -28,8 +28,7 @@ public class Account {
     
     @ManyToOne
     @JoinColumn(name = "id_organisation")
-    // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "filmId")
-    private Organisation organisation;
+   private Organisation organisation;
     
     
     @Singular
