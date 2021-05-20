@@ -3,6 +3,12 @@
 <head>
     <div th:replace="fragments :: header(title='Opret Slide')"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+
+    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 </head>
 <body>
     <!-- Navigation-->
@@ -10,6 +16,11 @@
     <nav th:replace="fragments :: navbar(active='hej')"></nav>
 
 <div>
+
+    <input type='file' onchange="readURL(this);" />
+    <img id="blah" src="#" alt="your image" />
+
+
     <section>
 
         <div class="container">
@@ -23,6 +34,7 @@
             </div>
 
             <br>
+            <form name="imageForm" id="imageForm"></form>
 
             <div class="toolbar-example-1">
                 <div class="btn-group mr-2">
