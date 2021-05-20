@@ -6,7 +6,7 @@
 
 
 
-    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" type="text/css" />
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 </head>
@@ -34,7 +34,7 @@
             </div>
 
             <br>
-            <!-- <form name="imageForm" id="imageForm" onchange="imageAutoSubmit(this);"></form>-->
+            <form name="imageForm" id="imageForm"></form>
 
             <div class="toolbar-example-1">
                 <div class="btn-group mr-2">
@@ -95,12 +95,11 @@
                 </div>
                 <div class="btn-group mr-2">
 
-                    <form name="imageForm" id="imageForm" target="_myFrame" class="btn-group mr-2">
+                    <form name="imageForm" id="imageForm" class="btn-group mr-2">
                         <label for="inpImage" class="btn btn-dark">
                             <i class="bi bi-image"></i>
                         </label>
-                        <input id="inpImage" type="file" onchange="imageAutoSubmit(this);"/>
-                        <button type="submit"></button>
+                        <input style="display: none;"  id="inpImage" type="file"/>
                     </form>
 
                     <button id="btnVideo" type="button" class="btn btn-dark">
