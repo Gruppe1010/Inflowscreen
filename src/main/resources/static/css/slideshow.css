@@ -9,15 +9,12 @@ body {
 
 }
 
-
 .fadeimage {
     position: absolute;
     transition: opacity 3s ease-in;
 }
 
 img + img { opacity: 0; }
-
-
 
 #clock {
     height: 100px;
@@ -78,4 +75,3 @@ img + img { opacity: 0; }
     margin: auto;
     text-align: center;
 }
-

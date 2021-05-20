@@ -63,10 +63,31 @@
 </section>
 
 <!-------------------- ! slideshowFooter -->
+<link href="/css/slideshow.css" rel="stylesheet" />
+<div th:fragment="slideshowFooter">
+    <footer class="fixed-bottom slideshow-bottom">
+        <!-- Grid container -->
+        <div>
+
+            <!--TODO link til ur3 http://jsfiddle.net/cse_tushar/fKKSb/311/ -->
+            <div class="ml-5 display-2 text-white font-weight-normal d-inline float-left" id="time" ></div>
+            <div class="ml-3 display-5 text-white font-weight-normal d-inline" id="date"></div>
+
+            <div class="mr-5 mt-1 display-4 d-inline float-right">
+                <img src="/images/logos/FIC-logo.png" alt="FIC-logo" style="height: 100px;">
+            </div>
+
+        </div>
+    </footer>
+</div>
+
+<!--
 <div th:fragment="slideshowFooter">
     <div class="navbar navbar-expand-lg navbar-dark slideshow-bottom fixed-bottom slideshow-footer-color">
         <div class="container color">
-            <link href="/css/slideshow.css" rel="stylesheet" />
+
+
+            <div class="mr-5 display-4" id="time"></div>
 
 
             <div id="day"></div>
@@ -77,10 +98,6 @@
                 <div id="date"></div>
             </div>
 
-
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> <!--hey -->
-
-            <script src="/js/slideshow.js"></script>
             Hehehehehe
 
 
@@ -90,6 +107,8 @@
         </div>
     </div>
 </div>
+-->
+<!--<li class="nav-item"><a class="nav-link" th:href="${'/' + orgName + '/createAccount'}">Opret bruger</a></li>-->
 
 <!--
 src="../static/images/corgi.jpg"
@@ -97,11 +116,12 @@ src="../static/images/corgi.jpg"
 src="https://imgur.com/a/ae02wpU"
 -->
 
-
-
 <!--TODO link til ur https://codepen.io/geekayush/pen/KqarMj -->
+<!--TODO link til ur2 https://codepen.io/gab/pen/KLhgr#code-area -->
+<!--TODO link til ur3 http://jsfiddle.net/cse_tushar/fKKSb/311/ -->
 
-
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/slideshow.js"></script>
 </body>
 </html>

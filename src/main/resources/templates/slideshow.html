@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link href="/css/slideshow.css" rel="stylesheet" /> <!-- ! på localhost --> <!-- det er denne som gør at vi får baggrunden ind -->
-
     <div th:replace="fragments :: header(title='Slideshow')"></div>
 </head>
 <body>
@@ -13,11 +11,10 @@
 <img class="fadeimage" src="/images/slides/corgi.JPG" alt="corgi">
 <img class="fadeimage" src="/images/slides/HEJ.JPG" alt="hej">
 
+<footer>
 <div th:replace="fragments :: slideshowFooter"></div>
-
-
+</footer>
 
 <script src="/js/slideshow.js"></script>
 </body>
-
 </html>
