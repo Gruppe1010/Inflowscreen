@@ -22,7 +22,7 @@ setInterval(function() {
             h = checkTime(today.getHours()),
             m = checkTime(today.getMinutes()),
             d = checkTime(today.getDate()),
-            mo = checkTime(today.getMonth()),
+            mo = checkTime(today.getMonth()+1),
             y = checkTime(today.getFullYear())
         document.getElementById('time').innerHTML = h + ":" + m;
         document.getElementById('date').innerHTML = d + "/" + mo + "/" + y;
