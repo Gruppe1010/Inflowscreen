@@ -14,10 +14,11 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <title th:text="${title}"></title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/png" href="images/logos/gruppe10logo.png"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -30,14 +31,12 @@
 <div th:fragment="navbar(active)">
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-color">
         <div class="container color">
-            <a class="navbar-brand line" th:href="${'/'}">Alle slides</a>
-            <a class="navbar-brand" th:href="${'/createSlide'}">Opret slide</a>
+            <a class="navbar-brand mr-5" th:href="${'/'}">Alle slides</a>
+            <a class="navbar-brand mr-5" th:href="${'/createSlide'}">Opret slide</a>
             <a class="navbar-brand" th:href="${'/slideshow'}">Slideshow</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <!--<li class="nav-item"><a class="nav-link" th:href="${'/' + orgName + '/createAccount'}">Opret bruger</a></li>-->
-                    <li class="nav-item"><a class="nav-link" href="/logout">Log Ud</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Log Ud<i class="bi bi-box-arrow-right ml-2"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -66,59 +65,19 @@
 <link href="/css/slideshow.css" rel="stylesheet" />
 <div th:fragment="slideshowFooter">
     <footer class="fixed-bottom slideshow-bottom">
-        <!-- Grid container -->
         <div>
 
-            <!--TODO link til ur3 http://jsfiddle.net/cse_tushar/fKKSb/311/ -->
-            <div class="ml-5 display-2 text-white font-weight-normal d-inline float-left" id="time" ></div>
-            <div class="ml-3 display-5 text-white font-weight-normal d-inline" id="date"></div>
+            <!--link til ur3 http://jsfiddle.net/cse_tushar/fKKSb/311/ -->
+            <div class="ml-5 display-2 text-white font-weight-normal d-inline-flex float-left" id="time" ></div>
+            <div class="ml-3 pt-5 display-5 text-white font-weight-bold d-inline-flex" id="date"></div>
 
-            <div class="mr-5 mt-1 display-4 d-inline float-right">
+            <div class="mr-5 mt-1 display-4 d-inline-flex float-right">
                 <img src="/images/logos/FIC-logo.png" alt="FIC-logo" style="height: 100px;">
             </div>
 
         </div>
     </footer>
 </div>
-
-<!--
-<div th:fragment="slideshowFooter">
-    <div class="navbar navbar-expand-lg navbar-dark slideshow-bottom fixed-bottom slideshow-footer-color">
-        <div class="container color">
-
-
-            <div class="mr-5 display-4" id="time"></div>
-
-
-            <div id="day"></div>
-            <div id="clock"></div>
-            <div class="item">
-                <div id="month"></div>
-                <div id="year"></div>
-                <div id="date"></div>
-            </div>
-
-            Hehehehehe
-
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" >
-            </div>
-        </div>
-    </div>
-</div>
--->
-<!--<li class="nav-item"><a class="nav-link" th:href="${'/' + orgName + '/createAccount'}">Opret bruger</a></li>-->
-
-<!--
-src="../static/images/corgi.jpg"
-
-src="https://imgur.com/a/ae02wpU"
--->
-
-<!--TODO link til ur https://codepen.io/geekayush/pen/KqarMj -->
-<!--TODO link til ur2 https://codepen.io/gab/pen/KLhgr#code-area -->
-<!--TODO link til ur3 http://jsfiddle.net/cse_tushar/fKKSb/311/ -->
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>

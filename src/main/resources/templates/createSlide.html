@@ -2,27 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments :: header(title='Opret Slide')"></div>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-
-
-
     <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" type="text/css" />
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 </head>
 <body>
     <!-- Navigation-->
-    <!-- TODO find ud af hvorfor der står hej -->
+    <!-- TODO find ud af hvorfor der står hej HAHAHA -->
     <nav th:replace="fragments :: navbar(active='hej')"></nav>
 
 <div>
 
-    <p id="values"></p>
-
+<!-- TODO måske slet det her? -->
+    <!--<p id="values"></p>
     <input type='file' onchange="readURL(this);" />
-    <img id="blah" src="#" alt="your image" />
-    <img id="output" width="200" />
+    <img id="blah" src="#" alt="your image" />-->
 
+<!-- TODO Her kommer det uploadede img ind. Det bliver ikke vist på siden, men har man ikke denne kommer det ikke i canvas af en eller anden grund -->
+    <img id="output" class="d-none" width="200" />
 
     <section>
 
@@ -38,7 +35,7 @@
 
             <br>
 
-            <div class="toolbar-example-1">
+            <div class="slide-toolbar">
                 <div class="btn-group mr-2">
                     <button id="btnTextBox" type="button" class="btn btn-dark">
                         <i class="bi bi-fonts"></i>
@@ -52,13 +49,15 @@
                     <button id="btnUnderline" type="button" class="btn btn-dark">
                         <i class="bi bi-type-underline"></i>
                     </button>
+<!-- TODO find en colorpicker dropdown på nettet -->
                     <button id="btnTextColour" type="button" class="btn btn-dark">
                         <i class="bi bi-palette"></i>
                     </button>
                 </div>
+
                 <div class="btn-group mr-1">
                     <div class="dropdown">
-                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownFontMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownFontMenu" data-bs-toggle="dropdown" aria-expanded="false">
                             Skrifttype
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownFontMenu">
@@ -68,7 +67,7 @@
                         </div>
                     </div>
                     <div class="dropdown">
-                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownFontSizeMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownFontSizeMenu" data-bs-toggle="dropdown" aria-expanded="false">
                             14
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownFontSizeMenu">
@@ -81,6 +80,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="btn-group mr-2">
                     <button id="btnMarginLeft" type="button" class="btn btn-dark">
                         <i class="bi bi-text-left"></i>
@@ -95,32 +95,36 @@
                         <i class="bi bi-list-ul"></i>
                     </button>
                 </div>
+
                 <div class="btn-group mr-2">
 
-                    <form name="imageForm" id="imageForm" target="_self" class="btn-group mr-2">
-                        <label for="inpImage" class="btn btn-dark">
+                    <button type="button" class="btn btn-dark">
+                        <label class="m-0 p-0 pe-auto" for="inpImage">
                             <i class="bi bi-image"></i>
                         </label>
-                        <input type="file"  accept="image/*" name="inpImage" id="inpImage"  onchange="loadFile(event)" style="display: none;">
-                        <!--<input style="display: none;"  id="inpImage" type="file" onchange="imageAutoSubmit(this);"/>-->
-
-                    </form>
-
-                    <button id="btnVideo" type="button" class="btn btn-dark">
-                        <i class="bi bi-film"></i>
                     </button>
+                    <input type="file" class="d-none" accept="image/*" name="inpImage" id="inpImage" onchange="loadFile(event)">
+
+                    <button type="button" class="btn btn-dark">
+                        <label class="m-0 p-0" for="inpVideo">
+                            <i class="bi bi-film"></i>
+                        </label>
+                    </button>
+                    <input type="file" class="d-none" accept="video/*" name="inpVideo" id="inpVideo" onchange="loadFile(event)">
+
                     <button id="btnFullscreen" type="button" class="btn btn-dark">
                         <i class="bi bi-arrows-fullscreen"></i>
                     </button>
+
                 </div>
-                <div class="btn-group"> <!-- TODO find en måde at få den over til højre på siden -->
+                <div class="btn-group float-right">
                     <button id="btnSave" type="button" class="btn btn-dark">
                         Gem
                     </button>
                 </div>
             </div>
 
-            <canvas class="mt-2" id="canvas" width=1114 height=740 style="border: 1px solid black;"></canvas>
+            <canvas class="mt-2" id="myCanvas" width=1114 height=740 style="border: 1px solid black;"></canvas>
 
         </div>
     </section>

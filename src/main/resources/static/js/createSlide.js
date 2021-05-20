@@ -94,9 +94,6 @@ function saveSlide(){
 
 }
 
-
-
-
 let loadFile = function(event) {
 
     let reader = new FileReader();
@@ -113,12 +110,14 @@ let loadFile = function(event) {
 
         console.log("base64", base64);
 
+        // TODO bare leg for at få img ind i canvas
+        let canvas = document.getElementById("myCanvas");
+        let canvasContext = canvas.getContext("2d");
+        setTimeout(() => {  canvasContext.drawImage(output, 10, 10); }, 50);
+
     }
 
     reader.readAsDataURL(file);
-
-
-
 
     /*
     let image = document.getElementById('output');
@@ -135,7 +134,7 @@ let loadFile = function(event) {
 
 
 // NOGET GAMMELT LORT
-imageForm.addEventListener('submit', handleImageSubmit);
+//imageForm.addEventListener('submit', handleImageSubmit);
 // når der trykkes på submit fanger vi dataen fra imageInputfelt og gemmer det på liste
 async function handleImageSubmit(event){
     alert("HEJ4");
@@ -257,7 +256,7 @@ function readURL(input) {
 
 
 
-
+/*
 
 const canvasContext = canvas.getContext("2d");
 canvasContext.font = "30px Arial";
@@ -267,6 +266,8 @@ canvasContext.strokeText("Hello World",10,50);
 const canvasContext1 = canvas.getContext("2d");
 canvasContext1.font = "60px Arial";
 canvasContext1.strokeText("Heeeeej",30,90);
+
+*/
 
 
 
