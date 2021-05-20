@@ -29,13 +29,83 @@ const imageForm = document.getElementById('imageForm');
 
 
 // når der submittes
-imageForm.addEventListener("submit", handleImageSubmit);
+imageForm.addEventListener('submit', handleImageSubmit);
 btnSave.addEventListener('click', saveSlide);
 
 // når der trykkes på submit fanger vi dataen fra imageInputfelt og gemmer det på liste
-function handleImageSubmit(){
+async function handleImageSubmit(event){
+    alert("HEJ4");
+
+
+    /**
+     * This prevents the default behaviour of the browser submitting
+     * the form so that we can handle things instead.
+     */
+    event.preventDefault();
+
+    /**
+     * This gets the element which the event handler was attached to.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
+     */
+    const form = event.currentTarget;
+
+    /**
+     * This takes the API URL from the form's `action` attribute.
+
+    const url = form.action;
+     */
+
+    try {
+        /**
+         * This takes all the fields in the form and makes their values
+         * available through a `FormData` instance.
+         *
+         * @see https://developer.mozilla.org/en-US/docs/Web/API/FormData
+         */
+        const formData = new FormData(form);
+
+        /**
+         * We'll define the `postFormDataAsJson()` function in the next step.
+         */
+        const imageAsJSON = await convertImageToJSON(formData);
+
+        console.log("imageAsJSON: ", imageAsJSON);
+
+    } catch (error) {
+        console.error(error);
+    }
+
+
 
 }
+
+
+async function convertImageToJSON(formData) {
+    alert("HEJ4");
+
+    /**
+     * We can't pass the `FormData` instance directly to `fetch`
+     * as that will cause it to automatically format the request
+     * body as "multipart" and set the `Content-Type` request header
+     * to `multipart/form-data`. We want to send the request body
+     * as JSON, so we're converting it to a plain object and then
+     * into a JSON string.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+     */
+    const plainFormData = Object.fromEntries(formData.entries());
+    const formDataJsonString = JSON.stringify(plainFormData);
+
+    return formDataJsonString;
+}
+
+
+
+
+
 function saveSlide(){
     let title;
     const url = `http://localhost:8081/saveSlide`;
@@ -102,36 +172,34 @@ function saveSlide(){
 
 // kaldes når man trykker på imageInputfelt - sørger for at submitte billedet
 function imageAutoSubmit(input){
+    alert("HEJ");
 
     // hvis der er noget i input-feltet for image
     if (input.files && input.files[0]) {
+        alert("HEJ2");
         let reader = new FileReader();
         reader.onload = function (e) {
-            document.imageForm.submit();
+            alert("HEJ2.5");
 
-            /* TODO lav så den viser billedet i canvaset
+            document.forms["imageForm"].submit();
+            //document.imageForm.submit();
+            alert("HEJ3");
+
+
+            // TODO lav nyt imagetag
+
             $('#blah')
                 .attr('src', e.target.result)
                 .width(150)
                 .height(200);
+
+
+
         };
+
         reader.readAsDataURL(input.files[0]);
 
-             */
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
