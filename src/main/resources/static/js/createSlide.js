@@ -29,83 +29,8 @@ const imageForm = document.getElementById('imageForm');
 
 
 // når der submittes
-imageForm.addEventListener('submit', handleImageSubmit);
+
 btnSave.addEventListener('click', saveSlide);
-
-// når der trykkes på submit fanger vi dataen fra imageInputfelt og gemmer det på liste
-async function handleImageSubmit(event){
-    alert("HEJ4");
-
-
-    /**
-     * This prevents the default behaviour of the browser submitting
-     * the form so that we can handle things instead.
-     */
-    event.preventDefault();
-
-    /**
-     * This gets the element which the event handler was attached to.
-     *
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
-     */
-    const form = event.currentTarget;
-
-    /**
-     * This takes the API URL from the form's `action` attribute.
-
-    const url = form.action;
-     */
-
-    try {
-        /**
-         * This takes all the fields in the form and makes their values
-         * available through a `FormData` instance.
-         *
-         * @see https://developer.mozilla.org/en-US/docs/Web/API/FormData
-         */
-        const formData = new FormData(form);
-
-        /**
-         * We'll define the `postFormDataAsJson()` function in the next step.
-         */
-        const imageAsJSON = await convertImageToJSON(formData);
-
-        console.log("imageAsJSON: ", imageAsJSON);
-
-    } catch (error) {
-        console.error(error);
-    }
-
-
-
-}
-
-
-async function convertImageToJSON(formData) {
-    alert("HEJ4");
-
-    /**
-     * We can't pass the `FormData` instance directly to `fetch`
-     * as that will cause it to automatically format the request
-     * body as "multipart" and set the `Content-Type` request header
-     * to `multipart/form-data`. We want to send the request body
-     * as JSON, so we're converting it to a plain object and then
-     * into a JSON string.
-     *
-     * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
-     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries
-     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
-     */
-    const plainFormData = Object.fromEntries(formData.entries());
-    const formDataJsonString = JSON.stringify(plainFormData);
-
-    return formDataJsonString;
-}
-
-
-
-
-
 function saveSlide(){
     let title;
     const url = `http://localhost:8081/saveSlide`;
@@ -170,6 +95,113 @@ function saveSlide(){
 }
 
 
+
+
+let loadFile = function(event) {
+
+    let reader = new FileReader();
+
+    let file = event.target.files[0];
+
+    reader.onload = function(){
+        let output = document.getElementById('output');
+
+        let base64 = reader.result;
+
+        //console.log("HEJ", reader.result);
+        output.src = base64;
+
+        console.log("base64", base64);
+
+    }
+
+    reader.readAsDataURL(file);
+
+
+
+
+    /*
+    let image = document.getElementById('output');
+    image.src = URL.createObjectURL(event.target.files[0]);
+
+    let base64 = "Hej";
+
+    console.log("base64", )
+
+     */
+
+};
+
+
+
+// NOGET GAMMELT LORT
+imageForm.addEventListener('submit', handleImageSubmit);
+// når der trykkes på submit fanger vi dataen fra imageInputfelt og gemmer det på liste
+async function handleImageSubmit(event){
+    alert("HEJ4");
+
+
+    /**
+     * This prevents the default behaviour of the browser submitting
+     * the form so that we can handle things instead.
+     */
+    // event.preventDefault();
+
+    /**
+     * This gets the element which the event handler was attached to.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
+     */
+    //const form = event.currentTarget;
+
+    /**
+     * This takes the API URL from the form's `action` attribute.
+
+    const url = form.action;
+     */
+
+    try {
+        /**
+         * This takes all the fields in the form and makes their values
+         * available through a `FormData` instance.
+         *
+         * @see https://developer.mozilla.org/en-US/docs/Web/API/FormData
+         */
+        const formData = new FormData(imageForm);
+
+        console.log("formData", formData);
+
+        /**
+         * We'll define the `postFormDataAsJson()` function in the next step.
+         */
+        const imageAsJSON = await convertImageToJSON(formData);
+
+        console.log("imageAsJSON: ", imageAsJSON);
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+async function convertImageToJSON(formData) {
+    alert("HEJ4");
+
+    /**
+     * We can't pass the `FormData` instance directly to `fetch`
+     * as that will cause it to automatically format the request
+     * body as "multipart" and set the `Content-Type` request header
+     * to `multipart/form-data`. We want to send the request body
+     * as JSON, so we're converting it to a plain object and then
+     * into a JSON string.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries
+     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+     */
+    const plainFormData = Object.fromEntries(formData.entries());
+    const formDataJsonString = JSON.stringify(plainFormData);
+
+    return formDataJsonString;
+}
 // kaldes når man trykker på imageInputfelt - sørger for at submitte billedet
 function imageAutoSubmit(input){
     alert("HEJ");
@@ -181,8 +213,11 @@ function imageAutoSubmit(input){
         reader.onload = function (e) {
             alert("HEJ2.5");
 
-            document.forms["imageForm"].submit();
-            //document.imageForm.submit();
+            handleImageSubmit().then(answer => alert(answer));
+
+
+            // document.forms["imageForm"].submit();
+            // document.imageForm.submit();
             alert("HEJ3");
 
 
@@ -201,8 +236,6 @@ function imageAutoSubmit(input){
 
     }
 }
-
-
 // til upload af billede
 function readURL(input) {
     if (input.files && input.files[0]) {
