@@ -24,7 +24,8 @@ setInterval(function() {
             d = checkTime(today.getDate()),
             mo = checkTime(today.getMonth()),
             y = checkTime(today.getFullYear())
-        document.getElementById('time').innerHTML = h + ":" + m + " - " + d + "/" + mo + "/" + y;
+        document.getElementById('time').innerHTML = h + ":" + m;
+        document.getElementById('date').innerHTML = d + "/" + mo + "/" + y;
         t = setTimeout(function () {
             startTime()
         }, 500);
