@@ -2,11 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments :: header(title='Opret Slide')"></div>
-    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" type="text/css" />
-    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/createSlide.css" />
+
 </head>
 <body>
     <!-- Navigation-->
@@ -119,14 +117,15 @@
             </div>
 
             <!-- Ratio: 16/9 -->
-            <div class="mt-2" id="slide" style="border: 1px solid black; width: 1120px; height: 630px;">
+            <div class="mt-2 resizable" id="slide" style="border: 1px solid black; width: 1120px; height: 630px;">
+
             </div>
 
         </div>
     </section>
 </div>
 
-
+    <div class="resizable">hejehehejh</div>
 
 <!-- Footer-->
 <footer class="py-5 bg-black">
@@ -140,6 +139,10 @@
 
 
     <script src="/js/createSlide.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 
 </body>

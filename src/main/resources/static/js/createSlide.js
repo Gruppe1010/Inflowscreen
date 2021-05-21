@@ -111,27 +111,49 @@ let addImageToSlide = function(event) {
         // vi henter base64
         let base64 = reader.result;
 
+        // vi opretter en div-container til det nye image
+        const divImageContainer = document.createElement('div');
+        divImageContainer.classList.add("dragAndResizeContainer");
+        divImageContainer.style.display = "inline-block";
+
+
+
         // vi laver et nyt img-element
         const imgNewImage = document.createElement('img');
         imgNewImage.src = base64;
 
-        /*
-        const divImage = document.createElement('div');
-        divImage.setAttribute('id',"draggable")//"imageId" + newImageId);
-        divImage.classList.add("ui-widget-content");
-        divImage.appendChild(imgNewImage);
-         */
-
         newImageId++;
         imgNewImage.setAttribute('id',"imageId" + newImageId);
-        imgNewImage.classList.add("draggable");
 
-        slide.appendChild(imgNewImage);
+        // tilføjer til DOM
+        divImageContainer.appendChild(imgNewImage);
+        slide.appendChild(divImageContainer);
+
+
+        $(function() {
+            $('.dragAndResizeContainer').draggable({ containment: "#slide" }).resizable({
+                handles: "ne, se, sw, nw", aspectRatio: true, maxHeight: 630, maxWidth: 1120
+            });
+        });
+
+
+/*
+        resize();
+
+        function resize() {
+            $( ".resizable" ).resizable();
+        };
+
+ */
+
+
 
         // tilføj nyt billede til
         setTimeout(() => { $( function() {
             $( ".draggable" ).draggable({ containment: "#slide", scroll: false });
         });}, 50);
+
+
 
 
     }
