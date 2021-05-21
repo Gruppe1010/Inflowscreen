@@ -3,6 +3,9 @@ input[type="file"] {
 }
 
 .dragAndResizeContainer {
+
+    display: inline-block;
+    position: absolute;
 }
 
 img {

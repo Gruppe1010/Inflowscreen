@@ -114,7 +114,7 @@ let addImageToSlide = function(event) {
         // vi opretter en div-container til det nye image
         const divImageContainer = document.createElement('div');
         divImageContainer.classList.add("dragAndResizeContainer");
-        divImageContainer.style.display = "inline-block";
+
 
 
 
@@ -132,19 +132,20 @@ let addImageToSlide = function(event) {
 
         $(function() {
             $('.dragAndResizeContainer').draggable({ containment: "#slide" }).resizable({
+                containment: "#slide",
                 handles: "ne, se, sw, nw", aspectRatio: true, maxHeight: 630, maxWidth: 1120
             });
         });
 
 
-/*
+        /*
         resize();
 
         function resize() {
             $( ".resizable" ).resizable();
         };
 
- */
+
 
 
 
@@ -154,12 +155,13 @@ let addImageToSlide = function(event) {
         });}, 50);
 
 
-
-
+ */
     }
-
-
 };
+
+
+
+
 
 
 // ! HUSK når vi tager coordinater ud for placering så skal vi tjekke om de er minus og hvis de er minus == 0
