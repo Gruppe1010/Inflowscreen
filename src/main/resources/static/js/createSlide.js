@@ -11,8 +11,8 @@ let newImageId = 0;
 const inpTitle = document.getElementById("inpTitle");
 
 const btnTextBox = document.getElementById("btnTextBox");
-const btnImage = document.getElementById("btnImage");
-const btnVideo = document.getElementById("btnVideo");
+const inpImage = document.getElementById("inpImage");
+const inpVideo = document.getElementById("inpVideo");
 
 const btnBold = document.getElementById("btnBold");
 const btnItalic = document.getElementById("btnItalic");
@@ -135,18 +135,6 @@ let addImageToSlide = function(event) {
 
     }
 
-
-
-
-    /*
-    let image = document.getElementById('output');
-    image.src = URL.createObjectURL(event.target.files[0]);
-
-    let base64 = "Hej";
-
-    console.log("base64", )
-
-     */
 
 };
 

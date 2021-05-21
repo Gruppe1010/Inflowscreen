@@ -8,18 +8,10 @@
 </head>
 <body>
     <!-- Navigation-->
-    <!-- TODO find ud af hvorfor der står hej HAHAHA -->
+<!-- TODO find ud af hvorfor der står hej HAHAHA -->
     <nav th:replace="fragments :: navbar(active='hej')"></nav>
 
 <div>
-
-<!-- TODO måske slet det her? -->
-    <!--<p id="values"></p>
-    <input type='file' onchange="readURL(this);" />
-    <img id="blah" src="#" alt="your image" />-->
-
-<!-- TODO Her kommer det uploadede img ind. Det bliver ikke vist på siden, men har man ikke denne kommer det ikke i canvas af en eller anden grund -->
-    <img id="output" class="d-none" width="200" />
 
     <section>
 
@@ -103,7 +95,7 @@
                             <i class="bi bi-image"></i>
                         </label>
                     </button>
-                    <input type="file" class="d-none" accept="image/*" name="inpImage" id="inpImage" onchange="loadFile(event)">
+                    <input type="file" class="d-none" accept="image/*" name="inpImage" id="inpImage" onchange="addImageToSlide(event)">
 
                     <button type="button" class="btn btn-dark">
                         <label class="m-0 p-0" for="inpVideo">
