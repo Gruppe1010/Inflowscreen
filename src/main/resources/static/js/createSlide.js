@@ -133,6 +133,7 @@ let addImageToSlide = function(event) {
             $( ".draggable" ).draggable({ containment: "#slide", scroll: false });
         });}, 50);
 
+
     }
 
 
