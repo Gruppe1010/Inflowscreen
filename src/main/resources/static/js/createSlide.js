@@ -1,4 +1,10 @@
-const canvas = document.getElementById("canvas");
+const slide = document.getElementById("slide");
+
+let newImageId = 0;
+
+
+
+
 
 // henter alle knapper på siden
 // TODO hent også buttons fra dropdowns/giv dem id
@@ -29,7 +35,6 @@ const imageForm = document.getElementById('imageForm');
 
 
 // når der submittes
-
 btnSave.addEventListener('click', saveSlide);
 function saveSlide(){
     let title;
@@ -94,7 +99,8 @@ function saveSlide(){
 
 }
 
-let loadFile = function(event) {
+// tilføj billede
+let addImageToSlide = function(event) {
 
     let reader = new FileReader();
 
@@ -102,21 +108,33 @@ let loadFile = function(event) {
 
     reader.readAsDataURL(file);
     reader.onloadend = function(){
-        let output = document.getElementById('output');
-
+        // vi henter base64
         let base64 = reader.result;
 
-        //console.log("HEJ", reader.result);
-        output.src = base64;
+        // vi laver et nyt img-element
+        const imgNewImage = document.createElement('img');
+        imgNewImage.src = base64;
 
-        console.log("base64", base64);
+        /*
+        const divImage = document.createElement('div');
+        divImage.setAttribute('id',"draggable")//"imageId" + newImageId);
+        divImage.classList.add("ui-widget-content");
+        divImage.appendChild(imgNewImage);
+         */
 
-        // TODO bare leg for at få img ind i canvas
-        let canvas = document.getElementById("myCanvas");
-        let canvasContext = canvas.getContext("2d");
-        //setTimeout(() => {  canvasContext.drawImage(output, 10, 10); }, 50);
-        canvasContext.drawImage(output, 10, 10);
+        newImageId++;
+        imgNewImage.setAttribute('id',"imageId" + newImageId);
+        imgNewImage.classList.add("draggable");
+
+        slide.appendChild(imgNewImage);
+
+        // tilføj nyt billede til
+        setTimeout(() => { $( function() {
+            $( ".draggable" ).draggable({ containment: "#slide", scroll: false });
+        });}, 50);
+
     }
+
 
 
 
@@ -131,6 +149,19 @@ let loadFile = function(event) {
      */
 
 };
+
+
+// ! HUSK når vi tager coordinater ud for placering så skal vi tjekke om de er minus og hvis de er minus == 0
+
+
+
+
+
+
+
+
+
+
 
 
 
