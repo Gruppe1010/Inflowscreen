@@ -1,6 +1,7 @@
 const slide = document.getElementById("slide");
 
 let newImageId = 0;
+let newTextareaId = 0;
 
 
 
@@ -36,6 +37,69 @@ const imageForm = document.getElementById('imageForm');
 
 // når der submittes
 btnSave.addEventListener('click', saveSlide);
+btnTextBox.addEventListener('click', addTextToSlide);
+
+function addTextToSlide(){
+
+    const divTextBoxContainer = document.createElement('div');
+    divTextBoxContainer.classList.add("dragAndResizeContainer");
+
+    const textBox = document.createElement('p');
+    textBox.innerText = "Hej";
+    newTextareaId++;
+    textBox.setAttribute('id', "textareaId" + newTextareaId);
+    textBox.contentEditable='true';
+
+    slide.appendChild(textBox);
+
+
+    //http://jsfiddle.net/GeJkU/
+    function divClicked() {
+        var divHtml = $(this).html();
+        var editableText = $("<textarea />");
+        editableText.val(divHtml);
+        $(this).replaceWith(editableText);
+        editableText.focus();
+        // setup the blur event for this new textarea
+        editableText.blur(editableTextBlurred);
+    }
+
+    function editableTextBlurred() {
+        var html = $(this).val();
+        var viewableText = $("<div>");
+        viewableText.html(html);
+        $(this).replaceWith(viewableText);
+        // setup the click event for this new div
+        viewableText.click(divClicked);
+    }
+
+    $(document).ready(function() {
+        $("p").click(divClicked);
+    });
+
+
+
+
+
+
+
+
+
+
+
+    // tilføjer til DOM
+    divTextBoxContainer.appendChild(textBox);
+    slide.appendChild(divTextBoxContainer);
+
+    $(function() {
+        $('.dragAndResizeContainer').draggable({ containment: "#slide" }).resizable({
+            containment: "#slide",
+            handles: "ne, se, sw, nw", maxHeight: 630, maxWidth: 1120
+        });
+    });
+
+}
+
 function saveSlide(){
     let title;
     const url = `http://localhost:8081/saveSlide`;

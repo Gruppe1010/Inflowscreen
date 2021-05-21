@@ -10,7 +10,7 @@ body {
 
 .fadeimage {
     position: absolute;
-    transition: opacity 3s ease-in;
+    transition: opacity .5s ease-in;
 }
 
 img + img { opacity: 0; }
