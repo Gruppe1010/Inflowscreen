@@ -1,3 +1,9 @@
+// TODO gør så img-tag onclick
+//      - sæt det forrest!!!!!
+//      - at den skal focusses så man kan se man har fat i den- så man kan lave den fuldskærm
+
+
+
 const slide = document.getElementById("slide");
 
 let newImageId = 0;
@@ -197,7 +203,11 @@ let addImageToSlide = function(event) {
         $(function() {
             $('.dragAndResizeContainer').draggable({ containment: "#slide" }).resizable({
                 containment: "#slide",
-                handles: "ne, se, sw, nw", aspectRatio: true, maxHeight: 630, maxWidth: 1120
+                handles: "ne, se, sw, nw", // hive i alle hjørner
+                aspectRatio: true, // hive med samme format
+                maxHeight: 630,
+                maxWidth: 1120,
+                autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
         });
 
