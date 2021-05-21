@@ -176,7 +176,7 @@ async function handleImageSubmit(event){
     /**
      * This takes the API URL from the form's `action` attribute.
 
-    const url = form.action;
+     const url = form.action;
      */
 
     try {
