@@ -184,6 +184,29 @@ let addImageToSlide = function(event) {
         // vi opretter en div-container til det nye image
         const divImageContainer = document.createElement('div');
         divImageContainer.classList.add("dragAndResizeContainer");
+        divImageContainer.classList.add("focusPicture")
+
+
+
+        //divImageContainer.addEventListener('focus', addDashedBorder);
+        //divImageContainer.addEventListener('click', focusPicture);
+
+        /*
+        function focusPicture () {
+            divImageContainer.focus();
+            divImageContainer.classList.add("focusPicture")
+        }
+
+         */
+
+        $("div").focus(function() {
+            $( this ).next( "span" ).css( "display", "inline" ).fadeOut( 1000 );
+        });
+
+
+
+
+
 
 
 
@@ -211,7 +234,6 @@ let addImageToSlide = function(event) {
             });
         });
 
-
         /*
         resize();
 
@@ -219,19 +241,20 @@ let addImageToSlide = function(event) {
             $( ".resizable" ).resizable();
         };
 
-
-
-
-
         // tilføj nyt billede til
         setTimeout(() => { $( function() {
             $( ".draggable" ).draggable({ containment: "#slide", scroll: false });
         });}, 50);
+        */
 
-
- */
     }
 };
+
+
+
+
+
+
 
 
 
