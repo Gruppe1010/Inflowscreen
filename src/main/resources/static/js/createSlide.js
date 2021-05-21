@@ -100,7 +100,8 @@ let loadFile = function(event) {
 
     let file = event.target.files[0];
 
-    reader.onload = function(){
+    reader.readAsDataURL(file);
+    reader.onloadend = function(){
         let output = document.getElementById('output');
 
         let base64 = reader.result;
@@ -113,11 +114,11 @@ let loadFile = function(event) {
         // TODO bare leg for at få img ind i canvas
         let canvas = document.getElementById("myCanvas");
         let canvasContext = canvas.getContext("2d");
-        setTimeout(() => {  canvasContext.drawImage(output, 10, 10); }, 50);
-
+        //setTimeout(() => {  canvasContext.drawImage(output, 10, 10); }, 50);
+        canvasContext.drawImage(output, 10, 10);
     }
 
-    reader.readAsDataURL(file);
+
 
     /*
     let image = document.getElementById('output');
