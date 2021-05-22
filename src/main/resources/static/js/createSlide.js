@@ -2,9 +2,11 @@
 //      - sæt det forrest!!!!!
 //      - at den skal focusses så man kan se man har fat i den- så man kan lave den fuldskærm
 
+// ! HUSK når vi tager coordinater ud for placering så skal vi tjekke om de er minus og hvis de er minus == 0
 
 
 const slide = document.getElementById("slide");
+// slide.addEventListener('click', removeFocusFromAll);
 
 let newImageId = 0;
 let newTextareaId = 0;
@@ -178,34 +180,32 @@ let addImageToSlide = function(event) {
 
     reader.readAsDataURL(file);
     reader.onloadend = function(){
+        newImageId++;
+
         // vi henter base64
         let base64 = reader.result;
 
-        // vi opretter en div-container til det nye image
+        // DIV-container til nyt image
         const divImageContainer = document.createElement('div');
+        divImageContainer.setAttribute('id',"imageContainerDivId" + newImageId);
         divImageContainer.classList.add("dragAndResizeContainer");
-        divImageContainer.classList.add("focusPicture")
 
 
-
-        //divImageContainer.addEventListener('focus', addDashedBorder);
-        //divImageContainer.addEventListener('click', focusPicture);
 
         /*
-        function focusPicture () {
-            divImageContainer.focus();
-            divImageContainer.classList.add("focusPicture")
+        // TODO laver border på focussed billede - men den skal vente til response
+        divImageContainer.addEventListener('click', addBorderToImage);
+
+        async function addBorderToImage() {
+            if (!divImageContainer.classList.contains("focus")) {
+                console.log("den har IKKE focus")
+                if(Array.from(document.querySelectorAll(".focus")).length > 0) await removeFocusFromAll();
+                divImageContainer.classList.add("focus");
+                console.log(divImageContainer.classList);
+                // TODO det er også her vi skal se om elementet har fuldskærmsknappen pushed
+            } else removeFocusFromAll();
         }
-
          */
-
-        $("div").focus(function() {
-            $( this ).next( "span" ).css( "display", "inline" ).fadeOut( 1000 );
-        });
-
-
-
-
 
 
 
@@ -215,7 +215,6 @@ let addImageToSlide = function(event) {
         const imgNewImage = document.createElement('img');
         imgNewImage.src = base64;
 
-        newImageId++;
         imgNewImage.setAttribute('id',"imageId" + newImageId);
 
         // tilføjer til DOM
@@ -224,13 +223,17 @@ let addImageToSlide = function(event) {
 
 
         $(function() {
-            $('.dragAndResizeContainer').draggable({ containment: "#slide" }).resizable({
-                containment: "#slide",
-                handles: "ne, se, sw, nw", // hive i alle hjørner
-                aspectRatio: true, // hive med samme format
-                maxHeight: 630,
-                maxWidth: 1120,
-                autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
+            $('.dragAndResizeContainer')
+                .draggable({
+                    containment: "#slide",
+                    cursor : "move"})
+                .resizable({
+                    containment: "#slide",
+                    handles: "ne, se, sw, nw", // hive i alle hjørner
+                    aspectRatio: true, // hive med samme format
+                    maxHeight: 630,
+                    maxWidth: 1120,
+                    autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
         });
 
@@ -252,6 +255,14 @@ let addImageToSlide = function(event) {
 
 
 
+function removeFocusFromAll(){
+
+    return new Promise(resolve => {resolve(Array.from(document.querySelectorAll(".focus"))
+        .forEach((elementWithImageBorderClass) =>
+            elementWithImageBorderClass.classList.remove('focus')))});
+
+
+}
 
 
 
@@ -261,7 +272,6 @@ let addImageToSlide = function(event) {
 
 
 
-// ! HUSK når vi tager coordinater ud for placering så skal vi tjekke om de er minus og hvis de er minus == 0
 
 
 
@@ -275,7 +285,10 @@ let addImageToSlide = function(event) {
 
 
 
-// NOGET GAMMELT LORT
+
+
+
+//! RESTEN ER NOGET GAMMELT LORT
 //imageForm.addEventListener('submit', handleImageSubmit);
 // når der trykkes på submit fanger vi dataen fra imageInputfelt og gemmer det på liste
 async function handleImageSubmit(event){
@@ -390,6 +403,7 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
 
 
 
