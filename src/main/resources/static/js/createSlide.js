@@ -9,7 +9,7 @@ const slide = document.getElementById("slide");
 // slide.addEventListener('click', removeFocusFromAll);
 
 let newImageId = 0;
-let newTextareaId = 0;
+let newTextBoxId = 0;
 
 
 
@@ -42,71 +42,10 @@ const btnSave = document.getElementById("btnSave");
 const imageForm = document.getElementById('imageForm');
 
 
-
 // når der submittes
 btnSave.addEventListener('click', saveSlide);
 btnTextBox.addEventListener('click', addTextToSlide);
 
-function addTextToSlide(){
-
-    const divTextBoxContainer = document.createElement('div');
-    divTextBoxContainer.classList.add("dragAndResizeContainer");
-
-    const textBox = document.createElement('p');
-    textBox.innerText = "Hej";
-    newTextareaId++;
-    textBox.setAttribute('id', "textareaId" + newTextareaId);
-    textBox.contentEditable='true';
-
-    slide.appendChild(textBox);
-
-
-    //http://jsfiddle.net/GeJkU/
-    function divClicked() {
-        var divHtml = $(this).html();
-        var editableText = $("<textarea />");
-        editableText.val(divHtml);
-        $(this).replaceWith(editableText);
-        editableText.focus();
-        // setup the blur event for this new textarea
-        editableText.blur(editableTextBlurred);
-    }
-
-    function editableTextBlurred() {
-        var html = $(this).val();
-        var viewableText = $("<div>");
-        viewableText.html(html);
-        $(this).replaceWith(viewableText);
-        // setup the click event for this new div
-        viewableText.click(divClicked);
-    }
-
-    $(document).ready(function() {
-        $("p").click(divClicked);
-    });
-
-
-
-
-
-
-
-
-
-
-
-    // tilføjer til DOM
-    divTextBoxContainer.appendChild(textBox);
-    slide.appendChild(divTextBoxContainer);
-
-    $(function() {
-        $('.dragAndResizeContainer').draggable({ containment: "#slide" }).resizable({
-            containment: "#slide",
-            handles: "ne, se, sw, nw", maxHeight: 630, maxWidth: 1120
-        });
-    });
-
-}
 
 function saveSlide(){
     let title;
@@ -170,6 +109,68 @@ function saveSlide(){
     }
 
 }
+
+
+// tilføj text box
+function addTextToSlide(){
+
+    const divTextBoxContainer = document.createElement('div');
+    divTextBoxContainer.classList.add("dragAndResizeContainer");
+    divTextBoxContainer.classList.add("textBoxDivSize");
+
+
+    const textBox = document.createElement('p');
+    textBox.innerText = "Skriv i dette felt";
+    newTextBoxId++;
+    textBox.setAttribute('id', "textBoxId" + newTextBoxId);
+    textBox.contentEditable='true';
+
+    slide.appendChild(textBox);
+
+    //http://jsfiddle.net/GeJkU/
+    function divClicked() {
+        let divHtml = $(this).html();
+        let editableText = $("<textarea />");
+        editableText.val(divHtml);
+        $(this).replaceWith(editableText);
+        editableText.focus();
+        // setup the blur event for this new textarea
+        editableText.blur(editableTextBlurred);
+    }
+
+    function editableTextBlurred() {
+        let html = $(this).val();
+        let viewableText = $("<div>");
+        viewableText.html(html);
+        $(this).replaceWith(viewableText);
+        // setup the click event for this new div
+        viewableText.click(divClicked);
+    }
+
+    $(document).ready(function() {
+        $("p").click(divClicked);
+    });
+
+    // tilføjer til DOM
+    divTextBoxContainer.appendChild(textBox);
+    slide.appendChild(divTextBoxContainer);
+
+    $(function() {
+        $('.dragAndResizeContainer')
+            .draggable({
+                containment: "#slide",
+                cursor : "move"})
+            .resizable({
+                containment: "#slide",
+                handles: "ne, se, sw, nw", // hive i alle hjørner
+                maxHeight: 630,
+                maxWidth: 1120,
+                autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
+            });
+    });
+
+}
+
 
 // tilføj billede
 let addImageToSlide = function(event) {
