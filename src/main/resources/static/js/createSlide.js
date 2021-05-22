@@ -110,7 +110,7 @@ function saveSlide(){
 
 }
 
-
+// TODO Få linebreak til at virker og fjern template tekst i box når der trykkes.
 // tilføj text box
 function addTextToSlide(){
 
@@ -118,14 +118,10 @@ function addTextToSlide(){
     divTextBoxContainer.classList.add("dragAndResizeContainer");
     divTextBoxContainer.classList.add("textBoxDivSize");
 
-
     const textBox = document.createElement('p');
-    textBox.innerText = "Skriv i dette felt";
+    textBox.innerText = "Tryk her for at tilføje tekst";
     newTextBoxId++;
     textBox.setAttribute('id', "textBoxId" + newTextBoxId);
-    textBox.contentEditable='true';
-
-    slide.appendChild(textBox);
 
     //http://jsfiddle.net/GeJkU/
     function divClicked() {
@@ -151,10 +147,6 @@ function addTextToSlide(){
         $("p").click(divClicked);
     });
 
-    // tilføjer til DOM
-    divTextBoxContainer.appendChild(textBox);
-    slide.appendChild(divTextBoxContainer);
-
     $(function() {
         $('.dragAndResizeContainer')
             .draggable({
@@ -169,6 +161,9 @@ function addTextToSlide(){
             });
     });
 
+    // tilføjer til DOM
+    divTextBoxContainer.appendChild(textBox);
+    slide.appendChild(divTextBoxContainer);
 }
 
 
