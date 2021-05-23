@@ -194,6 +194,7 @@ let addImageToSlide = function(event) {
         const divImageContainer = document.createElement('div');
         divImageContainer.setAttribute('id',"imageDivContainer" + newImageId);
         divImageContainer.classList.add("dragAndResizeContainer");
+        divImageContainer.style.position = "absolute";
         divImageContainer.addEventListener('dblclick', function (){makeFullScreen(divImageContainer)});
 
         //! såden er kalder vi en funktion som tager parametre i en EventListener!!!!!!!!
