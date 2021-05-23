@@ -11,8 +11,8 @@ input[type="file"] {
 #slide {
     position:relative; /* Så der ikke kan resizes ud over containment area*/
     border: 1px solid black;
-    width: 1122px; /* 2 pixels større pga. border så selve slide-indeholder har rigtige format*/
-    height: 632px;
+    width: 1123px; /* 3 pixels større pga. border så selve slide-indeholder har rigtige format*/
+    height: 633px;
 }
 
 
