@@ -20,6 +20,7 @@ let newTextBoxId = 0;
 const inpTitle = document.getElementById("inpTitle");
 
 const btnTextBox = document.getElementById("btnTextBox");
+/*
 const inpImage = document.getElementById("inpImage");
 const inpVideo = document.getElementById("inpVideo");
 
@@ -36,6 +37,8 @@ const btnMarginRight = document.getElementById("btnMarginRight");
 const btnList = document.getElementById("btnList");
 
 const btnFullscreen = document.getElementById("btnFullscreen");
+
+ */
 
 const btnSave = document.getElementById("btnSave");
 
@@ -185,6 +188,16 @@ let addImageToSlide = function(event) {
         const divImageContainer = document.createElement('div');
         divImageContainer.setAttribute('id',"imageContainerDivId" + newImageId);
         divImageContainer.classList.add("dragAndResizeContainer");
+        divImageContainer.addEventListener('dblclick', function (){makeFullScreen(divImageContainer)});
+
+
+        //! såden er kalder vi en funktion som tager parametre i en EventListener!!!!!!!!
+        divImageContainer.addEventListener('click',function(){printPosition(divImageContainer)});
+
+
+
+
+
 
 
 
@@ -205,19 +218,22 @@ let addImageToSlide = function(event) {
 
 
 
-
-
         // vi laver et nyt img-element
         const imgNewImage = document.createElement('img');
         imgNewImage.src = base64;
-
         imgNewImage.setAttribute('id',"imageId" + newImageId);
+
+
+
+
+
 
         // tilføjer til DOM
         divImageContainer.appendChild(imgNewImage);
         slide.appendChild(divImageContainer);
 
 
+        // gør billedet draggable og resizable indenfor slide-div'en
         $(function() {
             $('.dragAndResizeContainer')
                 .draggable({
@@ -232,24 +248,48 @@ let addImageToSlide = function(event) {
                     autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
         });
-
-        /*
-        resize();
-
-        function resize() {
-            $( ".resizable" ).resizable();
-        };
-
-        // tilføj nyt billede til
-        setTimeout(() => { $( function() {
-            $( ".draggable" ).draggable({ containment: "#slide", scroll: false });
-        });}, 50);
-        */
-
     }
 };
 
+function printPosition(el){
+    console.log("top: " + el.style.top +
+        " left: " + el.style.left +
+        " width: " + el.offsetWidth +
+        " height: " + el.offsetHeight);
+}
 
+/**
+ * Hvis billedet allerede er fulscreen bliver det 80%
+ * Hvis billedet IKKE er halv størrelse, bliver det fullscreen
+ *
+ * */
+function makeFullScreen(el){
+
+    let width = el.offsetWidth;
+    let height = el.offsetHeight;
+
+    // hvis den allerede er i fuldskærm
+    if(width === 1120 || height === 630){
+        // gør halv størrelse
+        el.style.width = width * 0.8 + "px";
+        el.style.height = height * 0.8 + "px";
+    }
+
+    // else gør til fuldskærm
+    else if(width > height){
+        // desiredWidth / actualWidth == størrelsesforholdet
+        const ratio = 1120/width;
+        el.style.width = "1120px";
+        el.style.height = height * ratio + "px";
+        el.style.left = "0px";
+    }
+    else{
+        const ratio = 630/height;
+        el.style.height = "630px";
+        el.style.width = width * ratio + "px";
+        el.style.top = "0px";
+    }
+}
 
 function removeFocusFromAll(){
 
@@ -409,7 +449,6 @@ function readURL(input) {
 
 
 /*
-
 const canvasContext = canvas.getContext("2d");
 canvasContext.font = "30px Arial";
 canvasContext.strokeText("Hello World",10,50);
@@ -418,7 +457,6 @@ canvasContext.strokeText("Hello World",10,50);
 const canvasContext1 = canvas.getContext("2d");
 canvasContext1.font = "60px Arial";
 canvasContext1.strokeText("Heeeeej",30,90);
-
 */
 
 

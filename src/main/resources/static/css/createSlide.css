@@ -11,8 +11,8 @@ input[type="file"] {
 #slide {
     position:relative; /* Så der ikke kan resizes ud over containment area*/
     border: 1px solid black;
-    width: 1120px;
-    height: 630px;
+    width: 1122px; /* 2 pixels større pga. border så selve slide-indeholder har rigtige format*/
+    height: 632px;
 }
 
 .textBoxDivSize {
@@ -29,6 +29,7 @@ img {
     margin: 0;
 }
 
+/* TODO slet måske */
 .focus{
     border: 1px dashed black;
 }
