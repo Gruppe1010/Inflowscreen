@@ -1,12 +1,14 @@
 // TODO gør så img-tag onclick
 //      - sæt det forrest!!!!!
-//      - at den skal focusses så man kan se man har fat i den- så man kan lave den fuldskærm
+
+// TODO teksbokst
+//      - gør så man kan komme ind i p-tag hvis alt teksten er slettet
+//      - slet boks ved delete-knap + kryds i hjørne
 
 // ! HUSK når vi tager coordinater ud for placering så skal vi tjekke om de er minus og hvis de er minus == 0
 
 
 const slide = document.getElementById("slide");
-// slide.addEventListener('click', removeFocusFromAll);
 
 let newImageId = 0;
 let newTextBoxId = 0;
@@ -116,15 +118,19 @@ function saveSlide(){
 // TODO Få linebreak til at virker og fjern template tekst i box når der trykkes.
 // tilføj text box
 function addTextToSlide(){
+    newTextBoxId++;
 
+    // div-container
     const divTextBoxContainer = document.createElement('div');
+    divTextBoxContainer.setAttribute('id',"pDivContainer" + newTextBoxId);
     divTextBoxContainer.classList.add("dragAndResizeContainer");
     divTextBoxContainer.classList.add("textBoxDivSize");
 
+    // p-tag
     const textBox = document.createElement('p');
-    textBox.innerText = "Tryk her for at tilføje tekst";
-    newTextBoxId++;
     textBox.setAttribute('id', "textBoxId" + newTextBoxId);
+    textBox.innerText = "Tryk her for at tilføje tekst";
+
 
     //http://jsfiddle.net/GeJkU/
     function divClicked() {
@@ -157,7 +163,7 @@ function addTextToSlide(){
                 cursor : "move"})
             .resizable({
                 containment: "#slide",
-                handles: "ne, se, sw, nw", // hive i alle hjørner
+                handles: "se", // hive i alle hjørner
                 maxHeight: 630,
                 maxWidth: 1120,
                 autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
@@ -184,9 +190,9 @@ let addImageToSlide = function(event) {
         // vi henter base64
         let base64 = reader.result;
 
-        // DIV-container til nyt image
+        // ---------DIV-container til nyt image
         const divImageContainer = document.createElement('div');
-        divImageContainer.setAttribute('id',"imageContainerDivId" + newImageId);
+        divImageContainer.setAttribute('id',"imageDivContainer" + newImageId);
         divImageContainer.classList.add("dragAndResizeContainer");
         divImageContainer.addEventListener('dblclick', function (){makeFullScreen(divImageContainer)});
 
@@ -194,40 +200,24 @@ let addImageToSlide = function(event) {
         divImageContainer.addEventListener('mouseup',function(){printPosition(divImageContainer)});
 
 
-
-
-
-
-
-
-        /*
-        // TODO laver border på focussed billede - men den skal vente til response
-        divImageContainer.addEventListener('click', addBorderToImage);
-
-        async function addBorderToImage() {
-            if (!divImageContainer.classList.contains("focus")) {
-                console.log("den har IKKE focus")
-                if(Array.from(document.querySelectorAll(".focus")).length > 0) await removeFocusFromAll();
-                divImageContainer.classList.add("focus");
-                console.log(divImageContainer.classList);
-                // TODO det er også her vi skal se om elementet har fuldskærmsknappen pushed
-            } else removeFocusFromAll();
-        }
-         */
-
-
-
-        // vi laver et nyt img-element
+        // --------IMG
         const imgNewImage = document.createElement('img');
         imgNewImage.src = base64;
-        imgNewImage.setAttribute('id',"imageId" + newImageId);
+        imgNewImage.setAttribute('id',"image" + newImageId);
+
+        const spanDelete = document.createElement('span');
+        spanDelete.classList.add("floating", "top", "right", "ui-icon", "ui-icon-close");
+        spanDelete.title = "delete";
+        spanDelete.addEventListener('click',function(){deleteElement(divImageContainer)});
 
 
-
-
+        // sætter focus på billede når man trykker
+        imgNewImage.tabIndex = 0;
+        imgNewImage.addEventListener('click', function (){addFocus(imgNewImage)});
 
 
         // tilføjer til DOM
+        imgNewImage.appendChild(spanDelete);
         divImageContainer.appendChild(imgNewImage);
         slide.appendChild(divImageContainer);
 
@@ -290,15 +280,17 @@ function makeFullScreen(el){
     }
 }
 
-function removeFocusFromAll(){
 
-    return new Promise(resolve => {resolve(Array.from(document.querySelectorAll(".focus"))
-        .forEach((elementWithImageBorderClass) =>
-            elementWithImageBorderClass.classList.remove('focus')))});
-
-
+function addFocus(el){
+    el.focus();
 }
 
+
+function deleteElement(el){
+    el.fadeOut(function() {
+        el.remove();
+    });
+}
 
 
 

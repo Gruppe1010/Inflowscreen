@@ -31,9 +31,11 @@ img {
 }
 
 /* TODO slet måske */
-.focus{
+/*.focus{
     border: 1px dashed black;
 }
+
+ */
 
 .ui-resizable-handle {
     border: 1px solid #000;
@@ -47,6 +49,14 @@ img {
     bottom: -5px;
 
 
+}
+
+img:focus{
+    border: 1px dashed black;
+}
+
+div:focus{
+    border: 1px dashed black;
 }
 
 .ui-resizable-nw,
