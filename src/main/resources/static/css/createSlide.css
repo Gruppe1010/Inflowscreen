@@ -38,13 +38,15 @@ img {
 .ui-resizable-handle {
     border: 1px solid #000;
     background: #fff;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
 }
 
 .ui-resizable-se {
     right: -5px;
     bottom: -5px;
+
+
 }
 
 .ui-resizable-nw,

@@ -240,7 +240,7 @@ let addImageToSlide = function(event) {
                     cursor : "move"})
                 .resizable({
                     containment: "#slide",
-                    handles: "ne, se, sw, nw", // hive i alle hjørner
+                    handles: "se", // hive i alle hjørner
                     aspectRatio: true, // hive med samme format
                     maxHeight: 630,
                     maxWidth: 1120,
@@ -269,7 +269,7 @@ function makeFullScreen(el){
 
     // hvis den allerede er i fuldskærm
     if(width === 1120 || height === 630){
-        // gør halv størrelse
+        // gør 80%
         el.style.width = width * 0.8 + "px";
         el.style.height = height * 0.8 + "px";
     }
@@ -282,7 +282,7 @@ function makeFullScreen(el){
         el.style.height = height * ratio + "px";
         el.style.left = "0px";
     }
-    else{
+    else{ // gør til fuldskærm på height
         const ratio = 630/height;
         el.style.height = "630px";
         el.style.width = width * ratio + "px";
