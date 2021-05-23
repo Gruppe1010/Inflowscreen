@@ -36,13 +36,23 @@ public class Slide {
     public Slide(int id, String title, int frequency, boolean isActive, String themePath)
     {
         this.id = id;
-        this.organisations = new HashSet<Organisation>();
+        this.organisations = new HashSet<>();
         this.title = title;
         this.frequency = frequency;
         this.isActive = isActive;
         this.themePath = themePath;
     }
-    
+
+    public Slide(String title, int frequency, boolean isActive, Set<TextBox> textBoxes, Set<SlideImage> slideImages, Set<SlideVideo> slideVideos, String themePath) {
+        this.title = title;
+        this.frequency = frequency;
+        this.isActive = isActive;
+        this.textBoxes = textBoxes;
+        this.slideImages = slideImages;
+        this.slideVideos = slideVideos;
+        this.themePath = themePath;
+    }
+
     @OneToMany(mappedBy = "slide")
     private Set<TextBox> textBoxes;
     

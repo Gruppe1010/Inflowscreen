@@ -4,7 +4,7 @@
     <div th:replace="fragments :: header(title='Opret Slide')"></div>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/createSlide.css" />
-    <link href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+    <!--<link href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">-->
 
 </head>
 <body>
@@ -92,12 +92,15 @@
 
                 <div class="btn-group mr-2">
 
-                    <button type="button" class="btn btn-dark">
+
+                    <button type="button" class="btn btn-dark" id="btnImage">
                         <label class="m-0 p-0 pe-auto" for="inpImage">
                             <i class="bi bi-image"></i>
                         </label>
                     </button>
+
                     <input type="file" class="d-none" accept="image/*" name="inpImage" id="inpImage" onchange="addImageToSlide(event)">
+
 
                     <button type="button" class="btn btn-dark">
                         <label class="m-0 p-0" for="inpVideo">

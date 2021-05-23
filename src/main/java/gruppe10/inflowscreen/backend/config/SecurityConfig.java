@@ -25,13 +25,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     // TODO find ud af at lave 1 til ${klinikId}
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception { // ! kommenter l.. 34-5 ind og slet 33
         http.
                 csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/resources/**", "/static/**", "/css/slideshow.css", "/images/**", "/js/slideshow.js").permitAll()
-                .antMatchers("/1/slideshow").permitAll()
-                .antMatchers("/1", "/1/**").hasAnyAuthority("USER", "ADMIN") // hvis der kommer flere brugertyper
+                //.antMatchers("/**").permitAll()
+                .antMatchers("/slideshow").permitAll()
+                .antMatchers("/**").hasAnyAuthority("USER", "ADMIN") // hvis der kommer flere brugertyper
                 .anyRequest()
                 .authenticated()
                 .and()

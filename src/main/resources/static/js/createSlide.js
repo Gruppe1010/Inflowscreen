@@ -10,20 +10,22 @@
 
 const slide = document.getElementById("slide");
 
+let textBoxesOnSlide = [];
+let imageContainers = []; // indeholder alle divImageContainers som indeholder img-elementer
+
+
+
+
 let newImageId = 0;
 let newTextBoxId = 0;
 
 
 
-
-
 // henter alle knapper på siden
 // TODO hent også buttons fra dropdowns/giv dem id
-const inpTitle = document.getElementById("inpTitle");
 
-const btnTextBox = document.getElementById("btnTextBox");
 /*
-const inpImage = document.getElementById("inpImage");
+const inpImage = document.getElementById("btnImage");
 const inpVideo = document.getElementById("inpVideo");
 
 const btnBold = document.getElementById("btnBold");
@@ -41,46 +43,39 @@ const btnList = document.getElementById("btnList");
 const btnFullscreen = document.getElementById("btnFullscreen");
 
  */
+const inpTitle = document.getElementById("inpTitle");
 
-const btnSave = document.getElementById("btnSave");
-
-const imageForm = document.getElementById('imageForm');
-
-
-// når der submittes
-btnSave.addEventListener('click', saveSlide);
+const btnTextBox = document.getElementById("btnTextBox");
 btnTextBox.addEventListener('click', addTextToSlide);
 
+const btnSave = document.getElementById("btnSave");
+btnSave.addEventListener('click', saveSlide);
 
+
+/**
+ * Omdanner data på slide og sender i fetch
+ * */
 function saveSlide(){
-    let title;
     const url = `http://localhost:8081/saveSlide`;
 
-    // TODO tilføj noget async noget så vi ved vi har fået hentet dataen
-    function retrieveInput(){
-        title = inpTitle.value;
-        console.log("Title er her: " + title);
-
-    }
-    retrieveInput();
-
-
+    let title = inpTitle.value;
 
     // hvis de har indtastet en titel
     if(title.length > 0){
-        // TODO tilføj måske noget asyng
-        function createJSONSlide(title){
-            // vi laver et object (JSON-obj er standard obj i js)
-            let slide = {
-                "title": title
-            };
 
-            /* Vi laver JSON om til en String
-               Fordi at body i requestOptions'en skal angives som string
-             */
-            return JSON.stringify(slide);
+        // TODO tilføj noget async
+        const images = convertImagesToJSON();
+
+        console.log(images);
+
+        let slide = {
+            "title": title,
+            "images": images
         }
-        const body = createJSONSlide(title);
+
+        const body = JSON.stringify(slide);
+
+        console.log(body);
 
         const requestOptions = {
             method: 'POST',
@@ -90,10 +85,10 @@ function saveSlide(){
             body: body
         };
 
-        // TODO tilføjet måske noget async
+        // TODO tilføj måske noget async
         function checkIfSuccess(response){
             if(response.status >= 200 && response.status < 300){
-
+                // TODO har vi overhovedet brug for denne cookie??
                 const cookie = document.cookie;
 
                 alert(cookie);
@@ -108,12 +103,56 @@ function saveSlide(){
         fetch(url, requestOptions)
             .then(data => checkIfSuccess(data))
             .catch(error => console.log("Fejl i fetch, createSlide.js: ", error));
-    }
-    else{
-        alert("Indtast venligst en title.");
-    }
 
+
+    } else{
+        alert("Indtast venligst en titel");
+    }
 }
+// TODO tilføj noget async noget så vi ved vi har fået hentet dataen
+// kig på: https://stackoverflow.com/questions/29775797/fetch-post-json-data
+/**
+ * Omdanner alle img-tags på liste til JSON
+ * */
+function convertImagesToJSON(){
+    // returnerer en liste hvor hvert el på imageContainters-listen har undergået makeImageJSON-func
+   return imageContainers.map(div => makeImageJSON(div));
+
+    function makeImageJSON(div){
+
+        const img = div.getElementsByTagName('img')[0];
+
+        let top =  div.style.top;
+        let left = div.style.left;
+
+        // hvis de er 0 kommer de ud som "" - derfor sætter vi lige værdien til 0px
+        if(top === "") top = "0px";
+        if(left === "") left = "0px";
+
+        // TODO tilføj z-index (måske også en bool: isFullscreen)
+        return {
+            "top": top,
+            "left": left,
+            "width": img.offsetWidth + "px",
+            "height": img.offsetHeight + "px"
+            //"base64": img.src,
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // TODO Få linebreak til at virker og fjern template tekst i box når der trykkes.
 // tilføj text box
@@ -130,6 +169,7 @@ function addTextToSlide(){
     const textBox = document.createElement('p');
     textBox.setAttribute('id', "textBoxId" + newTextBoxId);
     textBox.innerText = "Tryk her for at tilføje tekst";
+    textBoxesOnSlide.push(textBox);
 
 
     //http://jsfiddle.net/GeJkU/
@@ -175,7 +215,6 @@ function addTextToSlide(){
     slide.appendChild(divTextBoxContainer);
 }
 
-
 // tilføj billede
 let addImageToSlide = function(event) {
 
@@ -195,31 +234,36 @@ let addImageToSlide = function(event) {
         divImageContainer.setAttribute('id',"imageDivContainer" + newImageId);
         divImageContainer.classList.add("dragAndResizeContainer");
         divImageContainer.addEventListener('dblclick', function (){makeFullScreen(divImageContainer)});
-
         //! såden er kalder vi en funktion som tager parametre i en EventListener!!!!!!!!
         divImageContainer.addEventListener('mouseup',function(){printPosition(divImageContainer)});
-
+        /*tilføj til liste
+        * det er divContainer som tilføjes fordi det er den som ved hvorhenne på slidet den er
+        * fordi img-taggets top og left er ift. divContainer
+        * */
+        imageContainers.push(divImageContainer);
 
         // --------IMG
         const imgNewImage = document.createElement('img');
         imgNewImage.src = base64;
         imgNewImage.setAttribute('id',"image" + newImageId);
-
-        const spanDelete = document.createElement('span');
-        spanDelete.classList.add("floating", "top", "right", "ui-icon", "ui-icon-close");
-        spanDelete.title = "delete";
-        spanDelete.addEventListener('click',function(){deleteElement(divImageContainer)});
-
-
         // sætter focus på billede når man trykker
         imgNewImage.tabIndex = 0;
         imgNewImage.addEventListener('click', function (){addFocusAndZIndex(imgNewImage, divImageContainer)});
+
+
+        // TODO span delete-kryds
+        const spanDelete = document.createElement('span');
+        spanDelete.classList.add("floating", "top", "right", "ui-icon", "ui-icon-close");
+        spanDelete.addEventListener('click',function(){deleteElement(divImageContainer)});
+
 
 
         // tilføjer til DOM
         imgNewImage.appendChild(spanDelete);
         divImageContainer.appendChild(imgNewImage);
         slide.appendChild(divImageContainer);
+        // TODO når man sletter et element skal det også slettes fra imagesOnSlide-array'et
+        //     - her skal vi også slette det tomme felt der kommer på array'et når man slette elementet fra listen
 
 
         // gør billedet draggable og resizable indenfor slide-div'en
@@ -282,16 +326,16 @@ function makeFullScreen(el){
 
 function addFocusAndZIndex(el, el2){
     // TODO find ud af dette så billderne ikke står ovenihinanden
-    /*el2.style.zindex = "1";
-    el.style.zindex = "1"; */
+
+    imageContainers.forEach(con => con.style.zIndex = 0);
+
+    el2.style.zIndex = 1;
     el.focus();
 }
-
 
 function addFocus(el){
     el.focus();
 }
-
 
 function deleteElement(el){
     el.fadeOut(function() {

@@ -19,13 +19,21 @@ public class SlideImage {
     private int id;
 
     private String imagePath;
-    private boolean fullscreen;
-    private double x;
-    private double y;
+    private String top;
+    private String left;
+    private String width;
+    private String height;
 
     @ManyToOne
     @JoinColumn(name = "id_slide")
     // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "filmId")
     private Slide slide;
 
+    public SlideImage(String imagePath, String top, String left, String width, String height) {
+        this.imagePath = imagePath;
+        this.top = top;
+        this.left = left;
+        this.width = width;
+        this.height = height;
+    }
 }
