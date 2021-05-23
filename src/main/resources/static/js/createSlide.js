@@ -5,16 +5,26 @@
 //      - gør så man kan komme ind i p-tag hvis alt teksten er slettet
 //      - slet boks ved delete-knap + kryds i hjørne
 
-// ! HUSK når vi tager coordinater ud for placering så skal vi tjekke om de er minus og hvis de er minus == 0
-
-
 const slide = document.getElementById("slide");
+
+/**
+ * Lytter efter tryk på 'backspace' eller 'delete' på hele doc og sletter elementet med fokus på slide
+ * */
+document.addEventListener('keydown', function (e) {
+    // gemmer det element som har fokus i variabel
+    const focusedEl = document.activeElement
+    // hvis det har dragAndResizeContainer-klassen VED vi at det enten er: textBox, image (eller video) og så vil vi gerne slette elementet
+    if(focusedEl.classList.contains("dragAndResizeContainer")){
+        // enten
+        if (e.key === 'Delete' || e.key === 'Backspace') {
+            // og så vil vi gerne
+            deleteElement(focusedEl);
+        }
+    }
+});
 
 let textBoxesOnSlide = [];
 let imageContainers = []; // indeholder alle divImageContainers som indeholder img-elementer
-
-
-
 
 let newImageId = 0;
 let newTextBoxId = 0;
@@ -126,8 +136,9 @@ function convertImagesToJSON(){
         let left = div.style.left;
 
         // hvis de er 0 kommer de ud som "" - derfor sætter vi lige værdien til 0px
-        if(top === "") top = "0px";
-        if(left === "") left = "0px";
+        // også < 0, hvis der nu er sket en fejl på en eller anden måde på slidet
+        if(top === "" || top < 0) top = "0px";
+        if(left === "" || left < 0) left = "0px";
 
         // TODO tilføj z-index (måske også en bool: isFullscreen)
         return {
@@ -139,13 +150,6 @@ function convertImagesToJSON(){
         }
     }
 }
-
-
-
-
-
-
-
 
 
 
@@ -233,9 +237,13 @@ let addImageToSlide = function(event) {
         const divImageContainer = document.createElement('div');
         divImageContainer.setAttribute('id',"imageDivContainer" + newImageId);
         divImageContainer.classList.add("dragAndResizeContainer");
-        divImageContainer.addEventListener('dblclick', function (){makeFullScreen(divImageContainer)});
+        divImageContainer.tabIndex = 0;  // sætter focus på billede når man trykker
         //! såden er kalder vi en funktion som tager parametre i en EventListener!!!!!!!!
-        divImageContainer.addEventListener('mouseup',function(){printPosition(divImageContainer)});
+        divImageContainer.addEventListener('dblclick', function (){makeFullScreen(divImageContainer)});
+        divImageContainer.addEventListener('mouseup',function(){printPosition(divImageContainer)}); // TODO slet
+        divImageContainer.addEventListener('click', function (){addFocusAndZIndex(divImageContainer)});
+
+
         /*tilføj til liste
         * det er divContainer som tilføjes fordi det er den som ved hvorhenne på slidet den er
         * fordi img-taggets top og left er ift. divContainer
@@ -244,11 +252,8 @@ let addImageToSlide = function(event) {
 
         // --------IMG
         const imgNewImage = document.createElement('img');
-        imgNewImage.src = base64;
         imgNewImage.setAttribute('id',"image" + newImageId);
-        // sætter focus på billede når man trykker
-        imgNewImage.tabIndex = 0;
-        imgNewImage.addEventListener('click', function (){addFocusAndZIndex(imgNewImage, divImageContainer)});
+        imgNewImage.src = base64;
 
 
         // TODO span delete-kryds
@@ -324,23 +329,20 @@ function makeFullScreen(el){
     }
 }
 
-function addFocusAndZIndex(el, el2){
+function addFocusAndZIndex(el){
     // TODO find ud af dette så billderne ikke står ovenihinanden
 
     imageContainers.forEach(con => con.style.zIndex = 0);
 
-    el2.style.zIndex = 1;
+    el.style.zIndex = 1;
     el.focus();
 }
 
-function addFocus(el){
-    el.focus();
-}
+
 
 function deleteElement(el){
-    el.fadeOut(function() {
-        el.remove();
-    });
+    jQuery(el).fadeOut(function(){el.remove();});
+
 }
 
 

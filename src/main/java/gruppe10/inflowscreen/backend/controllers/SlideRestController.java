@@ -35,7 +35,7 @@ public class SlideRestController
     public ResponseEntity<HttpStatus> saveSlide(@RequestBody CreateOrUpdateSlideDTO slideDTO, Principal principal)
     {
         
-        // TODO
+        // ! VI SKAL LIGE SØRGE FOR AT DEN GEMMER IMAGES RIGTIGT NEEEED!!!!
 
         System.out.println("HEEEEY: " + slideDTO);
 
