@@ -36,6 +36,7 @@ public class SlideRestController
     {
         
         // ! VI SKAL LIGE SØRGE FOR AT DEN GEMMER IMAGES RIGTIGT NEEEED!!!!
+        // Måske: Læg images ned hver for sig først, og så via org som vi gør nu
 
         System.out.println("HEEEEY: " + slideDTO);
 
