@@ -194,7 +194,6 @@ let addImageToSlide = function(event) {
         const divImageContainer = document.createElement('div');
         divImageContainer.setAttribute('id',"imageDivContainer" + newImageId);
         divImageContainer.classList.add("dragAndResizeContainer");
-        divImageContainer.style.position = "absolute";
         divImageContainer.addEventListener('dblclick', function (){makeFullScreen(divImageContainer)});
 
         //! såden er kalder vi en funktion som tager parametre i en EventListener!!!!!!!!
@@ -214,7 +213,7 @@ let addImageToSlide = function(event) {
 
         // sætter focus på billede når man trykker
         imgNewImage.tabIndex = 0;
-        imgNewImage.addEventListener('click', function (){addFocus(imgNewImage)});
+        imgNewImage.addEventListener('click', function (){addFocusAndZIndex(imgNewImage, divImageContainer)});
 
 
         // tilføjer til DOM
@@ -279,6 +278,13 @@ function makeFullScreen(el){
         el.style.width = width * ratio + "px";
         el.style.top = "0px";
     }
+}
+
+function addFocusAndZIndex(el, el2){
+    // TODO find ud af dette så billderne ikke står ovenihinanden
+    /*el2.style.zindex = "1";
+    el.style.zindex = "1"; */
+    el.focus();
 }
 
 

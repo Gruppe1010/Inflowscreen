@@ -6,6 +6,7 @@ input[type="file"] {
 
     display: inline-block;
     position: absolute;
+    z-index: 0;
 }
 
 #slide {
