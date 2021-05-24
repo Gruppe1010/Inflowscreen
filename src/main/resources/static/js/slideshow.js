@@ -7,7 +7,7 @@ setInterval(function() {
 
     for (let i = 0; i < slides.length; i++) {
         slides[current].style.opacity = 0;
-        slides[current].style.transition = "opacity 1s ease-in-out;";
+        slides[current].transition = "opacity 3s ease-in-out;";
 
     }
 
