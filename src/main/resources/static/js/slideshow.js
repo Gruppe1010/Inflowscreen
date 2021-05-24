@@ -32,7 +32,7 @@ setInterval(function() {
     * (current != slides.length - 1) == hvis current IKKE er den sidste på slide-array
     * */
     current = (current != slides.length - 1) ? current + 1 : 0;
-    slides[current].fadeIn();
+    jQuery(slides[current]).fadeIn();
 }, 3000);
 
 
