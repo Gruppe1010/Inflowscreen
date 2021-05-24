@@ -3,9 +3,21 @@ let current = 0,
     slides = document.getElementsByClassName("fadeimage");
 
 setInterval(function() {
-    for (let i = 0; i < slides.length; i++) {
+
+
+    slides.forEach(slide => slide.fadeOut());
+
+
+    // jQuery(el).fadeOut(function(){el.remove();});
+
+
+
+
+    /*for (let i = 0; i < slides.length; i++) {
         slides[i].style.opacity = 0;
     }
+
+     */
     current = (current != slides.length - 1) ? current + 1 : 0;
     slides[current].style.opacity = 1;
 }, 3000);
