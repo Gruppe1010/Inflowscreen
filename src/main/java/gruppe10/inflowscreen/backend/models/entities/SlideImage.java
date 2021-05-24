@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="slide_imagesHEJ")
+@Table(name="slide_images")
 public class SlideImage {
 
     @Id
