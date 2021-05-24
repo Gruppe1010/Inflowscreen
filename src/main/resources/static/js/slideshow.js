@@ -5,18 +5,12 @@ let current = 0,
 setInterval(function() {
 
 
-    slides.forEach(slide => slide.fadeOut());
+    //slides.forEach(slide => slide.fadeOut());
 
-
-    // jQuery(el).fadeOut(function(){el.remove();});
-
-
-
-
-    /*for (let i = 0; i < slides.length; i++) {
-        slides[i].style.opacity = 0;
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].fadeOut();
     }
-
+    /*
     current = (current != slides.length - 1) ? current + 1 : 0;
     slides[current].style.opacity = 1;
 
