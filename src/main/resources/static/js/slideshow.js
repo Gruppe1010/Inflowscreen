@@ -7,9 +7,13 @@ setInterval(function() {
 
     //slides.forEach(slide => slide.fadeOut());
 
+
+    // jQuery(el).fadeOut(function(){el.remove();});
+
     for (let i = 0; i < slides.length; i++) {
-        slides[i].fadeOut();
+        jQuery(slides[i]).fadeOut();
     }
+
     /*
     current = (current != slides.length - 1) ? current + 1 : 0;
     slides[current].style.opacity = 1;
