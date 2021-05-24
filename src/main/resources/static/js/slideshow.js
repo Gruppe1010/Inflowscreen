@@ -17,9 +17,24 @@ setInterval(function() {
         slides[i].style.opacity = 0;
     }
 
-     */
     current = (current != slides.length - 1) ? current + 1 : 0;
     slides[current].style.opacity = 1;
+
+     */
+    /*
+    Elvis operator:
+        x = f() ?: g()
+            ELLER
+        x = f() ? f() : g()
+        hvis f()==true --> x == f()
+        hvis f()==false --> x == g()
+    * */
+
+    /*
+    * (current != slides.length - 1) == hvis current IKKE er den sidste på slide-array
+    * */
+    current = (current != slides.length - 1) ? current + 1 : 0;
+    slides[current].fadeIn();
 }, 3000);
 
 
