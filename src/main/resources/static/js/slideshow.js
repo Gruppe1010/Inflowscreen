@@ -24,7 +24,7 @@ setInterval(function() {
       * */
     current = (current != slides.length - 1) ? current + 1 : 0;
     slides[current].style.opacity = 1;
-}, 3000);
+}, 6000);
 
 
 
