@@ -145,8 +145,9 @@ function convertImagesToJSON(){
             "top": top,
             "left": left,
             "width": img.offsetWidth + "px",
-            "height": img.offsetHeight + "px"
-            //"base64": img.src,
+            "height": img.offsetHeight + "px",
+            "z-index": img.style.zIndex,
+            "base64": img.src,
         }
     }
 }
@@ -315,6 +316,7 @@ function makeFullScreen(el){
 
     // else gør til fuldskærm
     else if(width > height){
+        // TODO tjek noget aspect-ratio
         // desiredWidth / actualWidth == størrelsesforholdet
         const ratio = 1120/width;
         el.style.width = "1120px";
