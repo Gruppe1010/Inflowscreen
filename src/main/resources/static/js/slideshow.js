@@ -3,46 +3,27 @@ let current = 0,
     slides = document.getElementsByClassName("fadeimage");
 
 
-$(document).ready(function () {
-    setInterval(function() {
+setInterval(function() {
+
+    for (let i = 0; i < slides.length; i++) {
+        // slides[current].style.opacity = 0;
+    }
+
+    /*
+     Elvis operator:
+        x = f() ?: g()
+            ELLER
+        x = f() ? f() : g()
+        hvis f()==true --> x == f()
+        hvis f()==false --> x == g()
 
 
-        //slides.forEach(slide => slide.fadeOut());
+      * (current != slides.length - 1) == hvis current IKKE er den sidste på slide-array
+      * */
+    current = (current != slides.length - 1) ? current + 1 : 0;
+    slides[current].style.opacity = 1;
+}, 3000);
 
-
-        // jQuery(el).fadeOut(function(){el.remove();});
-
-        for (let i = 0; i < slides.length; i++) {
-            jQuery(slides[i]).fadeOut();
-            // slides[current].style.opacity = 0;
-        }
-
-        /*
-        for (let i = 0; i < slides.length; i++) {
-            // slides[current].style.opacity = 0;
-        }
-
-        current = (current != slides.length - 1) ? current + 1 : 0;
-        slides[current].style.opacity = 1;
-
-         */
-        /*
-        Elvis operator:
-            x = f() ?: g()
-                ELLER
-            x = f() ? f() : g()
-            hvis f()==true --> x == f()
-            hvis f()==false --> x == g()
-        * */
-
-        /*
-        * (current != slides.length - 1) == hvis current IKKE er den sidste på slide-array
-        * */
-        current = (current != slides.length - 1) ? current + 1 : 0;
-        jQuery(slides[current]).fadeIn();
-    }, 3000);
-
-});
 
 
 //link til ur3 http://jsfiddle.net/cse_tushar/fKKSb/311/
