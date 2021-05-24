@@ -2,6 +2,7 @@ package gruppe10.inflowscreen.backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -31,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 .antMatchers("/**/*.js", "/**/*.css", "/images/**").permitAll()// "/resources/**", "/static/**", "/css/slideshow.css", "/images/**", "/js/slideshow.js").permitAll()
                 //.antMatchers("/**").permitAll()
-                .antMatchers("/slideshow").permitAll()
+                .antMatchers(HttpMethod.GET, "/slideshow").permitAll()
                 .antMatchers("/createSlide", "/").hasAnyAuthority("USER", "ADMIN") // hvis der kommer flere brugertyper
                 .anyRequest()
                 .authenticated()
