@@ -80,7 +80,7 @@ function saveSlide(){
 
         let slide = {
             "title": title,
-            "images": images
+            "slideImageDTOs": images
         }
 
         const body = JSON.stringify(slide);
@@ -148,6 +148,7 @@ function convertImagesToJSON(){
             "height": img.offsetHeight + "px",
             "z-index": img.style.zIndex,
             "base64": img.src,
+            "fileName": img.title
         }
     }
 }
@@ -255,6 +256,7 @@ let addImageToSlide = function(event) {
         const imgNewImage = document.createElement('img');
         imgNewImage.setAttribute('id',"image" + newImageId);
         imgNewImage.src = base64;
+        imgNewImage.title = file.name;
 
 
         // TODO span delete-kryds

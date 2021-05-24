@@ -23,17 +23,20 @@ public class SlideImage {
     private String left;
     private String width;
     private String height;
+    private int zIndex;
+
 
     @ManyToOne
     @JoinColumn(name = "id_slide")
     // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "filmId")
     private Slide slide;
 
-    public SlideImage(String imagePath, String top, String left, String width, String height) {
+    public SlideImage(String imagePath, String top, String left, String width, String height, int zIndex) {
         this.imagePath = imagePath;
         this.top = top;
         this.left = left;
         this.width = width;
         this.height = height;
+        this.zIndex = zIndex;
     }
 }

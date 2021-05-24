@@ -1,85 +1,96 @@
 package gruppe10.inflowscreen.backend.models.dto;
 
 import gruppe10.inflowscreen.backend.models.entities.SlideImage;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.apache.commons.io.FileUtils;
+import org.apache.tomcat.util.codec.binary.Base64;
 
+import javax.xml.bind.DatatypeConverter;
 import java.awt.*;
+import java.io.*;
+import java.nio.file.Files;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SlideImageDTO {
-    
+
+    private String fileName;
     private String base64;
     private String top;
     private String left;
     private String width;
     private String height;
-    
-    public SlideImageDTO() {}
-
-    public SlideImageDTO(String base64, String top, String left, String width, String height) {
-        //this.base64 = base64;
-        this.top = top;
-        this.left = left;
-        this.width = width;
-        this.height = height;
-    }
-
-
-    public String getBase64() {
-        return base64;
-    }
-    public void setBase64(String base64) {
-        this.base64 = base64;
-    }
-    public String getTop() {
-        return top;
-    }
-    public void setTop(String top) {
-        this.top = top;
-    }
-    public String getLeft() {
-        return left;
-    }
-    public void setLeft(String left) {
-        this.left = left;
-    }
-    public String getWidth() {
-        return width;
-    }
-    public void setWidth(String width) {
-        this.width = width;
-    }
-    public String getHeight() {
-        return height;
-    }
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
-
-
+    private int zIndex;
 
     @Override
     public String toString() {
         return "SlideImageDTO{" +
-                "top='" + top + '\'' +
+                "fileName='" + fileName + '\'' +
+                ", base64='" + base64 + '\'' +
+                ", top='" + top + '\'' +
                 ", left='" + left + '\'' +
                 ", width='" + width + '\'' +
                 ", height='" + height + '\'' +
+                ", zIndex=" + zIndex +
                 '}';
     }
 
     // OTHERS
-    public SlideImage convertToSlideImage(){
-
-        return new SlideImage(createFileFromBase64(), top, left, width, height);
-
+    public SlideImage convertToSlideImage() {
+        return new SlideImage(createFileFromBase64(), top, left, width, height, zIndex);
     }
 
-    // TODO LAV DENNE
-    public String createFileFromBase64(){
+    /**
+     * konverterer base64 til en local fil og returnerer imagePath'en
+     * */
+    public String createFileFromBase64() {
+        // https://stackoverflow.com/questions/23979842/convert-base64-string-to-image
+        String[] strings = base64.split(",");
 
+        //convert base64 string to binary data
+        byte[] data = DatatypeConverter.parseBase64Binary(strings[1]);
+        String path = "src/main/resources/static/images/slides/" + fileName;// + "." + extension;
+        String correctPath = path;
 
-        return "hej";
+        File newFile = new File(path);
+        File potentialOldFile = new File(path);   // hvis den allerede findes - så laves dens filPath om
+        boolean pathAlreadyExists = false;
+        if(newFile.exists()) {
+            pathAlreadyExists = true;
+            fileName = "1" + fileName;
 
+            path = "src/main/resources/static/images/slides/" + fileName;
+            newFile = new File(path);
+        }
+
+        try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(newFile))) {
+            outputStream.write(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // hvis den allerede fandtes
+        if(pathAlreadyExists){
+            try{
+                // tjek om de to filer er ens - hvis ja - SLET DEN
+                if(FileUtils.contentEquals(newFile, potentialOldFile)){
+                    if(newFile.delete()){
+                        System.out.println("Filen fandtes allerede og den nye er slettet");
+                    }
+                }
+                else{ // hvis billederne IKKE ens men bare havde samme navn, så skal det være den nye opdaterede path
+                    correctPath = path;
+                }
+            }catch(Exception e){
+                System.err.println(e.getMessage());
+            }
+        }
+        return correctPath;
     }
 
 }

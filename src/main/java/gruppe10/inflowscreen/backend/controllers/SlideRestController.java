@@ -54,7 +54,7 @@ public class SlideRestController
                 // oprettes nyt set
                 organisation.setSlides(new HashSet<>());
             }
-
+            // TODO
             Slide slide = slideDTO.convertToSlide();
     
             // tilføj slide til org

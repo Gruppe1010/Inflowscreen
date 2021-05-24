@@ -1,5 +1,16 @@
 package gruppe10.inflowscreen.backend.models.dto;
 
+
+import gruppe10.inflowscreen.backend.models.entities.TextBox;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TextBoxDTO {
 
     private String text;
@@ -11,90 +22,13 @@ public class TextBoxDTO {
     private boolean italic;
     private boolean underline;
     private String margin;
-    private double x;
-    private double y;
+    private double left;
+    private double top;
 
-    public TextBoxDTO() {
-    }
+    public TextBox convertToTextBox(){
 
-    public TextBoxDTO(String text, String font, int fontSize, String fontColour, boolean isList, boolean bold, boolean italic, boolean underline, String margin, double x, double y) {
-        this.text = text;
-        this.font = font;
-        this.fontSize = fontSize;
-        this.fontColour = fontColour;
-        this.isList = isList;
-        this.bold = bold;
-        this.italic = italic;
-        this.underline = underline;
-        this.margin = margin;
-        this.x = x;
-        this.y = y;
-    }
+        return new TextBox(text, font, fontSize, fontColour, isList, bold, italic, underline, margin, left, top);
 
-    public String getText() {
-        return text;
-    }
-    public void setText(String text) {
-        this.text = text;
-    }
-    public String getFont() {
-        return font;
-    }
-    public void setFont(String font) {
-        this.font = font;
-    }
-    public int getFontSize() {
-        return fontSize;
-    }
-    public void setFontSize(int fontSize) {
-        this.fontSize = fontSize;
-    }
-    public String getFontColour() {
-        return fontColour;
-    }
-    public void setFontColour(String fontColour) {
-        this.fontColour = fontColour;
-    }
-    public boolean isList() {
-        return isList;
-    }
-    public void setList(boolean list) {
-        isList = list;
-    }
-    public boolean isBold() {
-        return bold;
-    }
-    public void setBold(boolean bold) {
-        this.bold = bold;
-    }
-    public boolean isItalic() {
-        return italic;
-    }
-    public void setItalic(boolean italic) {
-        this.italic = italic;
-    }
-    public boolean isUnderline() {
-        return underline;
-    }
-    public void setUnderline(boolean underline) {
-        this.underline = underline;
-    }
-    public String getMargin() {
-        return margin;
-    }
-    public void setMargin(String margin) {
-        this.margin = margin;
-    }
-    public double getX() {
-        return x;
-    }
-    public void setX(double x) {
-        this.x = x;
-    }
-    public double getY() {
-        return y;
-    }
-    public void setY(double y) {
-        this.y = y;
+
     }
 }
