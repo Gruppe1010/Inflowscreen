@@ -241,7 +241,6 @@ let addImageToSlide = function(event) {
         divImageContainer.addEventListener('mouseup',function(){printPosition(divImageContainer)}); // TODO slet
         divImageContainer.addEventListener('click', function (){addFocusAndZIndex(divImageContainer)});
 
-
         /*tilføj til liste
         * det er divContainer som tilføjes fordi det er den som ved hvorhenne på slidet den er
         * fordi img-taggets top og left er ift. divContainer
@@ -285,6 +284,10 @@ let addImageToSlide = function(event) {
                     autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
         });
+
+        // så et nyt billede automatisk kommer ind som det forreste
+        addFocusAndZIndex(divImageContainer);
+
     }
 };
 
@@ -325,14 +328,15 @@ function makeFullScreen(el) {
     }
 }
 
-let lastFocussedElement; // TODO
-
 function addFocusAndZIndex(el){
-    // TODO find ud af dette så billderne ikke står ovenihinanden
 
-    imageContainers.forEach(con => con.style.zIndex = 0);
-    lastFocussedElement = document.activeElement; // TODO
-    el.style.zIndex = 1;
+    // laver array af alle z-index
+    const zIndexes = imageContainers.map(imageCon => Number(imageCon.style.zIndex));
+
+    // finder største z-index
+    const biggestZ = zIndexes.max();
+
+    el.style.zIndex = biggestZ + 1;
     el.focus();
 }
 
@@ -340,6 +344,14 @@ function deleteElement(el){
     jQuery(el).fadeOut(function(){el.remove();});
 
 }
+
+Array.prototype.max = function() {
+    return Math.max.apply(null, this);
+};
+
+Array.prototype.min = function() {
+    return Math.min.apply(null, this);
+};
 
 
 

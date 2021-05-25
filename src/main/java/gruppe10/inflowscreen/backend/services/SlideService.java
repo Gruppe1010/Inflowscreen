@@ -39,54 +39,35 @@ public class SlideService {
         
         boolean titleIsAvailable = isTitleAvailable(organisation, slideDTO.getTitle());
         
-        if(titleIsAvailable)
-        {
-            // if der IKKE allerede er nogle slides på orgen
-            if(organisation.getSlides() == null)
-            {
-                // oprettes nyt set
-                organisation.setSlides(new HashSet<>());
-            }
-            
+        // hvis titlen IKKE er optaget
+        if(titleIsAvailable) {
             Slide slide = slideDTO.convertToSlide();
-    
-            // tilføj slide til org
-            organisation.getSlides().add(slide);
             
-            // opdaterer org i db og lægger dermed slide ned
-            organisationRepository.save(organisation);
-    
+            saveSlideToDb(organisation, slide);
+            
             // vi henter det nyoprettede slide OP fra db igen
             Optional<Slide> newlyPersistedSlide = slideRepository.findByOrganisationAndTitle(organisation,
                     slide.getTitle());
     
             // hvis slidet er blevet oprettet korrekt
-            if(newlyPersistedSlide.isPresent())
-            {
-                // læg slideImages på givne slide i db
-                // vi opretter et Set af de slideImages vi skal lægge ned i db
-                Set<SlideImage> slideImages = slide.getSlideImages();
-    
-                // hvis der ER slideImages på slide
-                if(slideImages != null)
-                {
-                    // sætter vi slide-attribut til ophentet slide på hver af SlideImage-obj
-                    slideImages.forEach(slideImage -> slideImage.setSlide(newlyPersistedSlide.get()));
-    
-                    // gemmer vi alle slideImages ned
-                    slideImageRepository.saveAll(slideImages);
-                }
+            if(newlyPersistedSlide.isPresent()){
+                // læg slideImages i db
+                saveSlideImagesToDb(slide, newlyPersistedSlide.get());
+                
                 return HttpStatus.CREATED;
             }
-            else
-            { // hvis slidet IKKE er present med ny titel, er den ikke blevet gemt i db
-                return HttpStatus.CONFLICT;
-            }
+            // hvis slidet IKKE er present med ny titel, er den ikke blevet gemt i db
+            else{ return HttpStatus.CONFLICT; }
         }
         return HttpStatus.CONFLICT; // hvis titel er optaget på orgen
     }
     
-    // TODO tjek at rep-metode virker
+    /**
+     * Tjekker om organisationen allerede har et slide med titlen
+     * @Param organisation - den organisation som prøver at oprette et slide
+     * @Param title - titlen organisationen prøver på at give deres nye slide
+     * @return boolean - om titlen er ledig
+     * */
     public boolean isTitleAvailable(Organisation organisation, String title){
         // vi ser om der er et slide med samme titel, som de prøver at oprette
         Optional<Slide> optionalSlide = slideRepository.findByOrganisationAndTitle(organisation, title);
@@ -94,4 +75,38 @@ public class SlideService {
         // hvis den IKKE har fundet et slide, bliver dette evalueret til true == titlen er available
         return optionalSlide.isEmpty();
     }
+    
+    public void saveSlideToDb(Organisation organisation, Slide slide){
+        // if der IKKE allerede er nogle slides på orgen
+        if(organisation.getSlides() == null)
+        {
+            // oprettes nyt set
+            organisation.setSlides(new HashSet<>());
+        }
+    
+        // tilføj slide til org
+        organisation.getSlides().add(slide);
+    
+        // opdaterer org i db og lægger dermed slide ned
+        organisationRepository.save(organisation);
+    }
+    
+    public void saveSlideImagesToDb(Slide slide, Slide newlyPersistedSlide){
+        // vi opretter et Set af de slideImages vi skal lægge ned i db ud fra slided vi har fået i requestbody
+        Set<SlideImage> slideImages = slide.getSlideImages();
+    
+        // hvis der ER slideImages på slide
+        if(slideImages != null)
+        {
+            // sætter vi slide-attribut til ophentet slide på hver af SlideImage-obj
+            slideImages.forEach(slideImage -> slideImage.setSlide(newlyPersistedSlide));
+        
+            // gemmer vi alle slideImages ned
+            slideImageRepository.saveAll(slideImages);
+        }
+    }
+    
+    
+    
+    
 }
