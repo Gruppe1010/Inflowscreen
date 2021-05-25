@@ -293,37 +293,32 @@ function printPosition(el){
         " height: " + el.offsetHeight);
 }
 
-/**
- * Hvis billedet allerede er fulscreen bliver det 80%
- * Hvis billedet IKKE er halv størrelse, bliver det fullscreen
- *
- * */
-function makeFullScreen(el){
+function makeFullScreen(el) {
 
-    let width = el.offsetWidth;
-    let height = el.offsetHeight;
+    const width = el.offsetWidth;
+    const height = el.offsetHeight;
 
-    // hvis den allerede er i fuldskærm
     if(width === 1120 || height === 630){
         // gør 80%
         el.style.width = width * 0.8 + "px";
         el.style.height = height * 0.8 + "px";
     }
 
-    // else gør til fuldskærm
-    else if(width > height){
-        // TODO tjek noget aspect-ratio
-        // desiredWidth / actualWidth == størrelsesforholdet
-        const ratio = 1120/width;
-        el.style.width = "1120px";
-        el.style.height = height * ratio + "px";
-        el.style.left = "0px";
-    }
-    else{ // gør til fuldskærm på height
-        const ratio = 630/height;
-        el.style.height = "630px";
+    else {
+        const widthRatio = 1120 / width;
+        const heightRatio = 630 / height
+
+        // Math.min = Finder den midste af de to ratios
+        let ratio = Math.min(widthRatio, heightRatio);
+
         el.style.width = width * ratio + "px";
-        el.style.top = "0px";
+        el.style.height = height * ratio + "px";
+
+        if(width > height) {
+            el.style.left = "0px";
+        } else { // Hvis height er størst eller billedet er kvadratisk
+            el.style.top = "0px";
+        }
     }
 }
 
@@ -335,8 +330,6 @@ function addFocusAndZIndex(el){
     el.style.zIndex = 1;
     el.focus();
 }
-
-
 
 function deleteElement(el){
     jQuery(el).fadeOut(function(){el.remove();});
