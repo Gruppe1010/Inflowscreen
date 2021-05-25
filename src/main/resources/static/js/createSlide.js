@@ -154,12 +154,6 @@ function convertImagesToJSON(){
 }
 
 
-
-
-
-
-
-
 // TODO Få linebreak til at virker og fjern template tekst i box når der trykkes.
 // tilføj text box
 function addTextToSlide(){
