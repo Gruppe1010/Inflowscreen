@@ -42,7 +42,7 @@ public class SlideImageDTO {
     // OTHERS
     
     public SlideImage convertToSlideImage() {
-        return new SlideImage(createFileFromBase64(), top, left, width, height, Integer.toString(zIndex));
+        return new SlideImage(createFileFromBase64(), top, left, width, height, zIndex);
     }
     
     

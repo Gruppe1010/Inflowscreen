@@ -15,11 +15,11 @@ public class SlideImage {
     private int id;
     
     private String imagePath;
-    private String top;
-    private String left;
+    private String topPx;
+    private String leftPx;
     private String width;
     private String height;
-    private String zIndex;
+    private int zIndex;
     
     
     @ManyToOne
@@ -34,95 +34,91 @@ public class SlideImage {
     public SlideImage()
     {
     }
-    
-    public SlideImage(int id, String imagePath, String top, String left, String width, String height, String zIndex,
-                      Slide slide)
-    {
+
+    public SlideImage(int id, String imagePath, String topPx, String leftPx, String width, String height, int zIndex, Slide slide) {
         this.id = id;
         this.imagePath = imagePath;
-        this.top = top;
-        this.left = left;
+        this.topPx = topPx;
+        this.leftPx = leftPx;
         this.width = width;
         this.height = height;
         this.zIndex = zIndex;
         this.slide = slide;
     }
-    
-    public SlideImage(String imagePath, String top, String left, String width, String height, String zIndex) {
+
+    public SlideImage(String imagePath, String topPx, String leftPx, String width, String height, int zIndex) {
         this.imagePath = imagePath;
-        this.top = top;
-        this.left = left;
+        this.topPx = topPx;
+        this.leftPx = leftPx;
         this.width = width;
         this.height = height;
         this.zIndex = zIndex;
     }
-    
+
+
     // getters + setters
-    public int getId()
-    {
+
+    public int getId() {
         return id;
     }
-    public void setId(int id)
-    {
+
+    public void setId(int id) {
         this.id = id;
     }
-    public String getImagePath()
-    {
+
+    public String getImagePath() {
         return imagePath;
     }
-    public void setImagePath(String imagePath)
-    {
+
+    public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
-    public String getTop()
-    {
-        return top;
+
+    public String getTopPx() {
+        return topPx;
     }
-    public void setTop(String top)
-    {
-        this.top = top;
+
+    public void setTopPx(String top1) {
+        this.topPx = top1;
     }
-    public String getLeft()
-    {
-        return left;
+
+    public String getLeftPx() {
+        return leftPx;
     }
-    public void setLeft(String left)
-    {
-        this.left = left;
+
+    public void setLeftPx(String left1) {
+        this.leftPx = left1;
     }
-    public String getWidth()
-    {
+
+    public String getWidth() {
         return width;
     }
-    public void setWidth(String width)
-    {
+
+    public void setWidth(String width) {
         this.width = width;
     }
-    public String getHeight()
-    {
+
+    public String getHeight() {
         return height;
     }
-    public void setHeight(String height)
-    {
+
+    public void setHeight(String height) {
         this.height = height;
     }
-    
-    public String getzIndex()
-    {
+
+    public int getzIndex() {
         return zIndex;
     }
-    
-    public void setzIndex(String zIndex)
-    {
+
+    public void setzIndex(int zIndex) {
         this.zIndex = zIndex;
     }
-    
-    public Slide getSlide()
-    {
+
+    public Slide getSlide() {
         return slide;
     }
-    public void setSlide(Slide slide)
-    {
+
+    public void setSlide(Slide slide) {
         this.slide = slide;
     }
 }
