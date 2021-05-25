@@ -49,14 +49,20 @@ const btnMarginLeft = document.getElementById("btnMarginLeft");
 const btnMarginCentre = document.getElementById("btnMarginCentre");
 const btnMarginRight = document.getElementById("btnMarginRight");
 const btnList = document.getElementById("btnList");
-
-const btnFullscreen = document.getElementById("btnFullscreen");
-
  */
 const inpTitle = document.getElementById("inpTitle");
 
 const btnTextBox = document.getElementById("btnTextBox");
 btnTextBox.addEventListener('click', addTextToSlide);
+
+const btnFullscreen = document.getElementById("btnFullscreen");
+btnFullscreen.addEventListener('click', makeFullScreen);
+
+// https://stackoverflow.com/a/43627784
+// TODO skriv den her pænt
+$("#btnFullscreen").mousedown(function(e) { // handle the mousedown event
+    e.preventDefault(); // prevent the img from loosing focus
+});
 
 const btnSave = document.getElementById("btnSave");
 btnSave.addEventListener('click', saveSlide);
@@ -156,66 +162,53 @@ function convertImagesToJSON(){
 }
 
 
-// TODO Få linebreak til at virker og fjern template tekst i box når der trykkes.
+// TODO fjern template tekst (placeholder) i box når der trykkes.
 // tilføj text box
 function addTextToSlide(){
     newTextBoxId++;
 
     // div-container
-    const divTextBoxContainer = document.createElement('div');
-    divTextBoxContainer.setAttribute('id',"pDivContainer" + newTextBoxId);
-    divTextBoxContainer.classList.add("dragAndResizeContainer");
-    divTextBoxContainer.classList.add("textBoxDivSize");
+    const divTextBox = document.createElement('div');
+    divTextBox.setAttribute('id',"pDivContainer" + newTextBoxId);
+    divTextBox.setAttribute('contenteditable', "true");
+    divTextBox.setAttribute('data-placeholder', 'Tryk her for at tilføje tekst');
+    divTextBox.classList.add("dragAndResizeTextBoxContainer");
+    divTextBox.classList.add("textBoxDivSize");
 
-    // p-tag
-    const textBox = document.createElement('p');
-    textBox.setAttribute('id', "textBoxId" + newTextBoxId);
-    textBox.innerText = "Tryk her for at tilføje tekst";
-    textBoxesOnSlide.push(textBox);
-
-
-    //http://jsfiddle.net/GeJkU/
-    function divClicked() {
-        let divHtml = $(this).html();
-        let editableText = $("<textarea />");
-        editableText.val(divHtml);
-        $(this).replaceWith(editableText);
-        editableText.focus();
-        // setup the blur event for this new textarea
-        editableText.blur(editableTextBlurred);
-    }
-
-    function editableTextBlurred() {
-        let html = $(this).val();
-        let viewableText = $("<div>");
-        viewableText.html(html);
-        $(this).replaceWith(viewableText);
-        // setup the click event for this new div
-        viewableText.click(divClicked);
-    }
-
-    $(document).ready(function() {
-        $("p").click(divClicked);
-    });
+    textBoxesOnSlide.push(divTextBox);
 
     $(function() {
-        $('.dragAndResizeContainer')
+        $('.dragAndResizeTextBoxContainer')
             .draggable({
                 containment: "#slide",
                 cursor : "move"})
             .resizable({
                 containment: "#slide",
-                handles: "se", // hive i alle hjørner
+                handles: "se", // hive i hjørne
                 maxHeight: 630,
                 maxWidth: 1120,
                 autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
     });
 
+    //Fjerne placeholder text efter brugerinput
+    (function ($) {
+        $(document).on('change keydown keypress input', 'div[data-placeholder]', function() {
+            if (this.textContent) {
+                this.dataset.divPlaceholderContent = 'true';
+            }
+            else {
+                delete(this.dataset.divPlaceholderContent);
+            }
+        });
+    })(jQuery);
+
     // tilføjer til DOM
-    divTextBoxContainer.appendChild(textBox);
-    slide.appendChild(divTextBoxContainer);
+    slide.appendChild(divTextBox);
 }
+
+
+
 
 // tilføj billede
 let addImageToSlide = function(event) {
@@ -352,19 +345,6 @@ Array.prototype.max = function() {
 Array.prototype.min = function() {
     return Math.min.apply(null, this);
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
