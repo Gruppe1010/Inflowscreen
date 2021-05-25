@@ -17,7 +17,7 @@ public class Account {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     
     // @ValidEmail
     // https://www.baeldung.com/registration-with-spring-mvc-and-spring-security

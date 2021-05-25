@@ -19,7 +19,7 @@ public class Organisation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @NotNull
     private String name;

@@ -12,7 +12,7 @@ public class SlideImage {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     
     private String imagePath;
     private String topPx;
