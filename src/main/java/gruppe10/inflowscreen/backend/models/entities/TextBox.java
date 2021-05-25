@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="text_boxes")
+@Table(name="slide_text_boxes")
 public class TextBox {
 
     @Id
