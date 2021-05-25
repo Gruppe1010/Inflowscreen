@@ -22,8 +22,8 @@ public class TextBoxDTO {
     private boolean italic;
     private boolean underline;
     private String margin;
-    private double left;
-    private double top;
+    private String left;
+    private String top;
 
     public TextBox convertToTextBox(){
 

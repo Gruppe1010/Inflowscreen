@@ -43,18 +43,18 @@ public class Slide {
         this.themePath = themePath;
     }
 
-    public Slide(String title, int frequency, boolean isActive, Set<TextBox> textBoxes, Set<SlideImage> slideImages, Set<SlideVideo> slideVideos, String themePath) {
+    public Slide(String title, int frequency, boolean isActive, Set<TextBox> textBoxes, Set<SlideVideo> slideVideos, String themePath) {
         this.title = title;
         this.frequency = frequency;
         this.isActive = isActive;
         this.textBoxes = textBoxes;
-        this.slideImages = slideImages;
         this.slideVideos = slideVideos;
         this.themePath = themePath;
     }
 
     @OneToMany(mappedBy = "slide")
     private Set<TextBox> textBoxes;
+    
     
     @OneToMany(mappedBy = "slide")
     private Set<SlideImage> slideImages;
@@ -78,12 +78,10 @@ public class Slide {
     {
         return organisations;
     }
-    
     public void setOrganisations(Set<Organisation> organisations)
     {
         this.organisations = organisations;
     }
-    
     public String getTitle()
     {
         return title;
@@ -140,19 +138,20 @@ public class Slide {
     {
         this.themePath = themePath;
     }
-
+    
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Slide{" +
-                "id=" + id +
-                ", organisations=" + organisations +
-                ", title='" + title + '\'' +
-                ", frequency=" + frequency +
-                ", isActive=" + isActive +
-                ", textBoxes=" + textBoxes +
-                ", slideImages=" + slideImages +
-                ", slideVideos=" + slideVideos +
-                ", themePath='" + themePath + '\'' +
-                '}';
+                       "id=" + id +
+                       ", organisations=" + organisations +
+                       ", title='" + title + '\'' +
+                       ", frequency=" + frequency +
+                       ", isActive=" + isActive +
+                       ", textBoxes=" + textBoxes +
+                       ", slideImages=" + slideImages +
+                       ", slideVideos=" + slideVideos +
+                       ", themePath='" + themePath + '\'' +
+                       '}';
     }
 }

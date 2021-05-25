@@ -30,10 +30,10 @@ public class TextBox {
     private boolean italic;
     private boolean underline;
     private String margin;
-    private double left;
-    private double top;
+    private String leftPx;
+    private String topPx;
 
-    public TextBox(String text, String font, int fontSize, String fontColour, boolean isList, boolean bold, boolean italic, boolean underline, String margin, double left, double top) {
+    public TextBox(String text, String font, int fontSize, String fontColour, boolean isList, boolean bold, boolean italic, boolean underline, String margin, String leftPx, String topPx) {
         this.text = text;
         this.font = font;
         this.fontSize = fontSize;
@@ -43,7 +43,7 @@ public class TextBox {
         this.italic = italic;
         this.underline = underline;
         this.margin = margin;
-        this.left = left;
-        this.top = top;
+        this.leftPx = leftPx;
+        this.topPx = topPx;
     }
 }

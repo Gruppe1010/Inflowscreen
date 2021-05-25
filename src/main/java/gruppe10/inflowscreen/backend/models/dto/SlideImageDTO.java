@@ -1,17 +1,16 @@
 package gruppe10.inflowscreen.backend.models.dto;
 
+//import gruppe10.inflowscreen.backend.models.entities.SlideImage;
 import gruppe10.inflowscreen.backend.models.entities.SlideImage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.io.FileUtils;
-import org.apache.tomcat.util.codec.binary.Base64;
 
 import javax.xml.bind.DatatypeConverter;
 import java.awt.*;
 import java.io.*;
-import java.nio.file.Files;
 
 @Getter
 @Setter
@@ -41,9 +40,12 @@ public class SlideImageDTO {
     }
 
     // OTHERS
+    
     public SlideImage convertToSlideImage() {
         return new SlideImage(createFileFromBase64(), top, left, width, height, zIndex);
     }
+    
+    
 
     /**
      * konverterer base64 til en local fil og returnerer imagePath'en

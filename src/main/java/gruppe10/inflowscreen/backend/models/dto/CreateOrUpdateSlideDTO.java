@@ -9,8 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Arrays;
-import java.util.List;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,7 +25,7 @@ public class CreateOrUpdateSlideDTO {
     private boolean isActive;
     private Set<TextBoxDTO> textBoxDTOs;
     private Set<SlideImageDTO> slideImageDTOs;
-    // private Set<SlideVideoDTO> slideVideoDTOs;
+    private Set<SlideVideoDTO> slideVideoDTOs;
     private String themePath;
 
 
@@ -56,9 +55,10 @@ public class CreateOrUpdateSlideDTO {
         if(textBoxDTOs != null) {
             textBoxes = textBoxDTOs.stream().map(TextBoxDTO::convertToTextBox).collect(Collectors.toSet());
         }
-        // Set<SlideVideo> slideVideos = slideVideoDTOs.stream().map(SlideVideoDTO::convertToSlideVideo).collect(Collectors.toSet());
+        Set<SlideVideo> slideVideos = slideVideoDTOs.stream().map(SlideVideoDTO::convertToSlideVideo).collect(Collectors.toSet());
 
 
-        return new Slide(title, 0, true, null, slideImages, null, null);
+        //return new Slide(title, 0, true, null, slideImages, null, null);
+        return new Slide(title, 0, true, null, null, null);
     }
 }
