@@ -61,7 +61,6 @@ public class CreateOrUpdateSlideDTO {
             slideVideos = slideVideoDTOs.stream().map(SlideVideoDTO::convertToSlideVideo).collect(Collectors.toSet());
         }
 
-        //return new Slide(title, 0, true, null, slideImages, null, null);
-        return new Slide(title, 0, true, null, null, null);
+        return new Slide(title, 0, true, null, slideImages, null, null);
     }
 }

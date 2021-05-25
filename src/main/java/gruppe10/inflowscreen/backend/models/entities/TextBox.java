@@ -17,7 +17,7 @@ public class TextBox {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_slide")
     private Slide slide;
 

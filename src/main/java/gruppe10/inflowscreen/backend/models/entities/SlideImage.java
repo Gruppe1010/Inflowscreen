@@ -22,7 +22,7 @@ public class SlideImage {
     private int zIndex;
     
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_slide")
     // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "filmId")
     private Slide slide;

@@ -30,7 +30,7 @@ public class SlideImageDTO {
     public String toString() {
         return "SlideImageDTO{" +
                 "fileName='" + fileName + '\'' +
-                ", base64='" + base64 + '\'' +
+                ", base64='" + base64.substring(0,20) + '\'' +
                 ", top='" + top + '\'' +
                 ", left='" + left + '\'' +
                 ", width='" + width + '\'' +

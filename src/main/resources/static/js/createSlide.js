@@ -289,6 +289,7 @@ function printPosition(el){
 }
 
 function makeFullScreen(el) {
+    let nytEl = document.activeElement; // TODO
 
     const width = el.offsetWidth;
     const height = el.offsetHeight;
@@ -317,11 +318,13 @@ function makeFullScreen(el) {
     }
 }
 
+let lastFocussedElement; // TODO
+
 function addFocusAndZIndex(el){
     // TODO find ud af dette så billderne ikke står ovenihinanden
 
     imageContainers.forEach(con => con.style.zIndex = 0);
-
+    lastFocussedElement = document.activeElement; // TODO
     el.style.zIndex = 1;
     el.focus();
 }
