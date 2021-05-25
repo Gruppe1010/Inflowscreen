@@ -2,6 +2,11 @@ input[type="file"] {
     display: none;
 }
 
+.dragAndResizeTextBoxContainer {
+    display: inline-block;
+    position: absolute;
+}
+
 .dragAndResizeContainer {
     display: inline-block;
     position: absolute;
@@ -10,24 +15,22 @@ input[type="file"] {
 #slide {
     position:relative; /* Så der ikke kan resizes ud over containment area*/
     border: 1px solid black;
-    width: 1123px; /* 3 pixels større pga. border så selve slide-indeholder har rigtige format*/
-    height: 633px;
+    width: 1122px; /* 2 pixels større pga. border så selve slide-indeholder har rigtige format*/
+    height: 632px;
 }
 
 .textBoxDivSize {
-    min-height: 65px;
-    min-width: 200px;
-    margin: 0;
-    z-index: 100;
-}
-
-textarea {
     resize: none;
+    min-height: 100px;
+    min-width: 250px;
+    z-index: 100;
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+    border: 1px dashed black;
     max-height: 630px;
     max-width: 1120px;
-    width: 100%;
-    height: 100%;
-    margin: 0;
+    padding: 5px;
+    overflow: auto;
 }
 
 img {
@@ -35,7 +38,6 @@ img {
     max-width: 1120px;
     height: inherit;
     width: inherit;
-    margin: 0;
 }
 
 .ui-resizable-handle {
@@ -52,15 +54,20 @@ img {
     margin-bottom: 5px;
 }
 
-img:focus{
-    border: 1px dashed black;
+div:focus {
+    opacity: 0.9;
 }
 
-div:focus{
-    border: 1px dashed black;
+.textBoxDivSize:focus {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-ph)
+}
 
-
-
-
+/*Sørger for at placeholder bliver vist korrekt i textBox*/
+div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
+    content: attr(data-placeholder);
+    color: gray;
+}
