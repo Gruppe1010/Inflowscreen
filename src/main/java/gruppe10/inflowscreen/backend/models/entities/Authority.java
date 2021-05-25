@@ -17,7 +17,7 @@ public class Authority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String authorityType;
 
     @ManyToMany(mappedBy = "authorities")
