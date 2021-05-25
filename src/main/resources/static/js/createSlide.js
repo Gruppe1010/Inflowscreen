@@ -66,7 +66,9 @@ btnSave.addEventListener('click', saveSlide);
  * Omdanner data på slide og sender i fetch
  * */
 function saveSlide(){
-    const url = `http://inflowscreen.dk/saveSlide`;
+
+    const url = `http://localhost/saveSlide`; // localhost
+    // const url = `http://inflowscreen.dk/saveSlide`; online
 
     let title = inpTitle.value;
 

@@ -47,6 +47,7 @@ public class CreateOrUpdateSlideDTO {
 
         Set<SlideImage> slideImages = null;
         Set<TextBox> textBoxes = null;
+        Set<SlideVideo> slideVideos = null;
 
         // converterer hvert SlideImageDTO-obj på listen til en SlideImage og lægger dem i Set
         if(slideImageDTOs != null) {
@@ -55,8 +56,10 @@ public class CreateOrUpdateSlideDTO {
         if(textBoxDTOs != null) {
             textBoxes = textBoxDTOs.stream().map(TextBoxDTO::convertToTextBox).collect(Collectors.toSet());
         }
-        Set<SlideVideo> slideVideos = slideVideoDTOs.stream().map(SlideVideoDTO::convertToSlideVideo).collect(Collectors.toSet());
-
+        if(slideVideoDTOs != null)
+        {
+            slideVideos = slideVideoDTOs.stream().map(SlideVideoDTO::convertToSlideVideo).collect(Collectors.toSet());
+        }
 
         //return new Slide(title, 0, true, null, slideImages, null, null);
         return new Slide(title, 0, true, null, null, null);
