@@ -15,7 +15,7 @@ public class SlideVideo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "id_slide")
@@ -25,7 +25,13 @@ public class SlideVideo {
     private boolean fullscreen;
     private double x;
     private double y;
-
-
+    
+    public SlideVideo(String imagePath, boolean fullscreen, double x, double y)
+    {
+        this.imagePath = imagePath;
+        this.fullscreen = fullscreen;
+        this.x = x;
+        this.y = y;
+    }
 }
 
