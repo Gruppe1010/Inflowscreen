@@ -346,6 +346,8 @@ function addTextToSlide(){
     const divTextAreaContainer = document.createElement('div');
     divTextAreaContainer.setAttribute('id', divId);
     divTextAreaContainer.classList.add("dragAndResizeTextBoxContainer");
+    divTextAreaContainer.style.zIndex = 900000;
+
     //divTextAreaContainer.addEventListener('click', function(){console.log("du ramte divtextContainer")});
 
 
