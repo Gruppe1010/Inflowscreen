@@ -73,6 +73,14 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 }
 */
 
+
+.btn-delete{
+    float: right;
+
+
+
+}
+
 .btn-dark:active {
     color: #fff;
     background-color: #23272b;

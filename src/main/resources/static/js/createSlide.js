@@ -340,6 +340,8 @@ function addTextToSlide(){
     divTextAreaContainer.classList.add("dragAndResizeTextBoxContainer");
     divTextAreaContainer.style.zIndex = 900000;
 
+
+
     const textArea = document.createElement('textarea');
     textArea.setAttribute('id',"textBox" + newTextBoxId);
     textArea.setAttribute('contenteditable', "true");
@@ -370,6 +372,15 @@ function addTextToSlide(){
             });
     });
 
+
+
+        // TODO lav kryds til at forsvinde hvis ikke aktiv
+        const spanDelete = document.createElement('span');
+        spanDelete.classList.add("btn-delete", "ui-icon", "ui-icon-close");
+        spanDelete.addEventListener('click',function(){deleteElement(divTextAreaContainer)});
+
+
+
     /*
     //Fjerne placeholder text efter brugerinput
     (function ($) {
@@ -385,6 +396,7 @@ function addTextToSlide(){
     */
 
     // tilføjer til DOM
+    divTextAreaContainer.appendChild(spanDelete);
     divTextAreaContainer.appendChild(textArea);
     slide.appendChild(divTextAreaContainer);
 }
