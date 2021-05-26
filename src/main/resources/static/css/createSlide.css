@@ -19,15 +19,15 @@ input[type="file"] {
     height: 632px;
 }
 
-.textBoxDivSize {
+.textBoxDiv {
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
     resize: none;
     min-height: 100px;
     min-width: 300px;
-    z-index: 100;
-    -moz-appearance: textfield-multiline;
-    -webkit-appearance: textarea;
     max-height: 630px;
     max-width: 1120px;
+    z-index: 100;
     padding: 5px;
     overflow: auto;
     font-size: 25px;
@@ -58,7 +58,7 @@ div:focus {
     opacity: 0.9;
 }
 
-.textBoxDivSize:focus {
+.textBoxDiv:focus {
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px dashed black;
 }

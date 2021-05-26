@@ -102,14 +102,8 @@ function setToUnderline(){
 
 }
 
-const btnTextColour = document.getElementById("btnTextColour");
-
-
 const inpFont = document.getElementById("inpFont");
 inpFont.addEventListener('mousedown', function (e){e.preventDefault();});
-
-const btnFontSize = document.getElementById("btnFontSize");
-
 
 const btnMarginLeft = document.getElementById("btnMarginLeft");
 btnMarginLeft.addEventListener('click', setToMarginLeft);
@@ -184,6 +178,7 @@ let changeFontSize = function (font) {
 // ændre skiftfarve i den aktive boks
 let changeFontColor = function (font) {
     focusedEl.style.color = font.value;
+    // ændre skiftfarve i select dropdownen
     document.activeElement.style.color = font.value;
 }
 
@@ -290,7 +285,7 @@ function addTextToSlide(){
     divTextBox.setAttribute('id',"textBox" + newTextBoxId);
     divTextBox.setAttribute('contenteditable', "true");
     divTextBox.setAttribute('data-placeholder', 'Tryk her for at tilføje tekst');
-    divTextBox.classList.add("dragAndResizeTextBoxContainer", "textBoxDivSize", "isMarginLeft");
+    divTextBox.classList.add("dragAndResizeTextBoxContainer", "textBoxDiv", "isMarginLeft");
     divTextBox.addEventListener('click', function(){setAsFocusedEl(divTextBox)});
     btnMarginLeft.classList.add("btn-used");
 
