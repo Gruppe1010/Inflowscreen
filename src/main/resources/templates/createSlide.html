@@ -50,14 +50,26 @@
                 </div>
 
                 <div class="btn-group mr-1">
+
+
+<!-- TODO Slet eller få til at virke -->
+                    <select id="inpFont" class="btn btn-dark" onchange="changeFontStyle(this);" aria-label="fontSelect">
+                        <option value="Ariel" selected>Ariel</option>
+                        <option value="Calibri">Calibri</option>
+                        <option value="Helvetica">Helvetica</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                    </select>
+
+
+
                     <div class="dropdown">
                         <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownFontMenu" data-bs-toggle="dropdown" aria-expanded="false">
                             Skrifttype
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownFontMenu">
-                            <button class="dropdown-item" type="button">Ariel</button>
-                            <button class="dropdown-item" type="button">Calibri</button>
-                            <button class="dropdown-item" type="button">Times New Roman</button>
+                            <button id="ariel" class="dropdown-item" type="button">Ariel</button>
+                            <button id="calibri" class="dropdown-item" type="button">Calibri</button>
+                            <button id="helvetica" class="dropdown-item" type="button">Helvetica</button>
                         </div>
                     </div>
                     <div class="dropdown">
