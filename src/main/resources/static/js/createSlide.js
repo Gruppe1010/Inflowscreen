@@ -299,17 +299,36 @@ function addTextToSlide(){
     newTextBoxId++;
 
     // div-container
-    const divTextBox = document.createElement('textarea');
-    divTextBox.setAttribute('id',"textBox" + newTextBoxId);
-    divTextBox.setAttribute('contenteditable', "true");
-    divTextBox.setAttribute('data-placeholder', 'Tryk her for at tilføje tekst');
-    divTextBox.classList.add("dragAndResizeTextBoxContainer", "textBoxDiv", "isMarginLeft");
-    divTextBox.addEventListener('click', function(){setAsFocusedEl(divTextBox)});
+    const divTextAreaContainer = document.createElement('div');
+    divTextAreaContainer.setAttribute('id',"divTextBoxContainer" + newTextBoxId);
+    divTextAreaContainer.classList.add("dragAndResizeTextBoxContainer");
+
+    const textArea = document.createElement('textarea');
+    textArea.setAttribute('id',"textBox" + newTextBoxId);
+    textArea.setAttribute('contenteditable', "true");
+    textArea.setAttribute('placeholder', 'Tryk her for at tilføje tekst');
+    textArea.setAttribute('oninput','this.style.height = "";this.style.height = this.scrollHeight + 5 + "px"');
+    textArea.classList.add("textAreaCSS", "isMarginLeft");
+    textArea.addEventListener('click', function(){setAsFocusedEl(textArea)});
     btnMarginLeft.classList.add("btn-used");
 
-    textBoxesOnSlide.push(divTextBox);
+    textBoxesOnSlide.push(textArea);
 
-    /*
+    $(function() {
+        $('.dragAndResizeTextBoxContainer')
+            .draggable({
+                containment: "#slide",
+                cancel: "divTextBoxContainer1",
+                start: function (){
+                    $('#divTextBoxContainer1').focus();
+                } ,
+                stop: function (){
+                    $('#divTextBoxContainer1').focus();
+                }
+            });
+    });
+
+/*
     // draggable + resizable
     $(function() {
         $('.dragAndResizeTextBoxContainer')
@@ -324,8 +343,10 @@ function addTextToSlide(){
                 autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
     });
-    */
+ */
 
+
+    /*
     //Fjerne placeholder text efter brugerinput
     (function ($) {
         $(document).on('change keydown keypress input', 'div[data-placeholder]', function() {
@@ -337,10 +358,14 @@ function addTextToSlide(){
             }
         });
     })(jQuery);
+    */
 
     // tilføjer til DOM
-    slide.appendChild(divTextBox);
+    divTextAreaContainer.appendChild(textArea);
+    slide.appendChild(divTextAreaContainer);
 }
+
+
 
 /**
  * Vi sætter vores focusedEl-variabel til det sidste activeEl for at kunne gemme det og sætte stylingen på det,
