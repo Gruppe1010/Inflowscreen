@@ -342,8 +342,9 @@ function addTextToSlide(){
     newTextBoxId++;
 
     // div-container
+    const divId = "divTextBoxContainer" + newTextBoxId;
     const divTextAreaContainer = document.createElement('div');
-    divTextAreaContainer.setAttribute('id',"divTextBoxContainer" + newTextBoxId);
+    divTextAreaContainer.setAttribute('id', divId);
     divTextAreaContainer.classList.add("dragAndResizeTextBoxContainer");
     //divTextAreaContainer.addEventListener('click', function(){console.log("du ramte divtextContainer")});
 
@@ -363,12 +364,12 @@ function addTextToSlide(){
         $('.dragAndResizeTextBoxContainer')
             .draggable({
                 containment: "#slide",
-                cancel: "divTextBoxContainer1",
+                cancel: "divId",
                 start: function (){
-                    $('#divTextBoxContainer1').focus();
+                    $('#divId').focus();
                 } ,
                 stop: function (){
-                    $('#divTextBoxContainer1').focus();
+                    $('#divId').focus();
                 }
             })
             .resizable({
