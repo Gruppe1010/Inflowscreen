@@ -1,6 +1,7 @@
 package gruppe10.inflowscreen.backend.models.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import gruppe10.inflowscreen.backend.models.entities.TextBox;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,12 +19,18 @@ public class TextBoxDTO {
     private String left;
     private String width;
     private String height;
+    // annotation for at den kan tage imod boolsk værdi i JSON-format i fetch
+    // https://stackoverflow.com/questions/21913955/json-post-request-for-boolean-field-sends-false-by-default
+    @JsonProperty
     private boolean isBold;
+    @JsonProperty
     private boolean isItalic;
+    @JsonProperty
     private boolean isUnderlined;
+    @JsonProperty
     private boolean isList;
     private String font;
-    private int fontSize;
+    private String fontSize;
     private String fontColour;
     private String margin;
     

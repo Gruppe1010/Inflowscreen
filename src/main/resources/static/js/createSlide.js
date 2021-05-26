@@ -1,6 +1,8 @@
 // TODO teksbokst
-//      - gør så man kan komme ind i p-tag hvis alt teksten er slettet
-//      - slet boks ved delete-knap + kryds i hjørne
+//      - Sørg for at valgte stylingknapper i baren ikke vises, hvis der IKKE er en textBox i focus
+//      - set slet-kryds INDE i kassen
+//      - fiks bug med at dropdowns står efter det sidste element - det skal sættes tilbage til original, når et el kommer i focus
+
 
 const slide = document.getElementById("slide");
 
@@ -335,9 +337,7 @@ function deleteIcon(el){
 }
 
 
-// TODO fjern template tekst (placeholder) i box når der trykkes.
-// tilføj text box
-
+// -------------- TEXTBOX
 function addTextToSlide(){
     newTextBoxId++;
 
@@ -348,8 +348,6 @@ function addTextToSlide(){
     divTextAreaContainer.classList.add("dragAndResizeTextBoxContainer");
     divTextAreaContainer.style.zIndex = 900000;
 
-
-
     const textArea = document.createElement('textarea');
     textArea.setAttribute('id',"textBox" + newTextBoxId);
     textArea.setAttribute('contenteditable', "true");
@@ -358,9 +356,16 @@ function addTextToSlide(){
     textArea.classList.add("textArea", "isMarginLeft");
     textArea.addEventListener('click', function(){setAsFocusedEl(textArea);});
     btnMarginLeft.classList.add("btn-used");
+    // standardstyling den oprettes med
+    textArea.style.fontFamily = "Ariel";
+    textArea.style.fontSize = "25px";
+    textArea.style.color = "black";
+    textArea.style.textAlign = "left";
 
     textBoxesOnSlide.push(divTextAreaContainer);
 
+
+    //https://stackoverflow.com/questions/59958676/how-to-make-a-js-textarea-draggable
     $(function() {
         $('.dragAndResizeTextBoxContainer')
             .draggable({
@@ -466,7 +471,7 @@ function showStylingUsed(){
 }
 
 
-// tilføj billede
+// -------------- BILLEDE
 let addImageToSlide = function(event) {
 
     let reader = new FileReader();

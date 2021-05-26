@@ -1,5 +1,6 @@
 package gruppe10.inflowscreen.backend.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,18 +27,23 @@ public class TextBox {
     private String leftPx;
     private String width;
     private String height;
+    @JsonProperty
     private boolean isBold;
+    @JsonProperty
     private boolean isItalic;
+    @JsonProperty
     private boolean isUnderlined;
+    @JsonProperty
     private boolean isList;
     private String font;
-    private int fontSize;
+    private String fontSize;
     private String fontColour;
     private String margin;
     
     
     public TextBox(String text, String top, String left, String width, String height, boolean isBold, boolean isItalic,
-                   boolean isUnderlined, boolean isList, String font, int fontSize, String fontColour, String margin) {
+                   boolean isUnderlined, boolean isList, String font, String fontSize, String fontColour,
+                   String margin) {
         this.text = text;
         this.topPx = top;
         this.leftPx = left;

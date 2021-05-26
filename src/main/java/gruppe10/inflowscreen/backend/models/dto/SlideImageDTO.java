@@ -9,7 +9,6 @@ import lombok.Setter;
 import org.apache.commons.io.FileUtils;
 
 import javax.xml.bind.DatatypeConverter;
-import java.awt.*;
 import java.io.*;
 
 @Getter

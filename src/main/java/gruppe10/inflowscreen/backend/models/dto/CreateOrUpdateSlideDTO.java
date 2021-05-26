@@ -1,5 +1,6 @@
 package gruppe10.inflowscreen.backend.models.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import gruppe10.inflowscreen.backend.models.entities.Slide;
 import gruppe10.inflowscreen.backend.models.entities.SlideImage;
 import gruppe10.inflowscreen.backend.models.entities.SlideVideo;
@@ -22,6 +23,7 @@ public class CreateOrUpdateSlideDTO {
     
     private String title;
     private int frequency;
+    @JsonProperty
     private boolean isActive;
     private Set<TextBoxDTO> textBoxDTOs;
     private Set<SlideImageDTO> slideImageDTOs;
@@ -61,6 +63,6 @@ public class CreateOrUpdateSlideDTO {
             slideVideos = slideVideoDTOs.stream().map(SlideVideoDTO::convertToSlideVideo).collect(Collectors.toSet());
         }
 
-        return new Slide(title, 0, true, null, slideImages, null, null);
+        return new Slide(title, 0, true, textBoxes, slideImages, slideVideos, null);
     }
 }
