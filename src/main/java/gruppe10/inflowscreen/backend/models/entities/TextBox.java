@@ -22,8 +22,8 @@ public class TextBox {
     private Slide slide;
     
     private String text;
-    private String top;
-    private String left;
+    private String topPx;
+    private String leftPx;
     private String width;
     private String height;
     private boolean isBold;
@@ -39,8 +39,8 @@ public class TextBox {
     public TextBox(String text, String top, String left, String width, String height, boolean isBold, boolean isItalic,
                    boolean isUnderlined, boolean isList, String font, int fontSize, String fontColour, String margin) {
         this.text = text;
-        this.top = top;
-        this.left = left;
+        this.topPx = top;
+        this.leftPx = left;
         this.width = width;
         this.height = height;
         this.isBold = isBold;

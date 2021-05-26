@@ -27,8 +27,6 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-document.addEventListener('click', function (){console.log("hej", document.activeElement);});
-
 let textBoxesOnSlide = []; // indeholder alle textBocContainers
 let imageContainers = []; // indeholder alle divImageContainers som indeholder img-elementer
 
@@ -219,8 +217,6 @@ function saveSlide(){
         // TODO tilføj noget async
         const images = convertImagesToJSON();
 
-        console.log(images);
-
         let slide = {
             "title": title,
             "slideImageDTOs": images,
@@ -228,9 +224,6 @@ function saveSlide(){
         }
 
         const body = JSON.stringify(slide);
-
-        console.log(body);
-
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -272,8 +265,7 @@ function convertTextBoxesToJSON(){
 
     function makeTextBoxJSON(div){
 
-        // TODO
-        //const textBox = div.getElementsByTagName('textarea')[0];
+        const textBox = div.getElementsByTagName('textarea')[0];
 
         let top =  div.style.top;
         let left = div.style.left;
@@ -284,19 +276,19 @@ function convertTextBoxesToJSON(){
         if(left === "" || left < 0) left = "0px";
 
         return {
-            "text": div.textContent,
-            "top": top,
-            "left": left,
+            "text": textBox.value,
+            "top": div.style.top,
+            "left": div.style.left,
             "width": div.offsetWidth + "px", // TODO enten div eller textBox
             "height": div.offsetHeight + "px", // TODO enten div eller textBox
-            "isBold": div.classList.contains("isBold"),
-            "isItalic": div.classList.contains("isItalic"),
-            "isUnderlined": div.classList.contains("isUnderlined"),
-            "isList": div.classList.contains("isList"),
-            "font": div.classList.contains("isBold"),
-            "fontSize": div.classList.contains("isBold"),
-            "fontColour": div.classList.contains("isBold"),
-            "margin": div.style.float,
+            "isBold": textBox.classList.contains("isBold"),
+            "isItalic": textBox.classList.contains("isItalic"),
+            "isUnderlined": textBox.classList.contains("isUnderlined"),
+            "isList": textBox.classList.contains("isList"),
+            "font": textBox.style.fontFamily,
+            "fontSize": textBox.style.fontSize,
+            "fontColour": textBox.style.color,
+            "margin": textBox.style.textAlign,
         }
     }
 }
@@ -348,9 +340,6 @@ function addTextToSlide(){
     divTextAreaContainer.classList.add("dragAndResizeTextBoxContainer");
     divTextAreaContainer.style.zIndex = 900000;
 
-    //divTextAreaContainer.addEventListener('click', function(){console.log("du ramte divtextContainer")});
-
-
     const textArea = document.createElement('textarea');
     textArea.setAttribute('id',"textBox" + newTextBoxId);
     textArea.setAttribute('contenteditable', "true");
@@ -360,7 +349,7 @@ function addTextToSlide(){
     textArea.addEventListener('click', function(){setAsFocusedEl(textArea);});
     btnMarginLeft.classList.add("btn-used");
 
-    textBoxesOnSlide.push(textArea);
+    textBoxesOnSlide.push(divTextAreaContainer);
 
     $(function() {
         $('.dragAndResizeTextBoxContainer')
@@ -426,8 +415,6 @@ function showStylingUsed(){
     // vi henter alle elementer med btn-used klassen
     const allElementsWithBtnUsed = document.querySelectorAll(".btn-used");
 
-    //const allElementsWithBtnUsed = document.getElementsByClassName("btn-used");
-    console.log(allElementsWithBtnUsed);
     // vi fjerner btn-used-klassen fra ALLE elementerne
     allElementsWithBtnUsed.forEach(el => el.classList.remove("btn-used"));
 
