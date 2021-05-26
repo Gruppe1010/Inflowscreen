@@ -3,6 +3,9 @@
 //      - set slet-kryds INDE i kassen
 //      - fiks bug med at dropdowns står efter det sidste element - det skal sættes tilbage til original, når et el kommer i focus
 
+// TODO billeder
+//      - ret bug med at man ikke kan tilføje samme billede igen (+ heller ikke hvis man sletter det)
+
 
 const slide = document.getElementById("slide");
 
@@ -279,8 +282,8 @@ function convertTextBoxesToJSON(){
 
         return {
             "text": textBox.value,
-            "top": div.style.top,
-            "left": div.style.left,
+            "top": top,
+            "left": left,
             "width": div.offsetWidth + "px", // TODO enten div eller textBox
             "height": div.offsetHeight + "px", // TODO enten div eller textBox
             "isBold": textBox.classList.contains("isBold"),

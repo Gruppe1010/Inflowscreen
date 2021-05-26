@@ -120,8 +120,6 @@ public class SlideService {
     public void saveTextBoxesToDb(Slide slide, Slide newlyPersistedSlide){
         // vi opretter et Set af de TextBoxes vi skal lægge ned i db ud fra slided vi har fået i requestbody
         Set<TextBox> textBoxes = slide.getTextBoxes();
-    
-        System.out.println(textBoxes);
         
         // hvis der ER TextBoxes på slide
         if(textBoxes != null)

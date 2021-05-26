@@ -58,4 +58,31 @@ public class TextBox {
         this.fontColour = fontColour;
         this.margin = margin;
     }
+    
+    @Override
+    public String toString() {
+    
+        int slideID = -1;
+        if(slide != null){
+            slideID = slide.getId();
+        }
+    
+        return "TextBox{" +
+                       "id=" + id +
+                       ", slideId=" + slideID +
+                       ", text='" + text + '\'' +
+                       ", topPx='" + topPx + '\'' +
+                       ", leftPx='" + leftPx + '\'' +
+                       ", width='" + width + '\'' +
+                       ", height='" + height + '\'' +
+                       ", isBold=" + isBold +
+                       ", isItalic=" + isItalic +
+                       ", isUnderlined=" + isUnderlined +
+                       ", isList=" + isList +
+                       ", font='" + font + '\'' +
+                       ", fontSize='" + fontSize + '\'' +
+                       ", fontColour='" + fontColour + '\'' +
+                       ", margin='" + margin + '\'' +
+                       '}';
+    }
 }
