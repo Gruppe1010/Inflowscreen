@@ -172,7 +172,7 @@ btnList.addEventListener('click', setToList);
 function setToList(){}
 
 const btnFullscreen = document.getElementById("btnFullscreen");
-btnFullscreen.addEventListener('click', function() {makeFullScreen(focusedEl)});
+btnFullscreen.addEventListener('click', makeFullScreen);
 
 // GEM-knap
 const btnSave = document.getElementById("btnSave");
@@ -548,29 +548,32 @@ function printPosition(el){
 }
 
 function makeFullScreen(el) {
-    const width = el.offsetWidth;
-    const height = el.offsetHeight;
+    if(focusedEl.classList.contains("dragAndResizeContainer")){
 
-    if(width === 1120 || height === 630){
-        // gør 80%
-        el.style.width = width * 0.8 + "px";
-        el.style.height = height * 0.8 + "px";
-    }
+        const width = el.offsetWidth;
+        const height = el.offsetHeight;
 
-    else {
-        const widthRatio = 1120 / width;
-        const heightRatio = 630 / height
+        if(width === 1120 || height === 630){
+            // gør 80%
+            el.style.width = width * 0.8 + "px";
+            el.style.height = height * 0.8 + "px";
+        }
 
-        // Math.min = Finder den midste af de to ratios
-        let ratio = Math.min(widthRatio, heightRatio);
+        else {
+            const widthRatio = 1120 / width;
+            const heightRatio = 630 / height
 
-        el.style.width = width * ratio + "px";
-        el.style.height = height * ratio + "px";
+            // Math.min = Finder den midste af de to ratios
+            let ratio = Math.min(widthRatio, heightRatio);
 
-        if(width > height) {
-            el.style.left = "0px";
-        } //Hvis height er størst eller billedet er kvadratisk
-        el.style.top = "0px";
+            el.style.width = width * ratio + "px";
+            el.style.height = height * ratio + "px";
+
+            if(width > height) {
+                el.style.left = "0px";
+            } //Hvis height er størst eller billedet er kvadratisk
+            el.style.top = "0px";
+        }
     }
 }
 
