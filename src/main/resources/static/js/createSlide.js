@@ -4,6 +4,13 @@
 
 const slide = document.getElementById("slide");
 
+Array.prototype.max = function() {
+    return Math.max.apply(null, this);
+};
+Array.prototype.min = function() {
+    return Math.min.apply(null, this);
+};
+
 /**
  * Lytter efter tryk på 'backspace' eller 'delete' på hele doc og sletter elementet med fokus på slide
  * */
@@ -20,15 +27,13 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-let textBoxesOnSlide = [];
+let textBoxesOnSlide = []; // indeholder alle textBocContainers
 let imageContainers = []; // indeholder alle divImageContainers som indeholder img-elementer
 
 let newImageId = 0;
 let newTextBoxId = 0;
 
 let focusedEl;
-
-
 
 // henter alle knapper på siden
 // TODO hent også buttons fra dropdowns/giv dem id
@@ -37,26 +42,29 @@ let focusedEl;
 const inpImage = document.getElementById("btnImage");
 const inpVideo = document.getElementById("inpVideo");
 
+
+ */
+// TILFØJS-knapper
+const inpTitle = document.getElementById("inpTitle");
+const btnTextBox = document.getElementById("btnTextBox");
+btnTextBox.addEventListener('click', addTextToSlide);
+
+// STYLINGS-knapper
 const btnBold = document.getElementById("btnBold");
 const btnItalic = document.getElementById("btnItalic");
 const btnUnderline = document.getElementById("btnUnderline");
 const btnTextColour = document.getElementById("btnTextColour");
-
 const btnFont = document.getElementById("btnFont");
 const btnFontSize = document.getElementById("btnFontSize");
 const btnMarginLeft = document.getElementById("btnMarginLeft");
 const btnMarginCentre = document.getElementById("btnMarginCentre");
 const btnMarginRight = document.getElementById("btnMarginRight");
 const btnList = document.getElementById("btnList");
- */
-const inpTitle = document.getElementById("inpTitle");
-
-const btnTextBox = document.getElementById("btnTextBox");
-btnTextBox.addEventListener('click', addTextToSlide);
 
 const btnFullscreen = document.getElementById("btnFullscreen");
 btnFullscreen.addEventListener('click', function() {makeFullScreen(focusedEl)});
 
+// GEM-knap
 const btnSave = document.getElementById("btnSave");
 btnSave.addEventListener('click', saveSlide);
 
@@ -162,11 +170,12 @@ function addTextToSlide(){
 
     // div-container
     const divTextBox = document.createElement('div');
-    divTextBox.setAttribute('id',"pDivContainer" + newTextBoxId);
+    divTextBox.setAttribute('id',"textBox" + newTextBoxId);
     divTextBox.setAttribute('contenteditable', "true");
     divTextBox.setAttribute('data-placeholder', 'Tryk her for at tilføje tekst');
     divTextBox.classList.add("dragAndResizeTextBoxContainer");
     divTextBox.classList.add("textBoxDivSize");
+    divTextBox.addEventListener('click', function(){setAsFocusedEl(divTextBox)});
 
     textBoxesOnSlide.push(divTextBox);
 
@@ -200,6 +209,16 @@ function addTextToSlide(){
     slide.appendChild(divTextBox);
 }
 
+function setAsFocusedEl(el){
+    focusedEl = el;
+
+    showStylingUsed(el);
+}
+
+// TODO
+function showStylingUsed(el){
+
+}
 
 
 
@@ -330,13 +349,7 @@ function deleteElement(el){
 
 }
 
-Array.prototype.max = function() {
-    return Math.max.apply(null, this);
-};
 
-Array.prototype.min = function() {
-    return Math.min.apply(null, this);
-};
 
 
 
