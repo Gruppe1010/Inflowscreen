@@ -43,16 +43,16 @@
                     <button id="btnUnderline" type="button" class="btn btn-dark">
                         <i class="bi bi-type-underline"></i>
                     </button>
-<!-- TODO find en colorpicker dropdown på nettet -->
-                    <button id="btnTextColour" type="button" class="btn btn-dark">
-                        <i class="bi bi-palette"></i>
-                    </button>
+                    <select id="inpFontColor" class="btn btn-dark" onchange="changeFontColor(this);" aria-label="fontColorSelect">
+                        <option style="color: black" value="black">Sort</option>
+                        <option style="color: white" value="white">Hvid</option>
+                        <option style="color: red" value="red">Rød</option>
+                        <option style="color: green" value="green">Grøn</option>
+                        <option style="color: blue" value="blue">Blå</option>
+                    </select>
                 </div>
 
                 <div class="btn-group mr-1">
-
-
-<!-- TODO Slet eller få til at virke -->
                     <select id="inpFont" class="btn btn-dark" onchange="changeFontStyle(this);" aria-label="fontSelect">
                         <option value="Ariel" selected>Ariel</option>
                         <option value="Calibri">Calibri</option>
@@ -64,7 +64,6 @@
                         <option value="40">Mellem</option>
                         <option value="55">Stor</option>
                         <option value="70">Mega</option>
-
                     </select>
                 </div>
 

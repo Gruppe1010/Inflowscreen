@@ -161,6 +161,12 @@ let changeFontSize = function (font) {
     focusedEl.style.fontSize = font.value + "px";
 }
 
+// ændre skiftfarve i den aktive boks
+let changeFontColor = function (font) {
+    focusedEl.style.color = font.value;
+    document.activeElement.style.color = font.value;
+}
+
 /**
  * Omdanner data på slide og sender i fetch
  * */
