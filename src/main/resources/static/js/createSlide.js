@@ -68,6 +68,12 @@ btnFullscreen.addEventListener('click', function() {makeFullScreen(focusedEl)});
 const btnSave = document.getElementById("btnSave");
 btnSave.addEventListener('click', saveSlide);
 
+// ændre skifttypen i den aktive boks
+let changeFontStyle = function (font) {
+    focusedEl.style.fontFamily = font.value;
+    // ændre skifttypen i select dropdownen
+    document.activeElement.style.fontFamily = font.value;
+}
 
 /**
  * Omdanner data på slide og sender i fetch
