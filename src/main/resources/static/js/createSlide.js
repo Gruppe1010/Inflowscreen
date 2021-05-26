@@ -127,17 +127,17 @@ btnMarginLeft.addEventListener('mousedown', function (e){
 });
 function setToMarginLeft(){
     if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
-
-        if(focusedEl.classList.contains("isMarginLeft")){
-            focusedEl.classList.remove("isMarginLeft");
-            focusedEl.style.textAlign = "left";
-        } else {
-            focusedEl.classList.add("isMarginLeft");
-            focusedEl.style.textAlign = 'left';
-        }
+        focusedEl.classList.add("isMarginLeft");
+        focusedEl.style.textAlign = 'left';
+        removeTwoClassesFromFocusedEL("isMarginRight", "isMarginCentre");
     }
-
 }
+
+function removeTwoClassesFromFocusedEL(class1, class2){
+    focusedEl.classList.remove(class1);
+    focusedEl.classList.remove(class2);
+}
+
 
 const btnMarginCentre = document.getElementById("btnMarginCentre");
 btnMarginCentre.addEventListener('mousedown', function (e){
@@ -147,16 +147,10 @@ btnMarginCentre.addEventListener('mousedown', function (e){
 });
 function setToMarginCentre(){
     if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
-
-        if(focusedEl.classList.contains("isMarginCentre")){
-            focusedEl.classList.remove("isMarginCentre");
-            focusedEl.style.textAlign = "center";
-        } else {
-            focusedEl.classList.add("isMarginCentre");
-            focusedEl.style.textAlign = 'center';
-        }
+        focusedEl.classList.add("isMarginCentre");
+        focusedEl.style.textAlign = 'center';
+        removeTwoClassesFromFocusedEL("isMarginRight", "isMarginLeft");
     }
-
 }
 
 const btnMarginRight = document.getElementById("btnMarginRight");
@@ -167,14 +161,9 @@ btnMarginRight.addEventListener('mousedown', function (e){
 });
 function setToMarginRight(){
     if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
-
-        if(focusedEl.classList.contains("isMarginRight")){
-            focusedEl.classList.remove("isMarginRight");
-            focusedEl.style.textAlign = "right";
-        } else {
-            focusedEl.classList.add("isMarginRight");
-            focusedEl.style.textAlign = 'right';
-        }
+        focusedEl.classList.add("isMarginRight");
+        focusedEl.style.textAlign = 'right';
+        removeTwoClassesFromFocusedEL("isMarginLeft", "isMarginCentre");
     }
 }
 
