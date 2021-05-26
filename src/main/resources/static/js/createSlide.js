@@ -78,6 +78,11 @@ let changeFontStyle = function (font) {
     document.activeElement.style.fontFamily = font.value;
 }
 
+// ændre skiftstørrelsen i den aktive boks
+let changeFontSize = function (font) {
+    focusedEl.style.fontSize = font.value + "px";
+}
+
 /**
  * Omdanner data på slide og sender i fetch
  * */

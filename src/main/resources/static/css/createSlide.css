@@ -22,7 +22,7 @@ input[type="file"] {
 .textBoxDivSize {
     resize: none;
     min-height: 100px;
-    min-width: 250px;
+    min-width: 300px;
     z-index: 100;
     -moz-appearance: textfield-multiline;
     -webkit-appearance: textarea;
@@ -30,6 +30,7 @@ input[type="file"] {
     max-width: 1120px;
     padding: 5px;
     overflow: auto;
+    font-size: 25px;
 }
 
 img {
@@ -57,23 +58,15 @@ div:focus {
     opacity: 0.9;
 }
 
-div.textBoxDivSize:focus {
+.textBoxDivSize:focus {
     background-color: rgba(255, 255, 255, 0.5);
-    border: 1px dashed white !important;
+    border: 1px dashed black;
 }
-
-
 
 /*Sørger for at placeholder bliver vist korrekt i textBox*/
 div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
     content: attr(data-placeholder);
     color: gray;
-}
-
-.btn-dark:active {
-    color: #fff;
-    background-color: #23272b;
-    border-color: #1d2124;
 }
 
 .btn-dark:active {
