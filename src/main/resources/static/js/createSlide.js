@@ -196,7 +196,7 @@ function addTextToSlide(){
     //Fjerne placeholder text efter brugerinput
     (function ($) {
         $(document).on('change keydown keypress input', 'div[data-placeholder]', function() {
-            if (this.textContent) {
+            if (this.textContent || this.textContent === "") {
                 this.dataset.divPlaceholderContent = 'true';
             }
             else {
@@ -209,14 +209,25 @@ function addTextToSlide(){
     slide.appendChild(divTextBox);
 }
 
+/**
+ * Vi sætter vores focusedEl-variabel til det sidste activeEl for at kunne gemme det og sætte stylingen på det,
+ * når vi trykker på stylingsknapperne
+ * */
 function setAsFocusedEl(el){
     focusedEl = el;
 
     showStylingUsed(el);
 }
 
-// TODO
+// TODO når der er et element som ikke focussed mere
+// == når focussedEl.classList.contains("dragAndResizeTextBoxContainer") || focussedEl.classList.contains("dragAndResizeContainer")
+// vis styling -> else: slet btn-used fra alle styling-knapper-elementer
+/**
+ * Viser hvilke stylingsknappet vi har brugt på det focussed element
+ * */
 function showStylingUsed(el){
+
+
 
 }
 
@@ -331,7 +342,8 @@ function makeFullScreen(el) {
 }
 
 function addFocusAndZIndex(el){
-    focusedEl = el;
+
+    setAsFocusedEl(el);
 
     // laver array af alle z-index
     const zIndexes = imageContainers.map(imageCon => Number(imageCon.style.zIndex));
