@@ -51,8 +51,11 @@ btnTextBox.addEventListener('click', addTextToSlide);
 
 // STYLINGS-knapper
 const btnBold = document.getElementById("btnBold");
-btnBold.addEventListener('click', setToBold);
-btnBold.addEventListener('mousedown', function (e){e.preventDefault();});
+btnBold.addEventListener('mousedown', function (e){
+    e.preventDefault();
+    setToBold();
+    showStylingUsed();
+});
 function setToBold(){
     // vi tjekker at focusedEl er en textBox
     if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
@@ -69,8 +72,11 @@ function setToBold(){
 }
 
 const btnItalic = document.getElementById("btnItalic");
-btnItalic.addEventListener('click', setToItalic);
-btnItalic.addEventListener('mousedown', function (e){e.preventDefault();});
+btnItalic.addEventListener('mousedown', function (e){
+    e.preventDefault();
+    setToItalic();
+    showStylingUsed();
+});
 function setToItalic(){
     // Vi tjekker at focusedEl er en tekstbox
     if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
@@ -86,8 +92,11 @@ function setToItalic(){
 }
 
 const btnUnderline = document.getElementById("btnUnderline");
-btnUnderline.addEventListener('click', setToUnderline);
-btnUnderline.addEventListener('mousedown', function (e){e.preventDefault();});
+btnUnderline.addEventListener('mousedown', function (e){
+    e.preventDefault();
+    setToUnderline();
+    showStylingUsed();
+});
 function setToUnderline(){
     if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
 
@@ -102,53 +111,59 @@ function setToUnderline(){
 
 }
 
+const btnTextColour = document.getElementById("btnTextColour");
+
 const inpFont = document.getElementById("inpFont");
-inpFont.addEventListener('mousedown', function (e){e.preventDefault();});
+// inpFont.addEventListener('mousedown', function (e){e.preventDe();});
+
+const btnFontSize = document.getElementById("btnFontSize");
+
 
 const btnMarginLeft = document.getElementById("btnMarginLeft");
-btnMarginLeft.addEventListener('click', setToMarginLeft);
+btnMarginLeft.addEventListener('mousedown', function (e){
+    e.preventDefault();
+    setToMarginLeft();
+    showStylingUsed();
+});
 function setToMarginLeft(){
     if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
-
-        if(focusedEl.classList.contains("isMarginLeft")){
-            focusedEl.classList.remove("isMarginLeft");
-            focusedEl.style.textAlign = "left";
-        } else {
-            focusedEl.classList.add("isMarginLeft");
-            focusedEl.style.textAlign = 'left';
-        }
+        focusedEl.classList.add("isMarginLeft");
+        focusedEl.style.textAlign = 'left';
+        removeTwoClassesFromFocusedEL("isMarginRight", "isMarginCentre");
     }
-
 }
 
+function removeTwoClassesFromFocusedEL(class1, class2){
+    focusedEl.classList.remove(class1);
+    focusedEl.classList.remove(class2);
+}
+
+
 const btnMarginCentre = document.getElementById("btnMarginCentre");
-btnMarginCentre.addEventListener('click', setToMarginCentre);
+btnMarginCentre.addEventListener('mousedown', function (e){
+    e.preventDefault();
+    setToMarginCentre();
+    showStylingUsed();
+});
 function setToMarginCentre(){
     if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
-
-        if(focusedEl.classList.contains("isMarginCentre")){
-            focusedEl.classList.remove("isMarginCentre");
-            focusedEl.style.textAlign = "center";
-        } else {
-            focusedEl.classList.add("isMarginCentre");
-            focusedEl.style.textAlign = 'center';
-        }
+        focusedEl.classList.add("isMarginCentre");
+        focusedEl.style.textAlign = 'center';
+        removeTwoClassesFromFocusedEL("isMarginRight", "isMarginLeft");
     }
-
 }
 
 const btnMarginRight = document.getElementById("btnMarginRight");
-btnMarginRight.addEventListener('click', setToMarginRight);
+btnMarginRight.addEventListener('mousedown', function (e){
+    e.preventDefault();
+    setToMarginRight();
+    showStylingUsed();
+});
 function setToMarginRight(){
     if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
-
-        if(focusedEl.classList.contains("isMarginRight")){
-            focusedEl.classList.remove("isMarginRight");
-            focusedEl.style.textAlign = "right";
-        } else {
-            focusedEl.classList.add("isMarginRight");
-            focusedEl.style.textAlign = 'right';
-        }
+        focusedEl.classList.add("isMarginRight");
+        focusedEl.style.textAlign = 'right';
+        removeTwoClassesFromFocusedEL("isMarginLeft", "isMarginCentre");
     }
 }
 
@@ -164,22 +179,25 @@ const btnSave = document.getElementById("btnSave");
 btnSave.addEventListener('click', saveSlide);
 
 // ændre skifttypen i den aktive boks
-let changeFontStyle = function (font) {
-    focusedEl.style.fontFamily = font.value;
-    // ændre skifttypen i select dropdownen
-    document.activeElement.style.fontFamily = font.value;
+const changeFontStyle = function (font) {
+    if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
+        focusedEl.style.fontFamily = font.value;
+    }
 }
 
 // ændre skiftstørrelsen i den aktive boks
-let changeFontSize = function (font) {
-    focusedEl.style.fontSize = font.value + "px";
+const changeFontSize = function (font) {
+    if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
+        focusedEl.style.fontSize = font.value + "px";
+    }
 }
 
 // ændre skiftfarve i den aktive boks
-let changeFontColor = function (font) {
-    focusedEl.style.color = font.value;
-    // ændre skiftfarve i select dropdownen
-    document.activeElement.style.color = font.value;
+const changeFontColor = function (font) {
+    if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
+        focusedEl.style.color = font.value;
+        document.activeElement.style.color = font.value;
+    }
 }
 
 /**
@@ -285,7 +303,7 @@ function addTextToSlide(){
     divTextBox.setAttribute('id',"textBox" + newTextBoxId);
     divTextBox.setAttribute('contenteditable', "true");
     divTextBox.setAttribute('data-placeholder', 'Tryk her for at tilføje tekst');
-    divTextBox.classList.add("dragAndResizeTextBoxContainer", "textBoxDiv", "isMarginLeft");
+    divTextBox.classList.add("dragAndResizeTextBoxContainer", "textBoxDivSize", "isMarginLeft");
     divTextBox.addEventListener('click', function(){setAsFocusedEl(divTextBox)});
     btnMarginLeft.classList.add("btn-used");
 
@@ -330,7 +348,7 @@ function addTextToSlide(){
 function setAsFocusedEl(el){
     focusedEl = el;
 
-    showStylingUsed(el);
+    showStylingUsed();
 }
 
 // TODO når der er et element som ikke focussed mere
@@ -339,7 +357,7 @@ function setAsFocusedEl(el){
 /**
  * Viser hvilke stylingsknappet vi har brugt på det focussed element
  * */
-function showStylingUsed(el){
+function showStylingUsed(){
 
     // vi henter alle elementer med btn-used klassen
     const allElementsWithBtnUsed = document.querySelectorAll(".btn-used");
@@ -350,7 +368,7 @@ function showStylingUsed(el){
     allElementsWithBtnUsed.forEach(el => el.classList.remove("btn-used"));
 
     // hvis det er en textBox
-    if(el.classList.contains("dragAndResizeTextBoxContainer")){
+    if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
 
         setStyling("isBold", btnBold);
         setStyling("isItalic", btnItalic);
@@ -373,7 +391,7 @@ function showStylingUsed(el){
 
 
     function setStyling(styling, stylingElement){
-        if(el.classList.contains(styling)){
+        if(focusedEl.classList.contains(styling)){
             stylingElement.classList.add("btn-used");
         }
     }
