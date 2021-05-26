@@ -303,7 +303,7 @@ function addTextToSlide(){
     divTextBox.setAttribute('id',"textBox" + newTextBoxId);
     divTextBox.setAttribute('contenteditable', "true");
     divTextBox.setAttribute('data-placeholder', 'Tryk her for at tilføje tekst');
-    divTextBox.classList.add("dragAndResizeTextBoxContainer", "textBoxDivSize", "isMarginLeft");
+    divTextBox.classList.add("dragAndResizeTextBoxContainer", "textBoxDiv", "isMarginLeft");
     divTextBox.addEventListener('click', function(){setAsFocusedEl(divTextBox)});
     btnMarginLeft.classList.add("btn-used");
 
