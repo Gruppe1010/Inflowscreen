@@ -383,7 +383,9 @@ function addTextToSlide(){
             });
     });
 
-/*
+
+
+    /*
     // draggable + resizable
     $(function() {
         $('.dragAndResizeTextBoxContainer')
@@ -398,7 +400,7 @@ function addTextToSlide(){
                 autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
     });
- */
+    */
 
 
     /*
