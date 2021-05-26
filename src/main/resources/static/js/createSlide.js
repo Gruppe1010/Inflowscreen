@@ -52,7 +52,20 @@ btnTextBox.addEventListener('click', addTextToSlide);
 // STYLINGS-knapper
 const btnBold = document.getElementById("btnBold");
 btnBold.addEventListener('click', setToBold);
-function setToBold(){}
+function setToBold(){
+    // vi tjekker at focusedEl er en textBox
+    if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
+        // hvis den allerede er bold
+        if(focusedEl.classList.contains("isBold")){
+            focusedEl.classList.remove("isBold");
+            focusedEl.style.fontWeight = "normal";
+        } else{ // hvis den IKKE er bold
+            focusedEl.classList.add("isBold");
+            focusedEl.style.fontWeight = "bold";
+        }
+
+    }
+}
 
 const btnItalic = document.getElementById("btnItalic");
 btnItalic.addEventListener('click', setToItalic);
@@ -271,9 +284,9 @@ function addTextToSlide(){
     divTextBox.setAttribute('id',"textBox" + newTextBoxId);
     divTextBox.setAttribute('contenteditable', "true");
     divTextBox.setAttribute('data-placeholder', 'Tryk her for at tilføje tekst');
-    divTextBox.classList.add("dragAndResizeTextBoxContainer");
-    divTextBox.classList.add("textBoxDivSize");
+    divTextBox.classList.add("dragAndResizeTextBoxContainer", "textBoxDivSize", "isMarginLeft");
     divTextBox.addEventListener('click', function(){setAsFocusedEl(divTextBox)});
+    btnMarginLeft.classList.add("btn-used");
 
     textBoxesOnSlide.push(divTextBox);
 
@@ -343,6 +356,8 @@ function showStylingUsed(el){
         setStyling("isMarginCentre", btnMarginCentre);
         setStyling("isMarginRight", btnMarginRight);
         setStyling("isList", btnList);
+
+
 
     } else{ // er det billede eller video og det har KUN fullscreen-knap-løsningen
         setStyling("isFullscreen", btnFullscreen);
