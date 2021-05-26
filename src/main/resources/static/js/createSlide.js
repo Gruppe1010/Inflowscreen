@@ -56,11 +56,35 @@ function setToBold(){}
 
 const btnItalic = document.getElementById("btnItalic");
 btnItalic.addEventListener('click', setToItalic);
-function setToItalic(){}
+function setToItalic(){
+    // Vi tjekker at focusedEl er en tekstbox
+    if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
+
+        if(focusedEl.classList.contains("isItalic")){
+            focusedEl.classList.remove("isItalic");
+            focusedEl.style.fontStyle = "normal";
+        } else {
+            focusedEl.classList.add("isItalic");
+            focusedEl.style.fontStyle = 'italic';
+        }
+    }
+}
 
 const btnUnderline = document.getElementById("btnUnderline");
-btnUnderline.addEventListener('click', setToUnderLine);
-function setToUnderLine(){}
+btnUnderline.addEventListener('click', setToUnderline);
+function setToUnderline(){
+    if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
+
+        if(focusedEl.classList.contains("isUnderline")){
+            focusedEl.classList.remove("isUnderline");
+            focusedEl.style.textDecoration = "none";
+        } else {
+            focusedEl.classList.add("isUnderline");
+            focusedEl.style.textDecoration = 'underline';
+        }
+    }
+
+}
 
 const btnTextColour = document.getElementById("btnTextColour");
 const btnFont = document.getElementById("btnFont");
@@ -69,15 +93,50 @@ const btnFontSize = document.getElementById("btnFontSize");
 
 const btnMarginLeft = document.getElementById("btnMarginLeft");
 btnMarginLeft.addEventListener('click', setToMarginLeft);
-function setToMarginLeft(){}
+function setToMarginLeft(){
+    if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
+
+        if(focusedEl.classList.contains("isMarginLeft")){
+            focusedEl.classList.remove("isMarginLeft");
+            focusedEl.style.textAlign = "left";
+        } else {
+            focusedEl.classList.add("isMarginLeft");
+            focusedEl.style.textAlign = 'left';
+        }
+    }
+
+}
 
 const btnMarginCentre = document.getElementById("btnMarginCentre");
 btnMarginCentre.addEventListener('click', setToMarginCentre);
-function setToMarginCentre(){}
+function setToMarginCentre(){
+    if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
+
+        if(focusedEl.classList.contains("isMarginCentre")){
+            focusedEl.classList.remove("isMarginCentre");
+            focusedEl.style.textAlign = "center";
+        } else {
+            focusedEl.classList.add("isMarginCentre");
+            focusedEl.style.textAlign = 'center';
+        }
+    }
+
+}
 
 const btnMarginRight = document.getElementById("btnMarginRight");
 btnMarginRight.addEventListener('click', setToMarginRight);
-function setToMarginRight(){}
+function setToMarginRight(){
+    if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
+
+        if(focusedEl.classList.contains("isMarginRight")){
+            focusedEl.classList.remove("isMarginRight");
+            focusedEl.style.textAlign = "right";
+        } else {
+            focusedEl.classList.add("isMarginRight");
+            focusedEl.style.textAlign = 'right';
+        }
+    }
+}
 
 const btnList = document.getElementById("btnList");
 btnList.addEventListener('click', setToList);
