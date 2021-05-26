@@ -103,8 +103,10 @@ function setToUnderline(){
 }
 
 const btnTextColour = document.getElementById("btnTextColour");
-const btnFont = document.getElementById("btnFont");
-btnFont.addEventListener('mousedown', function (e){e.preventDefault();});
+
+
+const inpFont = document.getElementById("inpFont");
+inpFont.addEventListener('mousedown', function (e){e.preventDefault();});
 
 const btnFontSize = document.getElementById("btnFontSize");
 
