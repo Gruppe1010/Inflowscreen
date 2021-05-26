@@ -55,14 +55,33 @@ btnBold.addEventListener('click', setToBold);
 function setToBold(){}
 
 const btnItalic = document.getElementById("btnItalic");
+btnItalic.addEventListener('click', setToItalic);
+function setToItalic(){}
+
 const btnUnderline = document.getElementById("btnUnderline");
+btnUnderline.addEventListener('click', setToUnderLine);
+function setToUnderLine(){}
+
 const btnTextColour = document.getElementById("btnTextColour");
 const btnFont = document.getElementById("btnFont");
 const btnFontSize = document.getElementById("btnFontSize");
+
+
 const btnMarginLeft = document.getElementById("btnMarginLeft");
+btnMarginLeft.addEventListener('click', setToMarginLeft);
+function setToMarginLeft(){}
+
 const btnMarginCentre = document.getElementById("btnMarginCentre");
+btnMarginCentre.addEventListener('click', setToMarginCentre);
+function setToMarginCentre(){}
+
 const btnMarginRight = document.getElementById("btnMarginRight");
+btnMarginRight.addEventListener('click', setToMarginRight);
+function setToMarginRight(){}
+
 const btnList = document.getElementById("btnList");
+btnList.addEventListener('click', setToList);
+function setToList(){}
 
 const btnFullscreen = document.getElementById("btnFullscreen");
 btnFullscreen.addEventListener('click', function() {makeFullScreen(focusedEl)});
