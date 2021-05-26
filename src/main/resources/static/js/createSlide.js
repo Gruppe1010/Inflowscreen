@@ -217,7 +217,8 @@ function addTextToSlide(){
 
 function setAsFocusedEl(el){
     focusedEl = el;
-
+    console.log(document.activeElement)
+    el.focus();
     showStylingUsed(el);
 }
 
