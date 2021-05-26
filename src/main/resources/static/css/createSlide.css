@@ -57,14 +57,12 @@ div:focus {
     opacity: 0.9;
 }
 
-.textBoxDivSize:focus {
+div.textBoxDivSize:focus {
     background-color: rgba(255, 255, 255, 0.5);
-    border: 1px dashed black;
+    border: 1px dashed white !important;
 }
 
-[contentEditable=true]:empty:not(:focus):before{
-    content:attr(data-ph)
-}
+
 
 /*Sørger for at placeholder bliver vist korrekt i textBox*/
 div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
