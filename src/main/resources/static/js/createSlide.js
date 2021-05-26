@@ -365,9 +365,7 @@ function addTextToSlide(){
             })
             .resizable({
                 containment: "#slide",
-                handles: "se", // hive i hjørne
-                maxHeight: 630,
-                maxWidth: 1120,
+                handles: "e",
                 autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
     });

@@ -23,7 +23,7 @@ input[type="file"] {
     -moz-appearance: textfield-multiline;
     -webkit-appearance: textarea;
     background: none;
-    min-height: 100px;
+    min-height: 120px;
     min-width: 300px;
     max-height: 630px;
     max-width: 1120px;
@@ -51,11 +51,9 @@ img {
     height: 15px;
 }
 
-.ui-resizable-se {
-    right: -5px;
-    bottom: -5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
+.ui-resizable-e {
+    top: 40%;
+    right: 2px;
 }
 
 div:focus {
