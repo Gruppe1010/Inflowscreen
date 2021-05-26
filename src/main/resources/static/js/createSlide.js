@@ -326,6 +326,14 @@ function convertImagesToJSON(){
     }
 }
 
+function deleteIcon(el){
+    // TODO lav kryds til at forsvinde hvis ikke aktiv
+    const spanDelete = document.createElement('span');
+    spanDelete.classList.add("btn-delete", "ui-icon", "ui-icon-close");
+    spanDelete.addEventListener('click',function(){deleteElement(el)});
+    el.appendChild(spanDelete);
+}
+
 
 // TODO fjern template tekst (placeholder) i box når der trykkes.
 // tilføj text box
@@ -375,10 +383,7 @@ function addTextToSlide(){
 
 
         // TODO lav kryds til at forsvinde hvis ikke aktiv
-        const spanDelete = document.createElement('span');
-        spanDelete.classList.add("btn-delete", "ui-icon", "ui-icon-close");
-        spanDelete.addEventListener('click',function(){deleteElement(divTextAreaContainer)});
-
+        deleteIcon(divTextAreaContainer);
 
 
     /*
@@ -396,7 +401,6 @@ function addTextToSlide(){
     */
 
     // tilføjer til DOM
-    divTextAreaContainer.appendChild(spanDelete);
     divTextAreaContainer.appendChild(textArea);
     slide.appendChild(divTextAreaContainer);
 }
