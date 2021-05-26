@@ -2,6 +2,14 @@
 //      - Sørg for at valgte stylingknapper i baren ikke vises, hvis der IKKE er en textBox i focus
 //      - set slet-kryds INDE i kassen
 //      - fiks bug med at dropdowns står efter det sidste element - det skal sættes tilbage til original, når et el kommer i focus
+//      - tilføj andre anderledes skrifttyper, som er lidt anderledes
+//      - Ret i color-dropdown at man ikke kan se sort - skriv muligvis bare valgmulighederne i hvis allesammen.
+//              ELLERS ændre i stylingknapper så de bliver hvide og de 3 ting man kan tilføje bliver sorte??
+
+// TODO andre
+//      - gør GEM-knap grøn
+//      - overvej at gøre så man ikke kan se de andre valgmuligheder hvis man står på et img-el og omvendt
+
 
 // TODO billeder
 //      - ret bug med at man ikke kan tilføje samme billede igen (+ heller ikke hvis man sletter det)
@@ -218,7 +226,7 @@ function saveSlide(){
     if(title.length > 0){
 
         const textBoxes = convertTextBoxesToJSON();
-        console.log(textBoxes);
+
         // TODO tilføj noget async
         const images = convertImagesToJSON();
 
@@ -240,10 +248,12 @@ function saveSlide(){
         // TODO tilføj måske noget async
         function checkIfSuccess(response){
             if(response.status >= 200 && response.status < 300){
-                // TODO har vi overhovedet brug for denne cookie??
+                /* TODO har vi overhovedet brug for denne cookie??
                 const cookie = document.cookie;
 
                 alert(cookie);
+
+                 */
 
                 window.location.replace("/");
             }

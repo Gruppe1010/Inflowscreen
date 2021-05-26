@@ -80,9 +80,8 @@ public class SlideImageDTO {
             try{
                 // tjek om de to filer er ens - hvis ja - SLET DEN
                 if(FileUtils.contentEquals(newFile, potentialOldFile)){
-                    if(newFile.delete()){
-                        System.out.println("Filen fandtes allerede og den nye er slettet");
-                    }
+                    // TODO tag måske imod resultatet
+                    newFile.delete();
                 }
                 else{ // hvis billederne IKKE ens men bare havde samme navn, så skal det være den nye opdaterede path
                     correctPath = path;

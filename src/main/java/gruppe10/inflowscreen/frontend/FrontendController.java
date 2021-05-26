@@ -30,8 +30,6 @@ public class FrontendController {
         Account loggedInAccount = optLoggedInAccount.get();
         
         model.addAttribute("logoPath", loggedInAccount.getOrganisation().getLogoPath());
-    
-        System.out.println(loggedInAccount.getOrganisation().getLogoPath());
         
         return "index";
     }

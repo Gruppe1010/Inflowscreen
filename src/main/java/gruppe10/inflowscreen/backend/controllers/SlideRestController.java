@@ -23,7 +23,7 @@ public class SlideRestController
     * */
     @PostMapping("/saveSlide")
     public ResponseEntity<HttpStatus> saveSlide(@RequestBody CreateOrUpdateSlideDTO slideDTO, Principal principal) {
-        System.out.println(slideDTO);
+        
         HttpStatus httpStatus = slideService.createNewSlide(slideDTO, principal);
         
         return new ResponseEntity<>(httpStatus);
