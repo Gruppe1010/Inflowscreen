@@ -52,6 +52,7 @@ btnTextBox.addEventListener('click', addTextToSlide);
 // STYLINGS-knapper
 const btnBold = document.getElementById("btnBold");
 btnBold.addEventListener('click', setToBold);
+btnBold.addEventListener('mousedown', function (e){e.preventDefault();});
 function setToBold(){
     // vi tjekker at focusedEl er en textBox
     if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
@@ -69,6 +70,7 @@ function setToBold(){
 
 const btnItalic = document.getElementById("btnItalic");
 btnItalic.addEventListener('click', setToItalic);
+btnItalic.addEventListener('mousedown', function (e){e.preventDefault();});
 function setToItalic(){
     // Vi tjekker at focusedEl er en tekstbox
     if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
@@ -85,14 +87,15 @@ function setToItalic(){
 
 const btnUnderline = document.getElementById("btnUnderline");
 btnUnderline.addEventListener('click', setToUnderline);
+btnUnderline.addEventListener('mousedown', function (e){e.preventDefault();});
 function setToUnderline(){
     if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
 
-        if(focusedEl.classList.contains("isUnderline")){
-            focusedEl.classList.remove("isUnderline");
+        if(focusedEl.classList.contains("isUnderlined")){
+            focusedEl.classList.remove("isUnderlined");
             focusedEl.style.textDecoration = "none";
         } else {
-            focusedEl.classList.add("isUnderline");
+            focusedEl.classList.add("isUnderlined");
             focusedEl.style.textDecoration = 'underline';
         }
     }
@@ -101,6 +104,8 @@ function setToUnderline(){
 
 const btnTextColour = document.getElementById("btnTextColour");
 const btnFont = document.getElementById("btnFont");
+btnFont.addEventListener('mousedown', function (e){e.preventDefault();});
+
 const btnFontSize = document.getElementById("btnFontSize");
 
 
@@ -273,7 +278,6 @@ function convertImagesToJSON(){
     }
 }
 
-
 // TODO fjern template tekst (placeholder) i box når der trykkes.
 // tilføj text box
 function addTextToSlide(){
@@ -341,7 +345,10 @@ function setAsFocusedEl(el){
 function showStylingUsed(el){
 
     // vi henter alle elementer med btn-used klassen
-    const allElementsWithBtnUsed = document.getElementsByClassName("btn-used");
+    const allElementsWithBtnUsed = document.querySelectorAll(".btn-used");
+
+    //const allElementsWithBtnUsed = document.getElementsByClassName("btn-used");
+    console.log(allElementsWithBtnUsed);
     // vi fjerner btn-used-klassen fra ALLE elementerne
     allElementsWithBtnUsed.forEach(el => el.classList.remove("btn-used"));
 
@@ -377,7 +384,6 @@ function showStylingUsed(el){
 
 
 }
-
 
 
 // tilføj billede
