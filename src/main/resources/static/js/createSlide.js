@@ -1,6 +1,3 @@
-// TODO gør så img-tag onclick
-//      - sæt det forrest!!!!!
-
 // TODO teksbokst
 //      - gør så man kan komme ind i p-tag hvis alt teksten er slettet
 //      - slet boks ved delete-knap + kryds i hjørne
@@ -29,6 +26,8 @@ let imageContainers = []; // indeholder alle divImageContainers som indeholder i
 let newImageId = 0;
 let newTextBoxId = 0;
 
+let focusedEl;
+
 
 
 // henter alle knapper på siden
@@ -56,13 +55,7 @@ const btnTextBox = document.getElementById("btnTextBox");
 btnTextBox.addEventListener('click', addTextToSlide);
 
 const btnFullscreen = document.getElementById("btnFullscreen");
-btnFullscreen.addEventListener('click', makeFullScreen);
-
-// https://stackoverflow.com/a/43627784
-// TODO skriv den her pænt
-$("#btnFullscreen").mousedown(function(e) { // handle the mousedown event
-    e.preventDefault(); // prevent the img from loosing focus
-});
+btnFullscreen.addEventListener('click', function() {makeFullScreen(focusedEl)});
 
 const btnSave = document.getElementById("btnSave");
 btnSave.addEventListener('click', saveSlide);
@@ -292,8 +285,6 @@ function printPosition(el){
 }
 
 function makeFullScreen(el) {
-    let nytEl = document.activeElement; // TODO
-
     const width = el.offsetWidth;
     const height = el.offsetHeight;
 
@@ -315,13 +306,13 @@ function makeFullScreen(el) {
 
         if(width > height) {
             el.style.left = "0px";
-        } else { // Hvis height er størst eller billedet er kvadratisk
-            el.style.top = "0px";
-        }
+        } //Hvis height er størst eller billedet er kvadratisk
+        el.style.top = "0px";
     }
 }
 
 function addFocusAndZIndex(el){
+    focusedEl = el;
 
     // laver array af alle z-index
     const zIndexes = imageContainers.map(imageCon => Number(imageCon.style.zIndex));
@@ -331,6 +322,7 @@ function addFocusAndZIndex(el){
 
     el.style.zIndex = biggestZ + 1;
     el.focus();
+
 }
 
 function deleteElement(el){
@@ -349,137 +341,7 @@ Array.prototype.min = function() {
 
 
 
-
-
-
-
-
-
-
-//! RESTEN ER NOGET GAMMELT LORT
-//imageForm.addEventListener('submit', handleImageSubmit);
-// når der trykkes på submit fanger vi dataen fra imageInputfelt og gemmer det på liste
-async function handleImageSubmit(event){
-    alert("HEJ4");
-
-
-    /**
-     * This prevents the default behaviour of the browser submitting
-     * the form so that we can handle things instead.
-     */
-    // event.preventDefault();
-
-    /**
-     * This gets the element which the event handler was attached to.
-     *
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
-     */
-    //const form = event.currentTarget;
-
-    /**
-     * This takes the API URL from the form's `action` attribute.
-
-     const url = form.action;
-     */
-
-    try {
-        /**
-         * This takes all the fields in the form and makes their values
-         * available through a `FormData` instance.
-         *
-         * @see https://developer.mozilla.org/en-US/docs/Web/API/FormData
-         */
-        const formData = new FormData(imageForm);
-
-        console.log("formData", formData);
-
-        /**
-         * We'll define the `postFormDataAsJson()` function in the next step.
-         */
-        const imageAsJSON = await convertImageToJSON(formData);
-
-        console.log("imageAsJSON: ", imageAsJSON);
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-async function convertImageToJSON(formData) {
-    alert("HEJ4");
-
-    /**
-     * We can't pass the `FormData` instance directly to `fetch`
-     * as that will cause it to automatically format the request
-     * body as "multipart" and set the `Content-Type` request header
-     * to `multipart/form-data`. We want to send the request body
-     * as JSON, so we're converting it to a plain object and then
-     * into a JSON string.
-     *
-     * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
-     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries
-     * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
-     */
-    const plainFormData = Object.fromEntries(formData.entries());
-    const formDataJsonString = JSON.stringify(plainFormData);
-
-    return formDataJsonString;
-}
-// kaldes når man trykker på imageInputfelt - sørger for at submitte billedet
-function imageAutoSubmit(input){
-    alert("HEJ");
-
-    // hvis der er noget i input-feltet for image
-    if (input.files && input.files[0]) {
-        alert("HEJ2");
-        let reader = new FileReader();
-        reader.onload = function (e) {
-            alert("HEJ2.5");
-
-            handleImageSubmit().then(answer => alert(answer));
-
-
-            // document.forms["imageForm"].submit();
-            // document.imageForm.submit();
-            alert("HEJ3");
-
-
-            // TODO lav nyt imagetag
-
-            $('#blah')
-                .attr('src', e.target.result)
-                .width(150)
-                .height(200);
-
-
-
-        };
-
-        reader.readAsDataURL(input.files[0]);
-
-    }
-}
-// til upload af billede
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        let reader = new FileReader();
-        reader.onload = function (e) {
-            $('#blah')
-                .attr('src', e.target.result)
-                .width(150)
-                .height(200);
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-
-
-
-
-
-
-
-
+// Canvas ting
 /*
 const canvasContext = canvas.getContext("2d");
 canvasContext.font = "30px Arial";
