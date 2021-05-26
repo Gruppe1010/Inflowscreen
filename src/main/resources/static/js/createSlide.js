@@ -60,7 +60,7 @@ btnBold.addEventListener('mousedown', function (e){
 });
 function setToBold(){
     // vi tjekker at focusedEl er en textBox
-    if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
+    if(focusedEl.classList.contains("textArea")){
         // hvis den allerede er bold
         if(focusedEl.classList.contains("isBold")){
             focusedEl.classList.remove("isBold");
@@ -81,7 +81,7 @@ btnItalic.addEventListener('mousedown', function (e){
 });
 function setToItalic(){
     // Vi tjekker at focusedEl er en tekstbox
-    if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
+    if(focusedEl.classList.contains('textArea')){
 
         if(focusedEl.classList.contains("isItalic")){
             focusedEl.classList.remove("isItalic");
@@ -100,7 +100,7 @@ btnUnderline.addEventListener('mousedown', function (e){
     showStylingUsed();
 });
 function setToUnderline(){
-    if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
+    if(focusedEl.classList.contains('textArea')){
 
         if(focusedEl.classList.contains("isUnderlined")){
             focusedEl.classList.remove("isUnderlined");
@@ -128,7 +128,7 @@ btnMarginLeft.addEventListener('mousedown', function (e){
     showStylingUsed();
 });
 function setToMarginLeft(){
-    if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
+    if(focusedEl.classList.contains('textArea')){
         focusedEl.classList.add("isMarginLeft");
         focusedEl.style.textAlign = 'left';
         removeTwoClassesFromFocusedEL("isMarginRight", "isMarginCentre");
@@ -148,7 +148,7 @@ btnMarginCentre.addEventListener('mousedown', function (e){
     showStylingUsed();
 });
 function setToMarginCentre(){
-    if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
+    if(focusedEl.classList.contains('textArea')){
         focusedEl.classList.add("isMarginCentre");
         focusedEl.style.textAlign = 'center';
         removeTwoClassesFromFocusedEL("isMarginRight", "isMarginLeft");
@@ -162,7 +162,7 @@ btnMarginRight.addEventListener('mousedown', function (e){
     showStylingUsed();
 });
 function setToMarginRight(){
-    if(focusedEl.classList.contains('dragAndResizeTextBoxContainer')){
+    if(focusedEl.classList.contains('textArea')){
         focusedEl.classList.add("isMarginRight");
         focusedEl.style.textAlign = 'right';
         removeTwoClassesFromFocusedEL("isMarginLeft", "isMarginCentre");
@@ -183,19 +183,19 @@ btnSave.addEventListener('click', saveSlide);
 
 // ændre skifttypen i den aktive boks
 const changeFontStyle = function (font) {
-    if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
+    if(focusedEl.classList.contains("textArea")){
         focusedEl.style.fontFamily = font.value;
     }
 }
 // ændre skiftstørrelsen i den aktive boks
 const changeFontSize = function (font) {
-    if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
+    if(focusedEl.classList.contains("textArea")){
         focusedEl.style.fontSize = font.value + "px";
     }
 }
 // ændre skiftfarve i den aktive boks
 const changeFontColor = function (font) {
-    if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
+    if(focusedEl.classList.contains("textArea")){
         focusedEl.style.color = font.value;
         document.activeElement.style.color = font.value;
     }
@@ -356,7 +356,7 @@ function addTextToSlide(){
     textArea.setAttribute('contenteditable', "true");
     textArea.setAttribute('placeholder', 'Tryk her for at tilføje tekst');
     textArea.setAttribute('oninput','this.style.height = "";this.style.height = this.scrollHeight + 5 + "px"');
-    textArea.classList.add("textAreaCSS", "isMarginLeft");
+    textArea.classList.add("textArea", "isMarginLeft");
     textArea.addEventListener('click', function(){setAsFocusedEl(textArea);});
     btnMarginLeft.classList.add("btn-used");
 
@@ -382,26 +382,6 @@ function addTextToSlide(){
                 autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
     });
-
-
-
-    /*
-    // draggable + resizable
-    $(function() {
-        $('.dragAndResizeTextBoxContainer')
-            .draggable({
-                containment: "#slide",
-                cursor : "move"})
-            .resizable({
-                containment: "#slide",
-                handles: "se", // hive i hjørne
-                maxHeight: 630,
-                maxWidth: 1120,
-                autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
-            });
-    });
-    */
-
 
     /*
     //Fjerne placeholder text efter brugerinput
@@ -452,7 +432,7 @@ function showStylingUsed(){
     allElementsWithBtnUsed.forEach(el => el.classList.remove("btn-used"));
 
     // hvis det er en textBox
-    if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
+    if(focusedEl.classList.contains("textArea")){
 
         setStyling("isBold", btnBold);
         setStyling("isItalic", btnItalic);

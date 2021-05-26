@@ -19,7 +19,7 @@ input[type="file"] {
     height: 632px;
 }
 
-.textAreaCSS {
+.textArea {
     -moz-appearance: textfield-multiline;
     -webkit-appearance: textarea;
     background: none;
@@ -62,7 +62,7 @@ div:focus {
     opacity: 0.9;
 }
 
-.textAreaCSS:focus {
+.textArea:focus {
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px dashed black;
 }
