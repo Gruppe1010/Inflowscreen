@@ -299,7 +299,7 @@ function addTextToSlide(){
     newTextBoxId++;
 
     // div-container
-    const divTextBox = document.createElement('div');
+    const divTextBox = document.createElement('textarea');
     divTextBox.setAttribute('id',"textBox" + newTextBoxId);
     divTextBox.setAttribute('contenteditable', "true");
     divTextBox.setAttribute('data-placeholder', 'Tryk her for at tilføje tekst');
@@ -309,6 +309,7 @@ function addTextToSlide(){
 
     textBoxesOnSlide.push(divTextBox);
 
+    /*
     // draggable + resizable
     $(function() {
         $('.dragAndResizeTextBoxContainer')
@@ -323,7 +324,7 @@ function addTextToSlide(){
                 autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
     });
-
+    */
 
     //Fjerne placeholder text efter brugerinput
     (function ($) {
