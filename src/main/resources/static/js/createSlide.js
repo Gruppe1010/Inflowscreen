@@ -27,6 +27,8 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
+document.addEventListener('click', function (){console.log("hej", document.activeElement);});
+
 let textBoxesOnSlide = []; // indeholder alle textBocContainers
 let imageContainers = []; // indeholder alle divImageContainers som indeholder img-elementer
 
@@ -178,20 +180,19 @@ btnFullscreen.addEventListener('click', function() {makeFullScreen(focusedEl)});
 const btnSave = document.getElementById("btnSave");
 btnSave.addEventListener('click', saveSlide);
 
+
 // ændre skifttypen i den aktive boks
 const changeFontStyle = function (font) {
     if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
         focusedEl.style.fontFamily = font.value;
     }
 }
-
 // ændre skiftstørrelsen i den aktive boks
 const changeFontSize = function (font) {
     if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
         focusedEl.style.fontSize = font.value + "px";
     }
 }
-
 // ændre skiftfarve i den aktive boks
 const changeFontColor = function (font) {
     if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
@@ -213,6 +214,8 @@ function saveSlide(){
     // hvis de har indtastet en titel
     if(title.length > 0){
 
+        const textBoxes = convertTextBoxesToJSON();
+        console.log(textBoxes);
         // TODO tilføj noget async
         const images = convertImagesToJSON();
 
@@ -220,7 +223,8 @@ function saveSlide(){
 
         let slide = {
             "title": title,
-            "slideImageDTOs": images
+            "slideImageDTOs": images,
+            "textBoxDTOs": textBoxes
         }
 
         const body = JSON.stringify(slide);
@@ -259,7 +263,44 @@ function saveSlide(){
         alert("Indtast venligst en titel");
     }
 }
-// TODO tilføj noget async noget så vi ved vi har fået hentet dataen
+/**
+ * Omdanner alle textboxes fra list til JSON
+ * */
+function convertTextBoxesToJSON(){
+    // returnerer en liste hvor hvert el på imageContainters-listen har undergået makeImageJSON-func
+    return textBoxesOnSlide.map(div => makeTextBoxJSON(div));
+
+    function makeTextBoxJSON(div){
+
+        // TODO
+        //const textBox = div.getElementsByTagName('textarea')[0];
+
+        let top =  div.style.top;
+        let left = div.style.left;
+
+        // hvis de er 0 kommer de ud som "" - derfor sætter vi lige værdien til 0px
+        // også < 0, hvis der nu er sket en fejl på en eller anden måde på slidet
+        if(top === "" || top < 0) top = "0px";
+        if(left === "" || left < 0) left = "0px";
+
+        return {
+            "text": div.textContent,
+            "top": top,
+            "left": left,
+            "width": div.offsetWidth + "px", // TODO enten div eller textBox
+            "height": div.offsetHeight + "px", // TODO enten div eller textBox
+            "isBold": div.classList.contains("isBold"),
+            "isItalic": div.classList.contains("isItalic"),
+            "isUnderlined": div.classList.contains("isUnderlined"),
+            "isList": div.classList.contains("isList"),
+            "font": div.classList.contains("isBold"),
+            "fontSize": div.classList.contains("isBold"),
+            "fontColour": div.classList.contains("isBold"),
+            "margin": div.style.float,
+        }
+    }
+}
+
 // kig på: https://stackoverflow.com/questions/29775797/fetch-post-json-data
 /**
  * Omdanner alle img-tags på liste til JSON
@@ -293,8 +334,10 @@ function convertImagesToJSON(){
     }
 }
 
+
 // TODO fjern template tekst (placeholder) i box når der trykkes.
 // tilføj text box
+
 function addTextToSlide(){
     newTextBoxId++;
 
@@ -302,6 +345,8 @@ function addTextToSlide(){
     const divTextAreaContainer = document.createElement('div');
     divTextAreaContainer.setAttribute('id',"divTextBoxContainer" + newTextBoxId);
     divTextAreaContainer.classList.add("dragAndResizeTextBoxContainer");
+    //divTextAreaContainer.addEventListener('click', function(){console.log("du ramte divtextContainer")});
+
 
     const textArea = document.createElement('textarea');
     textArea.setAttribute('id',"textBox" + newTextBoxId);
@@ -309,7 +354,7 @@ function addTextToSlide(){
     textArea.setAttribute('placeholder', 'Tryk her for at tilføje tekst');
     textArea.setAttribute('oninput','this.style.height = "";this.style.height = this.scrollHeight + 5 + "px"');
     textArea.classList.add("textAreaCSS", "isMarginLeft");
-    textArea.addEventListener('click', function(){setAsFocusedEl(textArea)});
+    textArea.addEventListener('click', function(){setAsFocusedEl(textArea);});
     btnMarginLeft.classList.add("btn-used");
 
     textBoxesOnSlide.push(textArea);
@@ -325,6 +370,13 @@ function addTextToSlide(){
                 stop: function (){
                     $('#divTextBoxContainer1').focus();
                 }
+            })
+            .resizable({
+                containment: "#slide",
+                handles: "se", // hive i hjørne
+                maxHeight: 630,
+                maxWidth: 1120,
+                autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
     });
 
@@ -372,6 +424,7 @@ function addTextToSlide(){
  * når vi trykker på stylingsknapperne
  * */
 function setAsFocusedEl(el){
+    el.focus();
     focusedEl = el;
 
     showStylingUsed();

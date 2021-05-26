@@ -22,8 +22,8 @@ public class SlideRestController
     * For at Spring kan deserialisere JSON vi får fra front, SKAL vi have getters og setters (OG de SKAL have de rigtige navne)
     * */
     @PostMapping("/saveSlide")
-    public ResponseEntity<HttpStatus> saveSlide(@RequestBody CreateOrUpdateSlideDTO slideDTO, Principal principal)
-    {
+    public ResponseEntity<HttpStatus> saveSlide(@RequestBody CreateOrUpdateSlideDTO slideDTO, Principal principal) {
+        System.out.println(slideDTO);
         HttpStatus httpStatus = slideService.createNewSlide(slideDTO, principal);
         
         return new ResponseEntity<>(httpStatus);

@@ -22,7 +22,6 @@ input[type="file"] {
 .textAreaCSS {
     -moz-appearance: textfield-multiline;
     -webkit-appearance: textarea;
-    resize: both;
     min-height: 100px;
     min-width: 300px;
     max-height: 630px;
@@ -31,6 +30,10 @@ input[type="file"] {
     padding: 5px;
     font-size: 25px;
     overflow: auto;
+    height:100%;
+    background-color:white;
+    width:100%;
+    resize:none; border:none;
 }
 
 img {
@@ -82,3 +85,6 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
     background-color: #23272b;
     border-color: #1d2124;
 }
+
+
+div.dragAndResizeTextBoxContainer { padding:0; }

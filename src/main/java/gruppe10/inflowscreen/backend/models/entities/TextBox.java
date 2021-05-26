@@ -20,30 +20,36 @@ public class TextBox {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_slide")
     private Slide slide;
-
+    
     private String text;
+    private String top;
+    private String left;
+    private String width;
+    private String height;
+    private boolean isBold;
+    private boolean isItalic;
+    private boolean isUnderlined;
+    private boolean isList;
     private String font;
     private int fontSize;
     private String fontColour;
-    private boolean isList;
-    private boolean bold;
-    private boolean italic;
-    private boolean underline;
     private String margin;
-    private String leftPx;
-    private String topPx;
-
-    public TextBox(String text, String font, int fontSize, String fontColour, boolean isList, boolean bold, boolean italic, boolean underline, String margin, String leftPx, String topPx) {
+    
+    
+    public TextBox(String text, String top, String left, String width, String height, boolean isBold, boolean isItalic,
+                   boolean isUnderlined, boolean isList, String font, int fontSize, String fontColour, String margin) {
         this.text = text;
+        this.top = top;
+        this.left = left;
+        this.width = width;
+        this.height = height;
+        this.isBold = isBold;
+        this.isItalic = isItalic;
+        this.isUnderlined = isUnderlined;
+        this.isList = isList;
         this.font = font;
         this.fontSize = fontSize;
         this.fontColour = fontColour;
-        this.isList = isList;
-        this.bold = bold;
-        this.italic = italic;
-        this.underline = underline;
         this.margin = margin;
-        this.leftPx = leftPx;
-        this.topPx = topPx;
     }
 }
