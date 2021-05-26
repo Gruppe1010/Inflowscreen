@@ -179,25 +179,25 @@ const btnSave = document.getElementById("btnSave");
 btnSave.addEventListener('click', saveSlide);
 
 // ændre skifttypen i den aktive boks
-let changeFontStyle = function (font) {
+const changeFontStyle = function (font) {
     if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
         focusedEl.style.fontFamily = font.value;
-        // ændre skifttypen i select dropdownen
-        document.activeElement.style.fontFamily = font.value;
     }
 }
 
 // ændre skiftstørrelsen i den aktive boks
-let changeFontSize = function (font) {
+const changeFontSize = function (font) {
     if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
         focusedEl.style.fontSize = font.value + "px";
     }
 }
 
 // ændre skiftfarve i den aktive boks
-let changeFontColor = function (font) {
-    focusedEl.style.color = font.value;
-    document.activeElement.style.color = font.value;
+const changeFontColor = function (font) {
+    if(focusedEl.classList.contains("dragAndResizeTextBoxContainer")){
+        focusedEl.style.color = font.value;
+        document.activeElement.style.color = font.value;
+    }
 }
 
 /**
