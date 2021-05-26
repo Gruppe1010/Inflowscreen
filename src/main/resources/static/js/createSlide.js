@@ -51,15 +51,37 @@ btnTextBox.addEventListener('click', addTextToSlide);
 
 // STYLINGS-knapper
 const btnBold = document.getElementById("btnBold");
+btnBold.addEventListener('click', setToBold);
+function setToBold(){}
+
 const btnItalic = document.getElementById("btnItalic");
+btnItalic.addEventListener('click', setToItalic);
+function setToItalic(){}
+
 const btnUnderline = document.getElementById("btnUnderline");
+btnUnderline.addEventListener('click', setToUnderLine);
+function setToUnderLine(){}
+
 const btnTextColour = document.getElementById("btnTextColour");
 const btnFont = document.getElementById("btnFont");
 const btnFontSize = document.getElementById("btnFontSize");
+
+
 const btnMarginLeft = document.getElementById("btnMarginLeft");
+btnMarginLeft.addEventListener('click', setToMarginLeft);
+function setToMarginLeft(){}
+
 const btnMarginCentre = document.getElementById("btnMarginCentre");
+btnMarginCentre.addEventListener('click', setToMarginCentre);
+function setToMarginCentre(){}
+
 const btnMarginRight = document.getElementById("btnMarginRight");
+btnMarginRight.addEventListener('click', setToMarginRight);
+function setToMarginRight(){}
+
 const btnList = document.getElementById("btnList");
+btnList.addEventListener('click', setToList);
+function setToList(){}
 
 const btnFullscreen = document.getElementById("btnFullscreen");
 btnFullscreen.addEventListener('click', function() {makeFullScreen(focusedEl)});
@@ -196,6 +218,7 @@ function addTextToSlide(){
 
     textBoxesOnSlide.push(divTextBox);
 
+    // draggable + resizable
     $(function() {
         $('.dragAndResizeTextBoxContainer')
             .draggable({
@@ -209,6 +232,7 @@ function addTextToSlide(){
                 autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
             });
     });
+
 
     //Fjerne placeholder text efter brugerinput
     (function ($) {
@@ -226,15 +250,57 @@ function addTextToSlide(){
     slide.appendChild(divTextBox);
 }
 
+/**
+ * Vi sætter vores focusedEl-variabel til det sidste activeEl for at kunne gemme det og sætte stylingen på det,
+ * når vi trykker på stylingsknapperne
+ * */
 function setAsFocusedEl(el){
     focusedEl = el;
-    console.log(document.activeElement)
-    el.focus();
+
     showStylingUsed(el);
 }
 
-// TODO
+// TODO når der er et element som ikke focussed mere
+// == når focussedEl.classList.contains("dragAndResizeTextBoxContainer") || focussedEl.classList.contains("dragAndResizeContainer")
+// vis styling -> else: slet btn-used fra alle styling-knapper-elementer
+/**
+ * Viser hvilke stylingsknappet vi har brugt på det focussed element
+ * */
 function showStylingUsed(el){
+
+    // vi henter alle elementer med btn-used klassen
+    const allElementsWithBtnUsed = document.getElementsByClassName("btn-used");
+    // vi fjerner btn-used-klassen fra ALLE elementerne
+    allElementsWithBtnUsed.forEach(el => el.classList.remove("btn-used"));
+
+    // hvis det er en textBox
+    if(el.classList.contains("dragAndResizeTextBoxContainer")){
+
+        setStyling("isBold", btnBold);
+        setStyling("isItalic", btnItalic);
+        setStyling("isUnderlined", btnUnderline);
+
+        setStyling("isMarginLeft", btnMarginLeft);
+        setStyling("isMarginCentre", btnMarginCentre);
+        setStyling("isMarginRight", btnMarginRight);
+        setStyling("isList", btnList);
+
+    } else{ // er det billede eller video og det har KUN fullscreen-knap-løsningen
+        setStyling("isFullscreen", btnFullscreen);
+
+    }
+
+
+    setStyling("isFullscreen", btnFullscreen);
+
+
+    function setStyling(styling, stylingElement){
+        if(el.classList.contains(styling)){
+            stylingElement.classList.add("btn-used");
+        }
+    }
+
+
 
 }
 
@@ -349,7 +415,8 @@ function makeFullScreen(el) {
 }
 
 function addFocusAndZIndex(el){
-    focusedEl = el;
+
+    setAsFocusedEl(el);
 
     // laver array af alle z-index
     const zIndexes = imageContainers.map(imageCon => Number(imageCon.style.zIndex));
