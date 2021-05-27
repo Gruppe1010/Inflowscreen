@@ -32,7 +32,7 @@ getAllSlides()
        * (current != slides.length - 1) == hvis current IKKE er den sidste på slide-array
        * */
 
-            current = (current != slides.length - 1) ? current + 1 : 0;
+            current = (current != slideDivs.length - 1) ? current + 1 : 0;
             slideDivs[current].style.opacity = 1;
         }, 6000));
 
