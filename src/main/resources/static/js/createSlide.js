@@ -365,24 +365,53 @@ function addTextToSlide(){
     divTextAreaContainer.classList.add("dragAndResizeTextBoxContainer");
     divTextAreaContainer.style.zIndex = 900000;
 
+
+
+    const textBoxId = "textBox" + newTextBoxId;
     const textArea = document.createElement('textarea');
-    textArea.setAttribute('id',"textBox" + newTextBoxId);
+    textArea.setAttribute('id', textBoxId);
     textArea.setAttribute('contenteditable', "true");
     textArea.setAttribute('placeholder', 'Tryk her for at tilføje tekst');
     textArea.setAttribute('oninput', "calcTextBoxHeight(this);");
 
-    calcTextBoxHeight = function(el){
+    // når man flytter på tekstboksen skal man også kunne enter direkte - ikke kun når man har inputtet noget
+    divTextAreaContainer.addEventListener('mouseup', function(){calcTextBoxHeight(textArea);});
 
-        el.style.height = "";
+    calcTextBoxHeight = function(textAreaParam){
 
-        let topString = divTextAreaContainer.style.top;
+        // vi gør så man kan trykke enter
+        $("#textBoxId").ready(function() {
+            $('textarea').unbind('keypress');
+        });
+
+        textAreaParam.style.height = "";
+
+        const textBoxId =  textAreaParam.id.match(/(\d+)/);
+
+        const divTextBoxContainer = document.getElementById('divTextBoxContainer' + textBoxId[0]);
+        
+        console.log(divTextBoxContainer.id);
+        
+        let topString = divTextBoxContainer.style.top;
 
         let top = Number(topString.substring(0, topString.length - 2));
 
-        if(el.scrollHeight + 5 > 618 - top){
-            el.style.height = 618 - top + "px";
+        if(textAreaParam.scrollHeight + 5 > 618 - top){
+            textAreaParam.style.height = 618 - top + "px";
+
+            // når boksen ikke skal være større, kan man ikke trykke enter mere - så vi slipper for scroll-bar
+            $("#textBoxId").ready(function() {
+
+                $('textarea').keypress(function(event) {
+
+                    if (event.keyCode == 13) {
+                        event.preventDefault();
+                    }
+                });
+            });
+
         }else{
-            el.style.height = el.scrollHeight + 5 + "px";
+            textAreaParam.style.height = textAreaParam.scrollHeight + 5 + "px";
         }
     }
 
