@@ -7,11 +7,22 @@
 
 #sortable li{
     margin: 3px 3px 3px 3px;
-    padding: 0.4em 0.4em 0.4em 1.5em;
-    font-size: 1.4em;
+    padding: 0.4em 0.4em 0.4em 0.4em;
+    font-size: 1.1em;
     height: 50px;
 }
+
 #sortable li span{
     position: absolute;
-    margin-left: -1.3em;
+    margin-left: -10.2rem;
+    margin-top: 0.2rem;
+}
+
+.li-width{
+    width: 400px;
+}
+
+.custom-checkbox{
+    display: inline-block;
+    margin-top: 0.25rem;
 }
