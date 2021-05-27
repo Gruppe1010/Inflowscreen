@@ -35,6 +35,7 @@ document.addEventListener('keydown', function (e) {
         // enten
         if (e.key === 'Delete' || e.key === 'Backspace') {
             // og så vil vi gerne
+
             deleteElement(focusedEl);
         }
     }
@@ -521,15 +522,10 @@ let addImageToSlide = function(event) {
         imgNewImage.title = file.name;
 
 
-        // TODO span delete-kryds
-        const spanDelete = document.createElement('span');
-        spanDelete.classList.add("floating", "top", "right", "ui-icon", "ui-icon-close");
-        spanDelete.addEventListener('click',function(){deleteElement(divImageContainer)});
-
 
 
         // tilføjer til DOM
-        imgNewImage.appendChild(spanDelete);
+        //imgNewImage.appendChild(spanDelete);
         divImageContainer.appendChild(imgNewImage);
         slide.appendChild(divImageContainer);
         // TODO når man sletter et element skal det også slettes fra imagesOnSlide-array'et
