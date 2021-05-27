@@ -355,6 +355,9 @@ function deleteIcon(el){
 }
 
 
+
+let calcTextBoxHeight;
+
 // -------------- TEXTBOX
 function addTextToSlide(){
     newTextBoxId++;
@@ -366,11 +369,59 @@ function addTextToSlide(){
     divTextAreaContainer.classList.add("dragAndResizeTextBoxContainer");
     divTextAreaContainer.style.zIndex = 900000;
 
+
+
+    const textBoxId = "textBox" + newTextBoxId;
     const textArea = document.createElement('textarea');
-    textArea.setAttribute('id',"textBox" + newTextBoxId);
+    textArea.setAttribute('id', textBoxId);
     textArea.setAttribute('contenteditable', "true");
     textArea.setAttribute('placeholder', 'Tryk her for at tilføje tekst');
-    textArea.setAttribute('oninput','this.style.height = "";this.style.height = this.scrollHeight + 5 + "px"');
+    textArea.setAttribute('oninput', "calcTextBoxHeight(this);");
+
+    // når man flytter på tekstboksen skal man også kunne enter direkte - ikke kun når man har inputtet noget
+    divTextAreaContainer.addEventListener('mouseup', function(){calcTextBoxHeight(textArea);});
+
+    calcTextBoxHeight = function(textAreaParam){
+
+        // vi gør så man kan trykke enter
+        $("#textBoxId").ready(function() {
+            $('textarea').unbind('keypress');
+        });
+
+        textAreaParam.style.height = "";
+
+        const textBoxId =  textAreaParam.id.match(/(\d+)/);
+
+        const divTextBoxContainer = document.getElementById('divTextBoxContainer' + textBoxId[0]);
+
+        console.log(divTextBoxContainer.id);
+
+        let topString = divTextBoxContainer.style.top;
+
+        let top = Number(topString.substring(0, topString.length - 2));
+
+        if(textAreaParam.scrollHeight + 5 > 618 - top){
+            textAreaParam.style.height = 618 - top + "px";
+
+            // når boksen ikke skal være større, kan man ikke trykke enter mere - så vi slipper for scroll-bar
+            $("#textBoxId").ready(function() {
+
+                $('textarea').keypress(function(event) {
+
+                    if (event.keyCode == 13) {
+                        event.preventDefault();
+                    }
+                });
+            });
+
+        }else{
+            textAreaParam.style.height = textAreaParam.scrollHeight + 5 + "px";
+        }
+    }
+
+
+
+    //textArea.setAttribute('oninput','this.style.height = "";this.style.height = this.scrollHeight + 5 + "px"');
     textArea.classList.add("textArea", "isMarginLeft");
     textArea.addEventListener('click', function(){setAsFocusedEl(textArea);});
     btnMarginLeft.classList.add("btn-used");
@@ -405,8 +456,8 @@ function addTextToSlide(){
 
 
 
-        // TODO lav kryds til at forsvinde hvis ikke aktiv
-        deleteIcon(divTextAreaContainer);
+    // TODO lav kryds til at forsvinde hvis ikke aktiv
+    deleteIcon(divTextAreaContainer);
 
 
     /*
@@ -427,6 +478,7 @@ function addTextToSlide(){
     divTextAreaContainer.appendChild(textArea);
     slide.appendChild(divTextAreaContainer);
 }
+
 
 
 
