@@ -379,12 +379,8 @@ function addTextToSlide(){
 
         let top = Number(topString.substring(0, topString.length - 2));
 
-        console.log("top", top);
-        console.log("scrollheight + 5: ", el.scrollHeight + 5);
-
-        if(el.scrollHeight + 5 > 630 - top){
-            console.log(el.scrollHeight);
-            el.style.height = 630 - top + "px";
+        if(el.scrollHeight + 5 > 618 - top){
+            el.style.height = 618 - top + "px";
         }else{
             el.style.height = el.scrollHeight + 5 + "px";
         }
