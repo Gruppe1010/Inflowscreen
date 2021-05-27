@@ -5,13 +5,11 @@
 //      - tilføj andre anderledes skrifttyper, som er lidt anderledes
 //      - Ret i color-dropdown at man ikke kan se sort - skriv muligvis bare valgmulighederne i hvis allesammen.
 //              ELLERS ændre i stylingknapper så de bliver hvide og de 3 ting man kan tilføje bliver sorte??
-//      - sørg for at man kan ctrl + v ind i tekstboks
 
 // TODO andre
 //      - gør GEM-knap grøn
 //      - overvej at gøre så man ikke kan se de andre valgmuligheder hvis man står på et img-el og omvendt
-//      - sammengruppér text, img og video-tilføjellsesknapper
-//      - gør så siden står og opdaterer hele tiden og tænker over hvilke stylingsknapper der skal være der
+
 
 // TODO billeder
 //      - ret bug med at man ikke kan tilføje samme billede igen (+ heller ikke hvis man sletter det)
@@ -347,12 +345,11 @@ function convertImagesToJSON(){
 function deleteIcon(el){
     // TODO lav kryds til at forsvinde hvis ikke aktiv
     const spanDelete = document.createElement('span');
-    spanDelete.classList.add("icon-delete", "ui-icon", "ui-icon-close");
+    spanDelete.classList.add("icon-delete", "ui-icon", "ui-icon-closethick");
     spanDelete.addEventListener('click',function(){deleteElement(el)});
     el.appendChild(spanDelete);
 }
 
-let calcTextBoxHeight;
 
 // -------------- TEXTBOX
 function addTextToSlide(){
@@ -369,26 +366,7 @@ function addTextToSlide(){
     textArea.setAttribute('id',"textBox" + newTextBoxId);
     textArea.setAttribute('contenteditable', "true");
     textArea.setAttribute('placeholder', 'Tryk her for at tilføje tekst');
-    textArea.setAttribute('oninput', "calcTextBoxHeight(this);");
-
-    calcTextBoxHeight = function(el){
-
-        el.style.height = "";
-
-        let topString = divTextAreaContainer.style.top;
-
-        let top = Number(topString.substring(0, topString.length - 2));
-
-        if(el.scrollHeight + 5 > 618 - top){
-            el.style.height = 618 - top + "px";
-        }else{
-            el.style.height = el.scrollHeight + 5 + "px";
-        }
-    }
-
-
-
-    //textArea.setAttribute('oninput','this.style.height = "";this.style.height = this.scrollHeight + 5 + "px"');
+    textArea.setAttribute('oninput','this.style.height = "";this.style.height = this.scrollHeight + 5 + "px"');
     textArea.classList.add("textArea", "isMarginLeft");
     textArea.addEventListener('click', function(){setAsFocusedEl(textArea);});
     btnMarginLeft.classList.add("btn-used");
@@ -445,8 +423,6 @@ function addTextToSlide(){
     divTextAreaContainer.appendChild(textArea);
     slide.appendChild(divTextAreaContainer);
 }
-
-
 
 
 
