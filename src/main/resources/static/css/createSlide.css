@@ -17,6 +17,7 @@ input[type="file"] {
     border: 1px solid black;
     width: 1122px; /* 2 pixels større pga. border så selve slide-indeholder har rigtige format*/
     height: 632px;
+    margin: auto
 }
 
 .textArea {
@@ -25,15 +26,15 @@ input[type="file"] {
     background: none;
     min-height: 120px;
     min-width: 300px;
-    max-height: 630px;
+    max-height: 620px;
     max-width: 1120px;
     z-index: 100;
     padding: 5px;
     font-size: 25px;
-    overflow: auto;
+    overflow: hidden;
     height:100%;
     width:100%;
-    resize:none;
+    resize: none;
     border:none;
 }
 .autosize {
@@ -57,7 +58,7 @@ img {
 
 .ui-resizable-e {
     top: 40%;
-    right: 2px;
+    right: 0;
 }
 
 div:focus {
@@ -77,12 +78,10 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 }
 */
 
-
 .icon-delete{
-    float: right;
-    top: 15px;
-
-
+    position: absolute;
+    right: 1px;
+    top: 3px;
 
 }
 
@@ -103,4 +102,13 @@ div.dragAndResizeTextBoxContainer {
     padding:0;
     min-height: 100px;
     min-width: 300px;
+}
+
+select option {
+    background-color: whitesmoke;
+    color: black;
+}
+
+.select-option-height {
+    height: 42px;
 }

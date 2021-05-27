@@ -5,13 +5,11 @@
 //      - tilføj andre anderledes skrifttyper, som er lidt anderledes
 //      - Ret i color-dropdown at man ikke kan se sort - skriv muligvis bare valgmulighederne i hvis allesammen.
 //              ELLERS ændre i stylingknapper så de bliver hvide og de 3 ting man kan tilføje bliver sorte??
-//      - sørg for at man kan ctrl + v ind i tekstboks
 
 // TODO andre
 //      - gør GEM-knap grøn
 //      - overvej at gøre så man ikke kan se de andre valgmuligheder hvis man står på et img-el og omvendt
-//      - sammengruppér text, img og video-tilføjellsesknapper
-//      - gør så siden står og opdaterer hele tiden og tænker over hvilke stylingsknapper der skal være der
+
 
 // TODO billeder
 //      - ret bug med at man ikke kan tilføje samme billede igen (+ heller ikke hvis man sletter det)
@@ -347,12 +345,11 @@ function convertImagesToJSON(){
 function deleteIcon(el){
     // TODO lav kryds til at forsvinde hvis ikke aktiv
     const spanDelete = document.createElement('span');
-    spanDelete.classList.add("icon-delete", "ui-icon", "ui-icon-close");
+    spanDelete.classList.add("icon-delete", "ui-icon", "ui-icon-closethick");
     spanDelete.addEventListener('click',function(){deleteElement(el)});
     el.appendChild(spanDelete);
 }
 
-let calcTextBoxHeight;
 
 // -------------- TEXTBOX
 function addTextToSlide(){
@@ -365,59 +362,11 @@ function addTextToSlide(){
     divTextAreaContainer.classList.add("dragAndResizeTextBoxContainer");
     divTextAreaContainer.style.zIndex = 900000;
 
-
-
-    const textBoxId = "textBox" + newTextBoxId;
     const textArea = document.createElement('textarea');
-    textArea.setAttribute('id', textBoxId);
+    textArea.setAttribute('id',"textBox" + newTextBoxId);
     textArea.setAttribute('contenteditable', "true");
     textArea.setAttribute('placeholder', 'Tryk her for at tilføje tekst');
-    textArea.setAttribute('oninput', "calcTextBoxHeight(this);");
-
-    // når man flytter på tekstboksen skal man også kunne enter direkte - ikke kun når man har inputtet noget
-    divTextAreaContainer.addEventListener('mouseup', function(){calcTextBoxHeight(textArea);});
-
-    calcTextBoxHeight = function(textAreaParam){
-
-        // vi gør så man kan trykke enter
-        $("#textBoxId").ready(function() {
-            $('textarea').unbind('keypress');
-        });
-
-        textAreaParam.style.height = "";
-
-        const textBoxId =  textAreaParam.id.match(/(\d+)/);
-
-        const divTextBoxContainer = document.getElementById('divTextBoxContainer' + textBoxId[0]);
-        
-        console.log(divTextBoxContainer.id);
-        
-        let topString = divTextBoxContainer.style.top;
-
-        let top = Number(topString.substring(0, topString.length - 2));
-
-        if(textAreaParam.scrollHeight + 5 > 618 - top){
-            textAreaParam.style.height = 618 - top + "px";
-
-            // når boksen ikke skal være større, kan man ikke trykke enter mere - så vi slipper for scroll-bar
-            $("#textBoxId").ready(function() {
-
-                $('textarea').keypress(function(event) {
-
-                    if (event.keyCode == 13) {
-                        event.preventDefault();
-                    }
-                });
-            });
-
-        }else{
-            textAreaParam.style.height = textAreaParam.scrollHeight + 5 + "px";
-        }
-    }
-
-
-
-    //textArea.setAttribute('oninput','this.style.height = "";this.style.height = this.scrollHeight + 5 + "px"');
+    textArea.setAttribute('oninput','this.style.height = "";this.style.height = this.scrollHeight + 5 + "px"');
     textArea.classList.add("textArea", "isMarginLeft");
     textArea.addEventListener('click', function(){setAsFocusedEl(textArea);});
     btnMarginLeft.classList.add("btn-used");
@@ -474,8 +423,6 @@ function addTextToSlide(){
     divTextAreaContainer.appendChild(textArea);
     slide.appendChild(divTextAreaContainer);
 }
-
-
 
 
 

@@ -33,7 +33,21 @@
                     <button id="btnTextBox" type="button" class="btn btn-dark">
                         <i class="bi bi-fonts"></i>
                     </button>
+                    <div class="btn btn-dark" id="btnImage">
+                        <label class="m-0 p-0" for="inpImage">
+                            <i class="bi bi-image"></i>
+                        </label>
+                        <input type="file" class="d-none" accept="image/*" name="inpImage" id="inpImage" onchange="addImageToSlide(event)">
+                    </div>
+                    <div class="btn btn-dark">
+                        <label class="m-0 p-0" for="inpVideo">
+                            <i class="bi bi-film"></i>
+                        </label>
+                        <input type="file" class="d-none" accept="video/*" name="inpVideo" id="inpVideo" onchange="addVideoToSlide(event)">
+                    </div>
+                </div>
 
+                <div class="btn-group mr-2">
                     <button id="btnBold" type="button" class="btn btn-dark">
                         <i class="bi bi-type-bold"></i>
                     </button>
@@ -44,15 +58,15 @@
                         <i class="bi bi-type-underline"></i>
                     </button>
                     <select id="inpFontColor" class="btn btn-dark" onchange="changeFontColor(this);" aria-label="fontColorSelect">
-                        <option style="color: black" value="black">Sort</option>
-                        <option style="color: white" value="white">Hvid</option>
-                        <option style="color: red" value="red">Rød</option>
-                        <option style="color: green" value="green">Grøn</option>
-                        <option style="color: blue" value="blue">Blå</option>
+                        <option value="black">Sort</option>
+                        <option value="white">Hvid</option>
+                        <option value="red">Rød</option>
+                        <option value="green">Grøn</option>
+                        <option value="blue">Blå</option>
                     </select>
                 </div>
 
-                <div class="btn-group mr-1">
+                <div class="btn-group select-option-height mr-1">
                     <select id="inpFont" class="btn btn-dark" onchange="changeFontStyle(this);" aria-label="fontSelect">
                         <option value="Ariel" selected>Ariel</option>
                         <option value="Calibri">Calibri</option>
@@ -60,10 +74,10 @@
                         <option value="Times New Roman">Times New Roman</option>
                     </select>
                     <select id="inpFontSize" class="btn btn-dark" onchange="changeFontSize(this);" aria-label="fontSizeSelect">
-                        <option value="25" selected>Lille</option>
-                        <option value="40">Mellem</option>
-                        <option value="55">Stor</option>
-                        <option value="70">Mega</option>
+                        <option value="25" selected>25</option>
+                        <option value="40">40</option>
+                        <option value="55">55</option>
+                        <option value="70">70</option>
                     </select>
                 </div>
 
@@ -83,22 +97,6 @@
                 </div>
 
                 <div class="btn-group mr-2">
-
-
-                    <button type="button" class="btn btn-dark" id="btnImage">
-                        <label class="m-0 p-0 pe-auto" for="inpImage">
-                            <i class="bi bi-image"></i>
-                        </label>
-                    </button>
-                    <input type="file" class="d-none" accept="image/*" name="inpImage" id="inpImage" onchange="addImageToSlide(event)">
-
-
-                    <button type="button" class="btn btn-dark">
-                        <label class="m-0 p-0" for="inpVideo">
-                            <i class="bi bi-film"></i>
-                        </label>
-                    </button>
-                    <input type="file" class="d-none" accept="video/*" name="inpVideo" id="inpVideo" onchange="addVideoToSlide(event)">
 
                     <button id="btnFullscreen" type="button" class="btn btn-dark">
                         <i class="bi bi-arrows-fullscreen"></i>
