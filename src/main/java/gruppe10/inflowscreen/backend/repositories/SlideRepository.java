@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
+import java.util.Set;
 
 public interface SlideRepository extends JpaRepository<Slide, Integer> {
     
@@ -15,7 +16,8 @@ public interface SlideRepository extends JpaRepository<Slide, Integer> {
     @Query("SELECT slide FROM Slide slide JOIN slide.organisations org WHERE org = ?1 and slide.title = ?2")
     Optional<Slide> findByOrganisationAndTitle(Organisation org, String title);
     
-    findByOrganisation
+    @Query("SELECT slide FROM Slide slide JOIN slide.organisations org WHERE org.id = ?1")
+    Optional<Set<Slide>> findByOrganisation(int orgId);
     
     
 }
