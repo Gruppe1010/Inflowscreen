@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- Navigation-->
-    <div th:insert="fragments :: navbar(active='hej')"></div>
+    <div th:insert="fragments :: navbar(active='hej', orgId = ${orgId})"></div>
 
     <div>
         <section th:replace="fragments :: section"></section>

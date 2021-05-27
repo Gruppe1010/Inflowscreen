@@ -10,9 +10,10 @@
 <body>
     <!-- Navigation-->
 <!-- TODO find ud af hvorfor der står hej HAHAHA -->
-    <nav th:replace="fragments :: navbar(active='hej')"></nav>
+    <div th:insert="fragments :: navbar(active='hej', orgId = ${orgId})"></div>
 
-<div>
+
+    <div>
 
     <section>
 
