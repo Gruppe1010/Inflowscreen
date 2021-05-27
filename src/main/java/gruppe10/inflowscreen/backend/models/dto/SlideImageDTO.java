@@ -25,7 +25,7 @@ public class SlideImageDTO {
     private String left;
     private String width;
     private String height;
-    @NotNull
+    @JsonProperty
     private int zIndex;
 
     @Override
