@@ -330,15 +330,15 @@ function convertImagesToJSON(){
 
         // hvis de er 0 kommer de ud som "" - derfor sætter vi lige værdien til 0px
         // også < 0, hvis der nu er sket en fejl på en eller anden måde på slidet
-        if(top === "" || top < 0) top = "0px";
-        if(left === "" || left < 0) left = "0px";
+        if(top === "" || top < 0) top = "0";
+        if(left === "" || left < 0) left = "0";
 
         // TODO tilføj z-index (måske også en bool: isFullscreen)
         return {
             "top": top,
             "left": left,
-            "width": img.offsetWidth + "px",
-            "height": img.offsetHeight + "px",
+            "width": img.offsetWidth,
+            "height": img.offsetHeight,
             "zIndex": div.style.zIndex,
             "base64": img.src,
             "fileName": img.title
