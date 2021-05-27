@@ -26,16 +26,14 @@ public class SlideImageDTO {
     private String width;
     private String height;
     private int zIndex;
-
-
+    
     public int getzIndex(){
         return zIndex;
     }
-
     public void setzIndex(int zIndex){
         this.zIndex = zIndex;
     }
-
+    
     @Override
     public String toString() {
         return "SlideImageDTO{" +
@@ -54,8 +52,6 @@ public class SlideImageDTO {
     public SlideImage convertToSlideImage() {
         return new SlideImage(createFileFromBase64(), top, left, width, height, zIndex);
     }
-    
-    
 
     /**
      * konverterer base64 til en local fil og returnerer imagePath'en

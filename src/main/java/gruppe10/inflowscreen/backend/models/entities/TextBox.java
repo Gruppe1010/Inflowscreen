@@ -1,6 +1,7 @@
 package gruppe10.inflowscreen.backend.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import gruppe10.inflowscreen.backend.models.dto.TextBoxDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -84,5 +85,11 @@ public class TextBox {
                        ", fontColour='" + fontColour + '\'' +
                        ", margin='" + margin + '\'' +
                        '}';
+    }
+    
+    
+    public TextBoxDTO convertToTextBoxDTO(){
+        return new TextBoxDTO(text, topPx, leftPx, width, height, isBold, isItalic, isUnderlined, isList,
+                font, fontSize, fontColour, margin);
     }
 }

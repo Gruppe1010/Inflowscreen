@@ -19,6 +19,7 @@ import java.security.Principal;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -132,19 +133,17 @@ public class SlideService {
         }
     }
     
-    public Set<Slide> findAllSlides(int orgId){
+    public Set<CreateOrUpdateSlideDTO> findAllSlides(int orgId){
         
         Optional<Set<Slide>> optionalSlides = slideRepository.findByOrganisation(orgId);
         
         if(optionalSlides.isPresent()){
             Set<Slide> slides = optionalSlides.get();
     
-            slides.forEach(slide -> slide.setOrganisations(null));
-            slides.forEach(this::deleteSlideAttributeSlideSets);
+            Set<CreateOrUpdateSlideDTO> slideDTOs =
+                    slides.stream().map(Slide::convertToSlideDTO).collect(Collectors.toSet());
     
-    
-            System.out.println("HEEEEEEEEEEEEEEEEEEEER: ");
-            return slides;
+            return slideDTOs;
         }
 
         return null;

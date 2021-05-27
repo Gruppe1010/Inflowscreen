@@ -1,5 +1,6 @@
 package gruppe10.inflowscreen.backend.models.entities;
 
+import gruppe10.inflowscreen.backend.models.dto.SlideVideoDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,22 +17,21 @@ public class SlideVideo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_slide")
     private Slide slide;
-
-    private String imagePath;
-    private boolean fullscreen;
-    private double x;
-    private double y;
+    private String videoBase64;
     
-    public SlideVideo(String imagePath, boolean fullscreen, double x, double y)
-    {
-        this.imagePath = imagePath;
-        this.fullscreen = fullscreen;
-        this.x = x;
-        this.y = y;
+    
+    
+    public SlideVideo(String videoBase64) {
+      this.videoBase64 = videoBase64;
     }
+    
+    public SlideVideoDTO convertToSlideVideoDTO(){
+        return new SlideVideoDTO(videoBase64);
+        
+    }
+    
 }
 

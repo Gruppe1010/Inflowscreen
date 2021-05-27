@@ -1,7 +1,15 @@
 package gruppe10.inflowscreen.backend.models.dto;
 
 import gruppe10.inflowscreen.backend.models.entities.SlideVideo;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SlideVideoDTO {
     
     private String videoBase64;
@@ -10,7 +18,7 @@ public class SlideVideoDTO {
     
     //     public SlideVideo(String imagePath, boolean fullscreen, double x, double y)
     public SlideVideo convertToSlideVideo(){
-        return new SlideVideo(videoBase64, true, 3.4, 6.7);
+        return new SlideVideo(videoBase64);
     }
 
 

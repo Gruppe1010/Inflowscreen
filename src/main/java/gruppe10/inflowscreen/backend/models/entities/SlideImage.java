@@ -1,8 +1,13 @@
 package gruppe10.inflowscreen.backend.models.entities;
 
+import gruppe10.inflowscreen.backend.models.dto.SlideImageDTO;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.xml.bind.DatatypeConverter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 
 @Builder
@@ -17,7 +22,6 @@ public class SlideImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
     private String imagePath;
     private String topPx;
     private String leftPx;
@@ -39,6 +43,30 @@ public class SlideImage {
         this.width = width;
         this.height = height;
         this.zIndex = zIndex;
+    }
+    
+    
+    public SlideImageDTO convertToSlideImageDTO(){
+        
+        return new SlideImageDTO(convertPathToFileName(), convertFileToBase64(), topPx, leftPx, width, height, zIndex);
+    }
+    
+    public String convertPathToFileName(){
+        // src/main/resources/static/images/slides/ == 40 char lang
+        return imagePath.substring(41);
+    }
+    
+    public String convertFileToBase64() {
+        
+        String base64 = "";
+        
+        try{
+            base64 = DatatypeConverter.printBase64Binary(Files.readAllBytes(
+                    Paths.get(imagePath)));
+        }catch(Exception e){
+            System.err.println("Fejl i at converte fil til base64: " + e.getMessage());
+        }
+        return base64;
     }
     
     
