@@ -15,5 +15,7 @@ public interface SlideRepository extends JpaRepository<Slide, Integer> {
     @Query("SELECT slide FROM Slide slide JOIN slide.organisations org WHERE org = ?1 and slide.title = ?2")
     Optional<Slide> findByOrganisationAndTitle(Organisation org, String title);
     
+    findByOrganisation
+    
     
 }

@@ -29,6 +29,11 @@ public class SlideRestController
         HttpStatus httpStatus = slideService.createNewSlide(slideDTO, principal);
         
         return new ResponseEntity<>(httpStatus);
-    
     }
+    
+    
+    
+    
+    
+    
 }

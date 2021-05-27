@@ -132,6 +132,13 @@ public class SlideService {
         }
     }
     
+    public Set<Slide> findAllSlides(int orgId){
+        
+        Optional<Slide> slides = slideRepository.findByOrganisation(orgId);
+        
+        
+    }
+    
     
     
     
