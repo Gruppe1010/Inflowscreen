@@ -17,6 +17,7 @@ input[type="file"] {
     border: 1px solid black;
     width: 1122px; /* 2 pixels større pga. border så selve slide-indeholder har rigtige format*/
     height: 632px;
+    margin: auto
 }
 
 .textArea {
@@ -56,7 +57,7 @@ img {
 }
 
 .ui-resizable-e {
-    top: 48%;
+    top: 40%;
     right: 0;
 }
 
@@ -106,4 +107,8 @@ div.dragAndResizeTextBoxContainer {
 select option {
     background-color: whitesmoke;
     color: black;
+}
+
+.select-option-height {
+    height: 42px;
 }
