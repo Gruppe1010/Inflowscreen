@@ -22,9 +22,9 @@ public class SlideRestController
 
 
     @GetMapping("/slideshow/{orgId}")
-    public ResponseEntity<Set<Slide>> slideShow(@PathVariable int orgId ){
+    public ResponseEntity<Set<CreateOrUpdateSlideDTO>> slideShow(@PathVariable int orgId ){
 
-        Set<Slide> slides = slideService.findAllSlides(orgId);
+        Set<CreateOrUpdateSlideDTO> slides = slideService.findAllSlides(orgId);
         slides.forEach(System.out::println);
 
 

@@ -1,10 +1,15 @@
 package gruppe10.inflowscreen.backend.models.entities;
 
 import com.sun.istack.NotNull;
+import gruppe10.inflowscreen.backend.models.dto.CreateOrUpdateSlideDTO;
+import gruppe10.inflowscreen.backend.models.dto.SlideImageDTO;
+import gruppe10.inflowscreen.backend.models.dto.SlideVideoDTO;
+import gruppe10.inflowscreen.backend.models.dto.TextBoxDTO;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Setter
 @Getter
@@ -55,6 +60,30 @@ public class Slide {
         this.slideImages = slideImages;
         this.slideVideos = slideVideos;
         this.themePath = themePath;
+    }
+    
+  
+    
+    public CreateOrUpdateSlideDTO convertToSlideDTO(){
+    
+        Set<SlideImageDTO> slideImageDTOs = null;
+        Set<TextBoxDTO> textBoxDTOs = null;
+        Set<SlideVideoDTO> slideVideoDTOs = null;
+    
+        // converterer hvert SlideImageDTO-obj på listen til en SlideImage og lægger dem i Set
+        if(slideImages != null) {
+            slideImageDTOs =
+                    slideImages.stream().map(SlideImage::convertToSlideImageDTO).collect(Collectors.toSet());
+        }
+        if(textBoxes != null) {
+            textBoxDTOs = textBoxes.stream().map(TextBox::convertToTextBoxDTO).collect(Collectors.toSet());
+        }
+        if(slideVideos != null) {
+            slideVideoDTOs =
+                    slideVideos.stream().map(SlideVideo::convertToSlideVideoDTO).collect(Collectors.toSet());
+        }
+    
+        return new CreateOrUpdateSlideDTO(title, 0, true, textBoxDTOs, slideImageDTOs, slideVideoDTOs, null);
     }
     
     
