@@ -30,7 +30,7 @@ input[type="file"] {
     z-index: 100;
     padding: 5px;
     font-size: 25px;
-    overflow: auto;
+    overflow: hidden;
     height:100%;
     width:100%;
     resize:none;
@@ -56,8 +56,8 @@ img {
 }
 
 .ui-resizable-e {
-    top: 40%;
-    right: 2px;
+    top: 48%;
+    right: 0;
 }
 
 div:focus {
