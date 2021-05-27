@@ -27,6 +27,9 @@ public class SlideRestController
         Set<CreateOrUpdateSlideDTO> slides = slideService.findAllSlides(orgId);
         slides.forEach(System.out::println);
 
+        if(slides == null){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
 
         return new ResponseEntity<>(slides, HttpStatus.OK);
     }

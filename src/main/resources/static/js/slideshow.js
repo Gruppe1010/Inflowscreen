@@ -3,8 +3,17 @@ const slideBody = document.getElementById('slide');
 
 //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 async function getAllSlides() {
+    alert(`http://localhost/api/slideshow/${orgId}`);
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json', // betyder == vi sender et json i string-format
+        }
+    };
     // Default options are marked with *
-    return await fetch(`http://localhost/api/slideshow/${orgId}`).then(response => response.json());
+    return await fetch(`http://localhost/api/slideshow/${orgId}`, requestOptions).then(response => response.json());
+
+
 }
 
 let current = 0;
