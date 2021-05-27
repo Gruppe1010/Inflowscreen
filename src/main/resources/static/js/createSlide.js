@@ -218,7 +218,7 @@ const changeFontColor = function (font) {
  * */
 function saveSlide(){
 
-    const url = `http://localhost/saveSlide`; // localhost
+    const url = `http://localhost/api/saveSlide`; // localhost
     // const url = `http://inflowscreen.dk/saveSlide`; online
 
     let title = inpTitle.value;

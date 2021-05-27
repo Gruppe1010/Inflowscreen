@@ -1,20 +1,13 @@
 
 
 
-https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-async function getAllSlides(url = '') {
+//https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+async function getAllSlides() {
     // Default options are marked with *
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        redirect: 'follow',
-    });
-    return response.json();//parses JSON response into native JavaScript objects
+    return await fetch(`http://localhost/api/slideshow/${orgId}`).then(response => response.json());
 }
 
-getAllSlides('https://localhost/slideshow')
+getAllSlides()
     .then(data => {
         console.log(data); // JSON data parsed by `data.json()` call
     });

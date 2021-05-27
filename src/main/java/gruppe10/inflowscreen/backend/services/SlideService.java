@@ -135,10 +135,36 @@ public class SlideService {
     public Set<Slide> findAllSlides(int orgId){
         
         Optional<Set<Slide>> optionalSlides = slideRepository.findByOrganisation(orgId);
+        
+        if(optionalSlides.isPresent()){
+            Set<Slide> slides = optionalSlides.get();
+    
+            slides.forEach(slide -> slide.setOrganisations(null));
+            slides.forEach(this::deleteSlideAttributeSlideSets);
+    
+    
+            System.out.println("HEEEEEEEEEEEEEEEEEEEER: ");
+            return slides;
+        }
 
-        return optionalSlides.orElse(null);
-
-
+        return null;
+    }
+    
+  
+    
+    public void deleteSlideAttributeSlideSets(Slide slide){
+        Set<SlideImage> slideImages = slide.getSlideImages();
+        
+        if(slideImages != null){
+            slideImages.forEach(slideImage -> slideImage.setSlide(null));
+        }
+    
+        Set<TextBox> textBoxes = slide.getTextBoxes();
+    
+        if(textBoxes != null){
+            textBoxes.forEach(textBox -> textBox.setSlide(null));
+        }
+        
     }
     
     

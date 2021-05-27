@@ -48,8 +48,12 @@ public class FrontendController {
         return "editSlide";
     }
 
-    @GetMapping("/slideshow")
-    public String slideshow(Model model){
+    @GetMapping("/slideshow/{orgId}")
+    public String slideshow(@PathVariable int orgId, Model model){
+    
+        System.out.println(orgId);
+    
+        model.addAttribute("orgId", orgId);
     
         return "slideshow";
     }

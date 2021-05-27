@@ -14,6 +14,7 @@ import java.util.Set;
 
 @RestController
 @CrossOrigin(value = "*")
+@RequestMapping("/api")
 public class SlideRestController
 {
     @Autowired
@@ -24,7 +25,7 @@ public class SlideRestController
     public ResponseEntity<Set<Slide>> slideShow(@PathVariable int orgId ){
 
         Set<Slide> slides = slideService.findAllSlides(orgId);
-        slides.forEach(slide -> System.out.println(slide));
+        slides.forEach(System.out::println);
 
 
         return new ResponseEntity<>(slides, HttpStatus.OK);
@@ -36,8 +37,6 @@ public class SlideRestController
     * */
     @PostMapping("/saveSlide")
     public ResponseEntity<HttpStatus> saveSlide(@RequestBody CreateOrUpdateSlideDTO slideDTO, Principal principal) {
-    
-        System.out.println(slideDTO);
         
         HttpStatus httpStatus = slideService.createNewSlide(slideDTO, principal);
         
