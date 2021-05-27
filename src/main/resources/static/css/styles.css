@@ -48,7 +48,7 @@
 }
 
 /* Tilføjet for at navbar ikke overlapper elementer */
-body {
+.body-padding {
   padding-top: 120px;
 }
 

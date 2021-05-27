@@ -14,5 +14,7 @@
     border: 3px solid red;
 }
 
+
+
 div.fade-slide + div.fade-slide { opacity: 0; }
 
