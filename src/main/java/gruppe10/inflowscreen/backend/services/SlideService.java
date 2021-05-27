@@ -134,9 +134,11 @@ public class SlideService {
     
     public Set<Slide> findAllSlides(int orgId){
         
-        Optional<Slide> slides = slideRepository.findByOrganisation(orgId);
-        
-        
+        Optional<Set<Slide>> optionalSlides = slideRepository.findByOrganisation(orgId);
+
+        return optionalSlides.orElse(null);
+
+
     }
     
     

@@ -23,7 +23,9 @@ public class SlideRestController
     @GetMapping("/slideshow/{orgId}")
     public ResponseEntity<Set<Slide>> slideShow(@PathVariable int orgId ){
 
-        Set<Slide> slides = SlideService.findAllSlides(orgId);
+        Set<Slide> slides = slideService.findAllSlides(orgId);
+        slides.forEach(slide -> System.out.println(slide));
+
 
         return new ResponseEntity<>(slides, HttpStatus.OK);
     }
