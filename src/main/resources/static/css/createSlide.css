@@ -36,6 +36,10 @@ input[type="file"] {
     resize:none;
     border:none;
 }
+.autosize {
+    resize: none;
+    overflow: hidden;
+}
 
 img {
     max-height: 630px;
@@ -61,7 +65,7 @@ div:focus {
 }
 
 .textArea:focus {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
     border: 1px dashed black;
 }
 
@@ -74,8 +78,9 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 */
 
 
-.btn-delete{
+.icon-delete{
     float: right;
+    top: 15px;
 
 
 
