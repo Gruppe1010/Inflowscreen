@@ -80,6 +80,7 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 
 .icon-delete{
     float: right;
+    top: 15px;
 
 
 
