@@ -15,3 +15,6 @@ body {
 
 img + img { opacity: 0; }
 
+.FIC-logo {
+    position: relative;
+}
