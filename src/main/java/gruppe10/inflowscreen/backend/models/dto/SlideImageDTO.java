@@ -25,8 +25,16 @@ public class SlideImageDTO {
     private String left;
     private String width;
     private String height;
-    @JsonProperty
     private int zIndex;
+
+
+    public int getzIndex(){
+        return zIndex;
+    }
+
+    public void setzIndex(int zIndex){
+        this.zIndex = zIndex;
+    }
 
     @Override
     public String toString() {

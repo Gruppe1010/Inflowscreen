@@ -14,7 +14,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <title th:text="${title}"></title>
-    <link rel="icon" type="image/png" href="slideImages/logos/gruppe10logo.png"/>
+    <link rel="icon" type="image/png" href="images/logos/gruppe10logo.png"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -64,15 +64,15 @@
 <!-------------------- ! slideshowFooter -->
 <link href="/css/slideshow.css" rel="stylesheet" />
 <div th:fragment="slideshowFooter">
-    <footer class="fixed-bottom slideshow-bottom">
+    <footer class="fixed-bottom slideshow-bottom" style="height:15%;">
         <div>
 
             <!--link til ur3 http://jsfiddle.net/cse_tushar/fKKSb/311/ -->
-            <div class="ml-5 display-2 text-white font-weight-normal d-inline-flex float-left" id="time" ></div>
-            <div class="ml-3 pt-5 display-5 text-white font-weight-bold d-inline-flex" id="date"></div>
+            <div class="ml-5 mb-1 display-2 text-white font-weight-normal d-inline-flex float-left" id="time" ></div>
+            <div class="ml-3 mb-1 pt-5 display-5 text-white font-weight-bold d-inline-flex" id="date"></div>
 
             <div class="mr-5 mt-1 display-4 d-inline-flex float-right">
-                <img src="/images/logos/FIC-logo.png" alt="FIC-logo" style="height: 100px;">
+                <img src="/images/logos/FIC-logo.png" alt="FIC-logo" style="position: absolute; height: 70%; right:2%;">
             </div>
 
         </div>

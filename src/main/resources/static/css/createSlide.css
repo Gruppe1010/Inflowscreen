@@ -17,7 +17,6 @@ input[type="file"] {
     border: 1px solid black;
     width: 1122px; /* 2 pixels større pga. border så selve slide-indeholder har rigtige format*/
     height: 632px;
-    margin: auto
 }
 
 .textArea {
@@ -37,6 +36,7 @@ input[type="file"] {
     resize: none;
     border:none;
 }
+
 .autosize {
     resize: none;
     overflow: hidden;
