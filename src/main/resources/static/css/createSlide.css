@@ -104,3 +104,8 @@ div.dragAndResizeTextBoxContainer {
     min-height: 100px;
     min-width: 300px;
 }
+
+select option {
+    background-color: whitesmoke;
+    color: black;
+}
