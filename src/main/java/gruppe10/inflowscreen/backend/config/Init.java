@@ -13,6 +13,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 
 @Slf4j
 @RequiredArgsConstructor
@@ -33,45 +37,56 @@ public class Init implements CommandLineRunner {
     
     private void loadData() {
         
-        // opretter authority-typer
-        Authority admin = authorityRepository.save(Authority.builder().authorityType("ADMIN").build());
-        Authority user = authorityRepository.save(Authority.builder().authorityType("USER").build());
-    
-    
-    
-        // opretter organisationer
-        Organisation fysICentrumOrg = new Organisation("Fysioterapi i Centrum",
-                "/images/slides/corgi.JPG");
-    
-        Organisation gruppe10Org = new Organisation("Gruppe 10",
-                "/images/logos/gruppe10logo.png");
-    
-    
-    
-        // tilføjer organisationer
-        organisationRepository.save(fysICentrumOrg);
-        organisationRepository.save(gruppe10Org);
-    
-    
-        // opretter brugere
-        Account gruppe10Account = Account.builder()
-                                          .email("gruppe1010@hotmail.com")
-                                          .password(passwordEncoder.encode("hejhej"))
-                                          .authority(admin)
-                                          .organisation(gruppe10Org)
-                                          .build();
-    
-        Account fysICentrumAccount = Account.builder()
-                                            .email("fystest@hotmail.com")
-                                            .password(passwordEncoder.encode("hejhej"))
-                                            .authority(user)
-                                            .organisation(fysICentrumOrg)
-                                            .build();
-     
+        // hent de to første brugere
+        Optional<List<Account>> optionalAccounts = Optional.of(accountRepository.findAll());
         
-        // tilføjer accounts
-        accountRepository.save(fysICentrumAccount);
-        accountRepository.save(gruppe10Account);
+        boolean thereAreMoreThanTwoAccounts = false;
+        
+        if(optionalAccounts.isPresent()){
+            
+            // >= 1 == mindst 2 brugere på listen
+            if(optionalAccounts.get().size() >= 1){
+                thereAreMoreThanTwoAccounts = true;
+            }
+        }
+        
+        if(!thereAreMoreThanTwoAccounts){
+            // opretter authority-typer
+            Authority admin = authorityRepository.save(Authority.builder().authorityType("ADMIN").build());
+            Authority user = authorityRepository.save(Authority.builder().authorityType("USER").build());
+            
+        
+            // opretter organisationer
+            Organisation fysICentrumOrg = new Organisation("Fysioterapi i Centrum",
+                    "/images/slides/corgi.JPG");
+        
+            Organisation gruppe10Org = new Organisation("Gruppe 10",
+                    "/images/logos/gruppe10logo.png");
+            
+            // tilføjer organisationer
+            organisationRepository.save(fysICentrumOrg);
+            organisationRepository.save(gruppe10Org);
+        
+            // opretter brugere
+            Account gruppe10Account = Account.builder()
+                                              .email("gruppe1010@hotmail.com")
+                                              .password(passwordEncoder.encode("hejhej"))
+                                              .authority(admin)
+                                              .organisation(gruppe10Org)
+                                              .build();
+        
+            Account fysICentrumAccount = Account.builder()
+                                                .email("fystest@hotmail.com")
+                                                .password(passwordEncoder.encode("hejhej"))
+                                                .authority(user)
+                                                .organisation(fysICentrumOrg)
+                                                .build();
+         
+            
+            // tilføjer accounts
+            accountRepository.save(fysICentrumAccount);
+            accountRepository.save(gruppe10Account);
+        }
     }
     
     

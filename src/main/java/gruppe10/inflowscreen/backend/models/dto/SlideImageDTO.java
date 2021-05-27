@@ -1,6 +1,8 @@
 package gruppe10.inflowscreen.backend.models.dto;
 
 //import gruppe10.inflowscreen.backend.models.entities.SlideImage;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
 import gruppe10.inflowscreen.backend.models.entities.SlideImage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +25,7 @@ public class SlideImageDTO {
     private String left;
     private String width;
     private String height;
+    @NotNull
     private int zIndex;
 
     @Override

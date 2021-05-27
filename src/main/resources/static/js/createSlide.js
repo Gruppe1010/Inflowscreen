@@ -231,6 +231,10 @@ function saveSlide(){
         // TODO tilføj noget async
         const images = convertImagesToJSON();
 
+        console.log(images);
+        alert(images);
+
+
         let slide = {
             "title": title,
             "slideImageDTOs": images,
@@ -335,7 +339,7 @@ function convertImagesToJSON(){
             "left": left,
             "width": img.offsetWidth + "px",
             "height": img.offsetHeight + "px",
-            "z-index": img.style.zIndex,
+            "zIndex": div.style.zIndex,
             "base64": img.src,
             "fileName": img.title
         }
