@@ -1,5 +1,5 @@
 
-body {
+.body {
     /*
     https://www.w3schools.com/cssref/css3_pr_background-size.asp
     */
@@ -8,9 +8,11 @@ body {
     background-color: #cccccc;
 }
 
-.fadeimage {
+.fade-slide {
     position: absolute;
-    transition: opacity .5s ease-in;
+    transition: opacity 3s ease-in-out;
+    border: 3px solid red;
 }
 
-img + img { opacity: 0; }
+div.fade-slide + div.fade-slide { opacity: 0; }
+

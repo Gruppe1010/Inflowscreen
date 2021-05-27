@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments :: header(title='Alle Slides')"></div>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/index.css" />
 
 </head>
-<body>
+<body class="body-padding">
     <!-- Navigation-->
     <div th:insert="fragments :: navbar(active='hej', orgId = ${orgId})"></div>
 

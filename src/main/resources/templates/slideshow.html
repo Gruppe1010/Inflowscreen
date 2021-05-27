@@ -2,14 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments :: header(title='Slideshow')"></div>
+    <link rel="stylesheet" type="text/css" href="/css/slideshow.css" />
+
+
 </head>
-<body>
+<body style="height: 100vh">
 <h1>Se lige et fantastisk slideshow! Like wooooow</h1>
 <!-- https://codepen.io/danielguillan/pen/duiAq -->
 
-<img class="fadeimage" src="/images/slides/Blomst.jpg" alt="blomst">
-<img class="fadeimage" src="/images/slides/corgi.JPG" alt="corgi">
-<img class="fadeimage" src="/images/slides/HEJ.JPG" alt="hej">
+<img class="fade-slide" src="/images/slides/Blomst.jpg" alt="blomst">
+<img class="fade-slide" src="/images/slides/corgi.JPG" alt="corgi">
+<img class="fade-slide" src="/images/slides/HEJ.JPG" alt="hej">
 
 <footer>
     <div th:replace="fragments :: slideshowFooter"></div>

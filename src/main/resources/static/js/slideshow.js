@@ -23,7 +23,7 @@ getAllSlides()
 
 
 let current = 0,
-    slides = document.getElementsByClassName("fadeimage");
+    slides = document.getElementsByClassName("fade-slide");
 
 
 setInterval(function() {
