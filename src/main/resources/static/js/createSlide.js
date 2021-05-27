@@ -292,21 +292,23 @@ function convertTextBoxesToJSON(){
 
         // hvis de er 0 kommer de ud som "" - derfor sætter vi lige værdien til 0px
         // også < 0, hvis der nu er sket en fejl på en eller anden måde på slidet
-        if(top === "" || top < 0) top = "0px";
-        if(left === "" || left < 0) left = "0px";
+        if(top === "" || top < 0) top = "0";
+        if(left === "" || left < 0) left = "0";
+
+        const fontSize = textBox.style.fontSize;
 
         return {
             "text": textBox.value,
             "top": top,
             "left": left,
-            "width": div.offsetWidth + "px", // TODO enten div eller textBox
-            "height": div.offsetHeight + "px", // TODO enten div eller textBox
+            "width": div.offsetWidth, // TODO enten div eller textBox
+            "height": div.offsetHeight, // TODO enten div eller textBox
             "isBold": textBox.classList.contains("isBold"),
             "isItalic": textBox.classList.contains("isItalic"),
             "isUnderlined": textBox.classList.contains("isUnderlined"),
             "isList": textBox.classList.contains("isList"),
             "font": textBox.style.fontFamily,
-            "fontSize": textBox.style.fontSize,
+            "fontSize": fontSize.substring(0, fontSize.length - 2), // for at minusse px
             "fontColour": textBox.style.color,
             "margin": textBox.style.textAlign,
         }

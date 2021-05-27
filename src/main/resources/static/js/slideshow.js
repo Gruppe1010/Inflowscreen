@@ -89,7 +89,7 @@ function createSlide(slideJSON){
         span.style.height = Number(textBox.height) * ratio + "px";
 
         span.style.fontFamily = textBox.font;
-        span.style.fontSize = textBox.fontSize;
+        span.style.fontSize = textBox.fontSize * ratio;
         span.style.color = textBox.fontColour;
         span.style.textAlign = textBox.margin;
 
