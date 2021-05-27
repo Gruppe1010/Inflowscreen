@@ -344,7 +344,7 @@ function convertImagesToJSON(){
 function deleteIcon(el){
     // TODO lav kryds til at forsvinde hvis ikke aktiv
     const spanDelete = document.createElement('span');
-    spanDelete.classList.add("btn-delete", "ui-icon", "ui-icon-close");
+    spanDelete.classList.add("icon-delete", "ui-icon", "ui-icon-close");
     spanDelete.addEventListener('click',function(){deleteElement(el)});
     el.appendChild(spanDelete);
 }
