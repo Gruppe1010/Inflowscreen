@@ -288,12 +288,15 @@ function convertTextBoxesToJSON(){
         const textBox = div.getElementsByTagName('textarea')[0];
 
         let top =  div.style.top;
+        if(top.length > 1) top = top.substring(0, top.length - 2);
         let left = div.style.left;
+        if(left.length > 1) left = left.substring(0, left.length - 2);
+
 
         // hvis de er 0 kommer de ud som "" - derfor sætter vi lige værdien til 0px
         // også < 0, hvis der nu er sket en fejl på en eller anden måde på slidet
-        if(top === "" || top < 0) top = "0px";
-        if(left === "" || left < 0) left = "0px";
+        if(top === "" || top <= 0) top = "0px";
+        if(left === "" || left <= 0) left = "0px";
 
         const fontSize = textBox.style.fontSize;
 
@@ -330,12 +333,14 @@ function convertImagesToJSON(){
         const img = div.getElementsByTagName('img')[0];
 
         let top =  div.style.top;
+        if(top.length > 1) top = top.substring(0, top.length - 2);
         let left = div.style.left;
+        if(left.length > 1) left = left.substring(0, left.length - 2);
 
         // hvis de er 0 kommer de ud som "" - derfor sætter vi lige værdien til 0px
         // også < 0, hvis der nu er sket en fejl på en eller anden måde på slidet
-        if(top === "" || top < 0) top = "0";
-        if(left === "" || left < 0) left = "0";
+        if(top === "" || top <= 0) top = "0";
+        if(left === "" || left <= 0) left = "0";
 
         // TODO tilføj z-index (måske også en bool: isFullscreen)
         return {
@@ -627,7 +632,7 @@ function makeFullScreen(el) {
         const width = el.offsetWidth;
         const height = el.offsetHeight;
 
-        if(width === 1120 || height === 630){
+        if(width >= 1120 || height >= 630){
             // gør 80%
             el.style.width = width * 0.8 + "px";
             el.style.height = height * 0.8 + "px";

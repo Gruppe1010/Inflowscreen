@@ -8,6 +8,7 @@ input[type="file"] {
 }
 
 .dragAndResizeContainer {
+    max-height: 630px;
     display: inline-block;
     position: absolute;
 }
@@ -63,6 +64,7 @@ img {
 
 div:focus {
     opacity: 0.9;
+    border: none;
 }
 
 .textArea:focus {
