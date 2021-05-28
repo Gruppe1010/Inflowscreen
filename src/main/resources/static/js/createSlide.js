@@ -231,9 +231,6 @@ function saveSlide(){
         // TODO tilføj noget async
         const images = convertImagesToJSON();
 
-        console.log(images);
-        alert(images);
-
 
         let slide = {
             "title": title,
@@ -244,7 +241,7 @@ function saveSlide(){
         const body = JSON.stringify(slide);
         const requestOptions = {
             method: 'POST',
-            mode: 'no-cors',
+            mode: 'cors',
             headers: {
 
                 'Content-Type': 'application/json', // betyder == vi sender et json i string-format
@@ -404,8 +401,6 @@ function addTextToSlide(){
         const textBoxId =  textAreaParam.id.match(/(\d+)/);
 
         const divTextBoxContainer = document.getElementById('divTextBoxContainer' + textBoxId[0]);
-
-        console.log(divTextBoxContainer.id);
 
         let topString = divTextBoxContainer.style.top;
 
