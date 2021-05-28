@@ -24,14 +24,22 @@ public class SlideRestController
     @GetMapping("/slideshow/{orgId}")
     public ResponseEntity<Set<CreateOrUpdateSlideDTO>> slideShow(@PathVariable int orgId ){
 
-        Set<CreateOrUpdateSlideDTO> slides = slideService.findAllSlides(orgId);
-        slides.forEach(System.out::println);
+        try {
+            Set<CreateOrUpdateSlideDTO> slides = slideService.findAllSlides(orgId);
+            //slides.forEach(System.out::println);
 
-        if(slides == null){
+            if(slides == null){
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
+
+            return new ResponseEntity<>(slides, HttpStatus.OK);
+
+
+        }catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(slides, HttpStatus.OK);
+
     }
     
 
