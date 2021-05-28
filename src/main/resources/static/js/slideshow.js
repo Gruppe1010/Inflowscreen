@@ -11,7 +11,8 @@ async function getAllSlides() {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json', // betyder == vi sender et json i string-format
-        }
+        },
+        redirect: 'follow'
     };
 
     // Default options are marked with *
