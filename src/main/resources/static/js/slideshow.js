@@ -6,14 +6,17 @@ async function getAllSlides() {
     //const url = `http://localhost/api/slideshow/${orgId}`; // localhost
     const url = `http://inflowscreen.dk/api/slideshow/${orgId}`; // online
 
+    /*
     const requestOptions = {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json', // betyder == vi sender et json i string-format
         }
     };
+
+     */
     // Default options are marked with *
-    return await fetch(url, requestOptions).then(response => response.json());
+    return await fetch(url).then(response => response.json());
 
 
 }
