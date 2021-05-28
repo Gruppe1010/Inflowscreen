@@ -74,7 +74,7 @@ function createSlide(slideJSON){
         const img = document.createElement('img');
         img.classList.add('slide-el');
 
-        // img.src = image.base64;
+        img.src = image.base64;
 
         img.style.zIndex = image.zIndex;
         img.style.top = Number(image.top) * ratio + "px";
