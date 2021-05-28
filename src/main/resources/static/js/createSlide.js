@@ -644,12 +644,14 @@ function makeFullScreen(el) {
             el.style.width = width * ratio + 'px';
             el.style.height = height * ratio + 'px';
 
-            /*
+            /* sådan her kan den ryge udenfor hvis den står for tæt på én af kanterne - pga. linjen efter if
             if(width > height) {
                 el.style.left = "0px";
             } //Hvis height er størst eller billedet er kvadratisk
+               el.style.top = '0px';
 
              */
+
             el.style.top = '0px';
             el.style.left = '0px';
         }
