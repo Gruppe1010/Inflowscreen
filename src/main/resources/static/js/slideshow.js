@@ -16,7 +16,8 @@ async function getAllSlides() {
     };
 
     // Default options are marked with *
-    return await fetch(url, requestOptions).then(response => console.log(response.json()));//response.json());
+    return await fetch(url, requestOptions)
+        .then(response => response.json());//response.json());
 
 
 }
@@ -25,6 +26,7 @@ let current = 0;
 
 getAllSlides()
     .then(slideJSONs => createSlideDivs(slideJSONs))
+    .then(slides => console.log(slides));
     /*.then(slideDivs =>
         setInterval( function() {
 
