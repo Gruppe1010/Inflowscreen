@@ -623,15 +623,15 @@ function printPosition(el){
 }
 
 function makeFullScreen(el) {
-    if(focusedEl.classList.contains("dragAndResizeContainer")){
+    if(focusedEl.classList.contains('dragAndResizeContainer')){
 
         const width = el.offsetWidth;
         const height = el.offsetHeight;
 
         if(width >= 1120 || height >= 630){
             // gør 80%
-            el.style.width = width * 0.8 + "px";
-            el.style.height = height * 0.8 + "px";
+            el.style.width = width * 0.8 + 'px';
+            el.style.height = height * 0.8 + 'px';
         }
 
         else {
@@ -641,13 +641,17 @@ function makeFullScreen(el) {
             // Math.min = Finder den midste af de to ratios
             let ratio = Math.min(widthRatio, heightRatio);
 
-            el.style.width = width * ratio + "px";
-            el.style.height = height * ratio + "px";
+            el.style.width = width * ratio + 'px';
+            el.style.height = height * ratio + 'px';
 
+            /*
             if(width > height) {
                 el.style.left = "0px";
             } //Hvis height er størst eller billedet er kvadratisk
-            el.style.top = "0px";
+
+             */
+            el.style.top = '0px';
+            el.style.left = '0px';
         }
     }
 }
