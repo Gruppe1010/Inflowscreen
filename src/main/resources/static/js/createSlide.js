@@ -285,7 +285,7 @@ function convertTextBoxesToJSON(){
 
         const textBox = div.getElementsByTagName('textarea')[0];
 
-        let top =  div.style.top;
+        let top =  div.style.top; // == "" eller 2px
         if(top.length > 1) top = top.substring(0, top.length - 2);
         let left = div.style.left;
         if(left.length > 1) left = left.substring(0, left.length - 2);
@@ -293,8 +293,8 @@ function convertTextBoxesToJSON(){
 
         // hvis de er 0 kommer de ud som "" - derfor sætter vi lige værdien til 0px
         // også < 0, hvis der nu er sket en fejl på en eller anden måde på slidet
-        if(top === "" || top <= 0) top = "0px";
-        if(left === "" || left <= 0) left = "0px";
+        if(top === "" || top <= 0) top = "0";
+        if(left === "" || left <= 0) left = "0";
 
         const fontSize = textBox.style.fontSize;
 
@@ -302,8 +302,8 @@ function convertTextBoxesToJSON(){
 
         return {
             "text": textBox.value,
-            "top": top.substring(0, top.length - 2),
-            "left": left.substring(0, left.length - 2),
+            "top": top,
+            "left": left,
             "width": div.offsetWidth, // TODO enten div eller textBox
             "height": div.offsetHeight, // TODO enten div eller textBox
             "isBold": textBox.classList.contains("isBold"),
