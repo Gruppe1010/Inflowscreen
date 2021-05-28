@@ -244,7 +244,9 @@ function saveSlide(){
         const body = JSON.stringify(slide);
         const requestOptions = {
             method: 'POST',
+            mode: 'no-cors',
             headers: {
+
                 'Content-Type': 'application/json', // betyder == vi sender et json i string-format
             },
             body: body
