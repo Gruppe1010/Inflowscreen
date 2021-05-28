@@ -38,8 +38,6 @@ public class SlideRestController
         }catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-
-
     }
     
 
