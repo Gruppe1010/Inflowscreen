@@ -15,7 +15,7 @@ async function getAllSlides() {
     };
 
     // Default options are marked with *
-    return await fetch(url, requestOptions).then(response => response.json());
+    return await fetch(url, requestOptions).then(response => console.log(response));//response.json());
 
 
 }
