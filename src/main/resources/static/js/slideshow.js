@@ -58,7 +58,6 @@ function createSlide(slideJSON){
         private String themePath;
     * */
 
-    alert("slidebody he: " + slideBody.offsetHeight);
     const ratio = slideBody.offsetHeight / 630;
 
     const slideDiv = document.createElement('div');
@@ -103,11 +102,6 @@ function createSlide(slideJSON){
         span.style.left = Number(textBox.left) * ratio + "px";
         span.style.width = Number(textBox.width) * ratio + "px";
         span.style.height = Number(textBox.height) * ratio + "px";
-
-        alert(ratio);
-        alert(Number(textBox.fontSize));
-        alert(Number(textBox.fontSize) * ratio);
-        alert(Number(textBox.fontSize) * ratio + "px");
 
         span.style.fontFamily = textBox.font;
         span.style.fontSize = Number(textBox.fontSize) * ratio + "px";
