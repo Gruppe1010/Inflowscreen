@@ -14,6 +14,10 @@
     border: 3px solid red;
 }
 
+.slide-el{
+    position: absolute;
+}
+
 
 
 div.fade-slide + div.fade-slide { opacity: 0; }

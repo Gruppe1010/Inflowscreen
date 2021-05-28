@@ -20,8 +20,8 @@ let current = 0;
 
 getAllSlides()
     .then(slideJSONs => createSlideDivs(slideJSONs))
-    .then(slideDivs =>
-        setInterval(function() {
+    /*.then(slideDivs =>
+        setInterval( function() {
 
             for (let i = 0; i < slideDivs.length; i++) {
                 slideDivs[current].style.opacity = 0;
@@ -29,26 +29,19 @@ getAllSlides()
 
             }
 
-            /*
-      Elvis operator:
-         x = f() ?: g()
-             ELLER
-         x = f() ? f() : g()
-         hvis f()==true --> x == f()
-         hvis f()==false --> x == g()
-
-
-       * (current != slides.length - 1) == hvis current IKKE er den sidste på slide-array
-       * */
 
             current = (current != slideDivs.length - 1) ? current + 1 : 0;
             slideDivs[current].style.opacity = 1;
-        }, 6000));
+        }, 6000)
+    );
+
+     */
 
 
 
-function createSlideDivs(slideJSONs){
-    return slideJSONs.map(slideJSON => createSlide(slideJSON));
+
+async function createSlideDivs(slideJSONs){
+    return await slideJSONs.map(slideJSON => createSlide(slideJSON));
 }
 
 function createSlide(slideJSON){
@@ -58,18 +51,24 @@ function createSlide(slideJSON){
         private String themePath;
     * */
 
-
+    alert("slidebody he: " + slideBody.offsetHeight);
     const ratio = slideBody.offsetHeight / 630;
 
     const slideDiv = document.createElement('div');
+    slideDiv.classList.add('fade-slide');
+    slideDiv.style.height = '100vh';
+    slideDiv.style.width = '100vw';
+
 
     const slideImages = slideJSON.slideImageDTOs;
     slideImages.forEach(addImageToSlide);
 
     // TODO tilføj async
-    function addImageToSlide(image){
+    async function addImageToSlide(image){
         const img = document.createElement('img');
-        img.src = image.base64;
+        img.classList.add('slide-el');
+
+        // img.src = image.base64;
 
         img.style.zIndex = image.zIndex;
         img.style.top = Number(image.top) * ratio + "px";
@@ -77,7 +76,7 @@ function createSlide(slideJSON){
         img.style.width = Number(image.width) * ratio + "px";
         img.style.height = Number(image.height) * ratio + "px";
 
-        slideDiv.appendChild(img);
+        await slideDiv.appendChild(img);
     }
 
     const textBoxes = slideJSON.textBoxDTOs;
@@ -86,19 +85,25 @@ function createSlide(slideJSON){
     /*
     private boolean isList;
    */
-    function addTextBoxToSlide(textBox){
+    async function addTextBoxToSlide(textBox){
 
         const span = document.createElement('span');
+        span.classList.add('slide-el');
 
         span.style.zIndex = 90000;
-        span.value = textBox.text;
+        span.innerText = textBox.text;
         span.style.top = Number(textBox.top) * ratio + "px";
         span.style.left = Number(textBox.left) * ratio + "px";
         span.style.width = Number(textBox.width) * ratio + "px";
         span.style.height = Number(textBox.height) * ratio + "px";
 
+        alert(ratio);
+        alert(Number(textBox.fontSize));
+        alert(Number(textBox.fontSize) * ratio);
+        alert(Number(textBox.fontSize) * ratio + "px");
+
         span.style.fontFamily = textBox.font;
-        span.style.fontSize = textBox.fontSize * ratio;
+        span.style.fontSize = Number(textBox.fontSize) * ratio + "px";
         span.style.color = textBox.fontColour;
         span.style.textAlign = textBox.margin;
 
@@ -107,11 +112,11 @@ function createSlide(slideJSON){
         if(textBox.isUnderlined) span.style.textDecoration = 'underline';
 
 
-        slideDiv.appendChild(span);
+        await slideDiv.appendChild(span);
     }
 
 
-
+    slideBody.appendChild(slideDiv);
     return slideDiv;
 }
 

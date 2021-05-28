@@ -297,6 +297,8 @@ function convertTextBoxesToJSON(){
 
         const fontSize = textBox.style.fontSize;
 
+
+
         return {
             "text": textBox.value,
             "top": top.substring(0, top.length - 2),
@@ -310,7 +312,7 @@ function convertTextBoxesToJSON(){
             "font": textBox.style.fontFamily,
             "fontSize": fontSize.substring(0, fontSize.length - 2), // for at minusse px
             "fontColour": textBox.style.color,
-            "margin": textBox.style.textAlign,
+            "margin": textBox.style.textAlign
         }
     }
 }
