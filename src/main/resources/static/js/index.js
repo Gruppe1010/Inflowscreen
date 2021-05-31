@@ -22,16 +22,17 @@ function getAllSlidesByTitle() {
 
          fetch(url, requestOptions)
         .then(response => response.json())
-        .then(IndexSlideDTO => IndexSlideDTO.forEach(showSlides))
+        .then(slides => slides.forEach(showSlides))
         .catch(error => console.log("error: ", error));
 }
 
 getAllSlidesByTitle();
 
-function showSlides(IndexSlideDTO){
+function showSlides(slides){
 
     inpIndexId++;
-
+    console.log(slides.active);
+    console.log(slides.activeSlideOrder);
     const liIndex = document.createElement('li');
     liIndex.classList.add("btn", "btn-dark", "li-width", "ui-sortable-handle");
 
@@ -44,7 +45,7 @@ function showSlides(IndexSlideDTO){
     inpIndex.setAttribute("id", "flexSwitchCheckDefault" + inpIndexId)
     inpIndex.classList.add("form-check-input");
     inpIndex.type = 'checkbox';
-    inpIndex.checked = slides.isActive;
+    inpIndex.checked = slides.active;
 
     const labelIndex = document.createElement('label');
     labelIndex.classList.add("custom-checkbox");
@@ -54,7 +55,7 @@ function showSlides(IndexSlideDTO){
     deleteIndex.classList.add("delete");
     deleteIndex.setAttribute('href', "gør til noget smart");
 
-    labelIndex.innerText = IndexSlideDTO.title;
+    labelIndex.value = slides.title;
 
 
 
