@@ -21,7 +21,7 @@ public class Slide {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @Column(columnDefinition = "integer auto_increment")
+    //@Column(columnDefinition = "integer auto_increment")
     private int activeSlideOrder;
     // vi laver et set for at fremtidsikre at vi kan tilføje en funktion med at man kan dele samme slide på tværs af
     // virksomheder
