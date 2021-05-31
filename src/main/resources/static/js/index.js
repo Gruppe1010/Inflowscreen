@@ -79,7 +79,7 @@ function deleteSlide(slideId){
 
     function checkIfSuccess(response, slideId){
         if(response.status >= 200 && response.status < 300){
-            document.getElementById(`liIndex${slide.id}`).remove();
+            document.getElementById(`liIndex${slideId}`).remove();
         }
         else if(response.status === 409){
             alert("Der er gået noget galt");

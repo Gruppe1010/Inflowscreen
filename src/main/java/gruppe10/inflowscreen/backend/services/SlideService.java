@@ -45,7 +45,7 @@ public class SlideService {
     
     public HttpStatus deleteSlideById(int slideId){
         
-        slideRepository.deleteById(slideId);
+        slideRepository.deleteSlideById(slideId);
         
         Optional<Slide> slide = slideRepository.findById(slideId);
         if(slide.isEmpty()){
