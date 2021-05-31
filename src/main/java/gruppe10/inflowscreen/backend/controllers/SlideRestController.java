@@ -1,6 +1,7 @@
 package gruppe10.inflowscreen.backend.controllers;
 
 import gruppe10.inflowscreen.backend.models.dto.CreateOrUpdateSlideDTO;
+import gruppe10.inflowscreen.backend.models.dto.IndexSlideDTO;
 import gruppe10.inflowscreen.backend.models.entities.Slide;
 import gruppe10.inflowscreen.backend.services.SlideService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,33 @@ public class SlideRestController
     @Autowired
     SlideService slideService;
 
-
-    @GetMapping("/slideshow/{orgId}")
-    public ResponseEntity<Set<CreateOrUpdateSlideDTO>> slideShow(@PathVariable int orgId ){
-
+    // inflowscreen.dk/api/slides/{orgId}
+    @GetMapping("/slides/{orgId}")
+    public ResponseEntity<Set<IndexSlideDTO>> index(@PathVariable int orgId){
+    
         try {
             Set<CreateOrUpdateSlideDTO> slides = slideService.findAllSlides(orgId);
+            //slides.forEach(System.out::println);
+        
+            if(slides == null){
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
+        
+            return new ResponseEntity<>(slides, HttpStatus.OK);
+        
+        
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        
+    }
+    
+
+    @GetMapping("/slideshow/{orgId}")
+    public ResponseEntity<Set<CreateOrUpdateSlideDTO>> slideShow(@PathVariable int orgId){
+
+        try {
+            Set<CreateOrUpdateSlideDTO> slides = slideService.findAllActiveSlides(orgId);
             //slides.forEach(System.out::println);
 
             if(slides == null){

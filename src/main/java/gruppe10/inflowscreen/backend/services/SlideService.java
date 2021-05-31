@@ -133,7 +133,7 @@ public class SlideService {
         }
     }
     
-    public Set<CreateOrUpdateSlideDTO> findAllSlides(int orgId){
+    public Set<CreateOrUpdateSlideDTO> findAllActiveSlides(int orgId){
         
         Optional<Set<Slide>> optionalSlides = slideRepository.findByOrganisation(orgId);
         
