@@ -258,7 +258,7 @@ function saveSlide(){
 
                  */
 
-                //window.location.replace("/");
+                window.location.replace("/");
             }
             else if(response.status === 409){
                 alert("Der findes allerede et slide med denne title, vælg venligst en anden.");

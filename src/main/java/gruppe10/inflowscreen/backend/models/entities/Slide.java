@@ -71,7 +71,7 @@ public class Slide {
         Set<SlideVideoDTO> slideVideoDTOs = null;
     
         // converterer hvert SlideImageDTO-obj på listen til en SlideImage og lægger dem i Set
-        if(slideImages != null) {
+        if(slideImages != null){
             slideImageDTOs =
                     slideImages.stream().map(SlideImage::convertToSlideImageDTO).collect(Collectors.toSet());
         }
