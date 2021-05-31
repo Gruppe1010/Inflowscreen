@@ -33,7 +33,14 @@ public class SlideService {
     SlideImageRepository slideImageRepository;
     @Autowired
     TextBoxRepository textBoxRepository;
-    
+
+
+    public HttpStatus updateSlide(CreateOrUpdateSlideDTO slideDTO){
+
+        // TODO
+
+        return HttpStatus.OK;
+    }
     
     public CreateOrUpdateSlideDTO findById(int slideId){
         Optional<Slide> slide = slideRepository.findById(slideId);

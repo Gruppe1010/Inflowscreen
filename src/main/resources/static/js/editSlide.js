@@ -14,6 +14,60 @@
 // TODO billeder
 //      - ret bug med at man ikke kan tilføje samme billede igen (+ heller ikke hvis man sletter det)
 
+// TODO gør så den ikke siger fejl ved titel ved samme id
+
+async function getSlideToEdit(){
+    const url = `http://localhost/api/slide/${slideId}`; // localhost
+    //const url = `http://inflowscreen.dk/api/slide/${slideId}`; //online
+
+    /*
+    let title = inpTitle.value;
+
+    // hvis de har indtastet en titel
+    if(title.length > 0){
+
+        const textBoxes = convertTextBoxesToJSON();
+
+        // TODO tilføj noget async
+        const images = convertImagesToJSON();
+
+
+        let slide = {
+            "title": title,
+            "slideImageDTOs": images,
+            "textBoxDTOs": textBoxes
+        }
+        */
+
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json', // betyder == vi sender et json i string-format
+        },
+        redirect: 'follow'
+    };
+
+    return await fetch(url, requestOptions)
+        .then(response => response.json())
+        .catch(error => console.log("Fejl i fetch, createSlide.js: ", error));
+}
+
+function displaySlideToEdit(slide){
+
+
+
+}
+
+getSlideToEdit()
+    .then(slide => displaySlideToEdit(slide));
+
+
+
+
+
+
+//----------------------------------------------- FRA CREATESLIDE
+
 
 const slide = document.getElementById("slide");
 
@@ -240,9 +294,8 @@ function saveSlide(){
 
         const body = JSON.stringify(slide);
         const requestOptions = {
-            method: 'POST',
+            method: 'PUT',
             headers: {
-
                 'Content-Type': 'application/json', // betyder == vi sender et json i string-format
             },
             body: body
