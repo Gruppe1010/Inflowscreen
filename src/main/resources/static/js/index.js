@@ -4,7 +4,7 @@ $( function() {
 } );
 
 
-const indexSlide = document.getElementById('sortable');
+const ulSlide = document.getElementById('sortable');
 let inpIndexId = 0;
 
 function getAllSlidesByTitle() {
@@ -22,13 +22,13 @@ function getAllSlidesByTitle() {
 
          fetch(url, requestOptions)
         .then(response => response.json())
-        .then(slides => slides.forEach(showSlides))
+        .then(IndexSlideDTO => IndexSlideDTO.forEach(showSlides))
         .catch(error => console.log("error: ", error));
 }
 
 getAllSlidesByTitle();
 
-function showSlides(slides){
+function showSlides(IndexSlideDTO){
 
     inpIndexId++;
 
@@ -50,7 +50,7 @@ function showSlides(slides){
     labelIndex.classList.add("custom-checkbox");
     labelIndex.setAttribute('for', "flexSwitchCheckDefault" + inpIndexId)
 
-    labelIndex.innerText = slides.title;
+    labelIndex.innerText = IndexSlideDTO.title;
 
 
 
@@ -58,7 +58,7 @@ function showSlides(slides){
     inpIndex.appendChild(labelIndex);
     spanIndex.appendChild(inpIndex);
     liIndex.appendChild(spanIndex);
-    indexSlide.appendChild(liIndex);
+    ulSlide.appendChild(liIndex);
 }
 
 
