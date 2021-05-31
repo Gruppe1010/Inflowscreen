@@ -26,8 +26,8 @@ let current = 0;
 
 getAllSlides()
     .then(slideJSONs => createSlideDivs(slideJSONs))
-    .then(slides => console.log(slides));
-    /*.then(slideDivs =>
+    .then(slides => console.log(slides))
+    .then(slideDivs =>
         setInterval( function() {
 
             for (let i = 0; i < slideDivs.length; i++) {
@@ -42,7 +42,7 @@ getAllSlides()
         }, 6000)
     );
 
-     */
+
 
 
 
