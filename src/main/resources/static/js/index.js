@@ -8,8 +8,8 @@ const indexSlide = document.getElementById('sortable');
 
 
 function getAllSlidesByTitle() {
-    //const url = `http://localhost/api/slideshow/${orgId}`; // localhost
-    const url = `http://inflowscreen.dk/api/slides/${orgId}`; // online
+    const url = `http://localhost/api/slides/${orgId}`; // localhost
+    //const url = `http://inflowscreen.dk/api/slides/${orgId}`; // online
 
 
     const requestOptions = {
@@ -32,8 +32,9 @@ function showSlides(slides){
 
     const liIndex = document.createElement('li');
     const spanIndex = document.createElement('span');
-    const inpIndex = document.createElement('input');
+    const inpIndex = document.createElement('input').type = 'checkbox';
     const labelIndex = document.createElement('label');
+
     labelIndex.innerText = slides.title;
 
 
