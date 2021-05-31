@@ -82,6 +82,8 @@ function createSlide(slideJSON){
         img.style.width = Number(image.width) * ratio + "px";
         img.style.height = Number(image.height) * ratio + "px";
 
+        console.log(slideDiv);
+
         await slideDiv.appendChild(img);
     }
 
