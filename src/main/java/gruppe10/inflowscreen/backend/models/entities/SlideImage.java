@@ -22,7 +22,8 @@ public class SlideImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String imagePath;
+    @Column(columnDefinition = "LONGTEXT") // ! Brug KUN når vi bruger den som base64
+    private String imagePath; // ! bruges lige nu som base64 og IKKE imagePath
     private String topPx;
     private String leftPx;
     private String width;
@@ -47,8 +48,11 @@ public class SlideImage {
     
     
     public SlideImageDTO convertToSlideImageDTO(){
-        
-        return new SlideImageDTO(convertPathToFileName(), convertFileToBase64(), topPx, leftPx, width, height, zIndex);
+    
+        return new SlideImageDTO("", imagePath, topPx, leftPx, width, height, zIndex);
+    
+        //return new SlideImageDTO(convertPathToFileName(), convertFileToBase64(), topPx, leftPx, width, height,
+        // zIndex);
     }
     
     public String convertPathToFileName(){

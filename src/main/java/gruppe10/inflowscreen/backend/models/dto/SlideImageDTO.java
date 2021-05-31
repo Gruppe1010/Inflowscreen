@@ -53,7 +53,10 @@ public class SlideImageDTO {
     // OTHERS
     
     public SlideImage convertToSlideImage() {
-        return new SlideImage(createFileFromBase64(), top, left, width, height, zIndex);
+    
+        return new SlideImage(base64, top, left, width, height, zIndex);
+    
+        //return new SlideImage(createFileFromBase64(), top, left, width, height, zIndex);
     }
 
     /**
