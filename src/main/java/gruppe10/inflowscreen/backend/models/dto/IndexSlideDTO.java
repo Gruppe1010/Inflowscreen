@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-public class IndexSlideDTO {
+public class IndexSlideDTO implements Comparable<IndexSlideDTO> {
     
     private int id;
+    private int activeSlideOrder;
     private String title;
     private boolean isActive;
     
@@ -17,8 +18,9 @@ public class IndexSlideDTO {
     public IndexSlideDTO() {
     }
     
-    public IndexSlideDTO(int id, String title, boolean isActive) {
+    public IndexSlideDTO(int id, int activeSlideOrder, String title, boolean isActive) {
         this.id = id;
+        this.activeSlideOrder = activeSlideOrder;
         this.title = title;
         this.isActive = isActive;
     }
@@ -29,6 +31,12 @@ public class IndexSlideDTO {
     }
     public void setId(int id) {
         this.id = id;
+    }
+    public int getActiveSlideOrder() {
+        return activeSlideOrder;
+    }
+    public void setActiveSlideOrder(int activeSlideOrder) {
+        this.activeSlideOrder = activeSlideOrder;
     }
     public String getTitle() {
         return title;
@@ -47,8 +55,17 @@ public class IndexSlideDTO {
     public String toString() {
         return "IndexSlideDTO{" +
                        "id=" + id +
+                       ", activeSlideOrder=" + activeSlideOrder +
                        ", title='" + title + '\'' +
                        ", isActive=" + isActive +
                        '}';
+    }
+    
+    @Override
+    public int compareTo(IndexSlideDTO o) {
+        
+        if(activeSlideOrder < o.activeSlideOrder) return 1;
+        else if(activeSlideOrder > o.activeSlideOrder) return -1;
+        return 0;
     }
 }

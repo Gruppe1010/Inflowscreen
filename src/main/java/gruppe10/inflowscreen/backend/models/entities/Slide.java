@@ -1,10 +1,7 @@
 package gruppe10.inflowscreen.backend.models.entities;
 
 import com.sun.istack.NotNull;
-import gruppe10.inflowscreen.backend.models.dto.CreateOrUpdateSlideDTO;
-import gruppe10.inflowscreen.backend.models.dto.SlideImageDTO;
-import gruppe10.inflowscreen.backend.models.dto.SlideVideoDTO;
-import gruppe10.inflowscreen.backend.models.dto.TextBoxDTO;
+import gruppe10.inflowscreen.backend.models.dto.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,6 +20,9 @@ public class Slide {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    @Column(columnDefinition = "integer auto_increment")
+    private int activeSlideOrder;
     // vi laver et set for at fremtidsikre at vi kan tilføje en funktion med at man kan dele samme slide på tværs af
     // virksomheder
     @NotNull
@@ -62,7 +62,6 @@ public class Slide {
         this.themePath = themePath;
     }
     
-  
     
     public CreateOrUpdateSlideDTO convertToSlideDTO(){
     
@@ -84,6 +83,11 @@ public class Slide {
         }
     
         return new CreateOrUpdateSlideDTO(title, 0, true, textBoxDTOs, slideImageDTOs, slideVideoDTOs, null);
+    }
+    
+    
+    public IndexSlideDTO convertToIndexSlideDTO(){
+        return new IndexSlideDTO(id, activeSlideOrder, title, isActive);
     }
     
     

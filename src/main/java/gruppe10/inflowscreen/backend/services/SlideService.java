@@ -1,6 +1,7 @@
 package gruppe10.inflowscreen.backend.services;
 
 import gruppe10.inflowscreen.backend.models.dto.CreateOrUpdateSlideDTO;
+import gruppe10.inflowscreen.backend.models.dto.IndexSlideDTO;
 import gruppe10.inflowscreen.backend.models.entities.Organisation;
 import gruppe10.inflowscreen.backend.models.entities.Slide;
 import gruppe10.inflowscreen.backend.models.entities.SlideImage;
@@ -16,9 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
@@ -147,6 +146,22 @@ public class SlideService {
         }
 
         return null;
+    }
+    
+    public ArrayList<IndexSlideDTO> findAllSlides(int orgId){
+    
+        Optional<List<Slide>> optionalSlides = slideRepository.findAllSlides(orgId);
+    
+        if(optionalSlides.isPresent()){
+            ArrayList<IndexSlideDTO> slides =
+                    (ArrayList<IndexSlideDTO>) optionalSlides.get().stream().map(Slide::convertToIndexSlideDTO).collect(Collectors.toList());
+            
+            Collections.sort(slides);
+            return slides;
+        }
+        
+        return null;
+        
     }
     
   

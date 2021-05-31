@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Set;
 
 
@@ -23,21 +24,25 @@ public class SlideRestController
 
     // inflowscreen.dk/api/slides/{orgId}
     @GetMapping("/slides/{orgId}")
-    public ResponseEntity<Set<IndexSlideDTO>> index(@PathVariable int orgId){
+    public ResponseEntity<ArrayList<IndexSlideDTO>> index(@PathVariable int orgId){
+    
+        System.out.println("Helooooo");
     
         try {
-            Set<CreateOrUpdateSlideDTO> slides = slideService.findAllSlides(orgId);
-            //slides.forEach(System.out::println);
-        
+            ArrayList<IndexSlideDTO> slides = slideService.findAllSlides(orgId);
+    
+            System.out.println("HElloo2");
+            
             if(slides == null){
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
             }
         
             return new ResponseEntity<>(slides, HttpStatus.OK);
-        
-        
+            
         }catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            System.out.println("HElloo3");
+    
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
     }
