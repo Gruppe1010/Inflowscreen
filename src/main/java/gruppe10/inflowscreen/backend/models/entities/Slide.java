@@ -26,7 +26,7 @@ public class Slide {
     // vi laver et set for at fremtidsikre at vi kan tilføje en funktion med at man kan dele samme slide på tværs af
     // virksomheder
     @NotNull
-    @ManyToMany(mappedBy = "slides")//, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "slides")
     private Set<Organisation> organisations;
     
     @NotNull
@@ -36,14 +36,14 @@ public class Slide {
     
     private boolean isActive;
     
-    @OneToMany(mappedBy = "slide")
+    @OneToMany(mappedBy = "slide", cascade = CascadeType.ALL)
     private Set<TextBox> textBoxes;
     
     
-    @OneToMany(mappedBy = "slide")
+    @OneToMany(mappedBy = "slide", cascade = CascadeType.ALL)
     private Set<SlideImage> slideImages;
     
-    @OneToMany(mappedBy = "slide")
+    @OneToMany(mappedBy = "slide", cascade = CascadeType.ALL)
     private Set<SlideVideo> slideVideos;
     
     private String themePath;

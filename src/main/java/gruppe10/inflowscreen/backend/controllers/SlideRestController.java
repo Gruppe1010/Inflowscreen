@@ -25,13 +25,9 @@ public class SlideRestController
     // inflowscreen.dk/api/slides/{orgId}
     @GetMapping("/slides/{orgId}")
     public ResponseEntity<ArrayList<IndexSlideDTO>> index(@PathVariable int orgId){
-    
-        System.out.println("Helooooo");
-    
+        
         try {
             ArrayList<IndexSlideDTO> slides = slideService.findAllSlides(orgId);
-    
-            System.out.println("HElloo2");
             
             if(slides == null){
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -40,8 +36,6 @@ public class SlideRestController
             return new ResponseEntity<>(slides, HttpStatus.OK);
             
         }catch (Exception e){
-            System.out.println("HElloo3");
-    
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
@@ -49,6 +43,7 @@ public class SlideRestController
     
     @DeleteMapping("/slide/{slideId}")
     public ResponseEntity<HttpStatus> deleteSlide(@PathVariable int slideId){
+        System.out.println("Vi er inde i delete");
         
         try{
             
