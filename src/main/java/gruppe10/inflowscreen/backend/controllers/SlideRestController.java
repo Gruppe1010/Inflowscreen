@@ -63,7 +63,7 @@ public class SlideRestController
     @GetMapping("/slide/{slideId}")
     public ResponseEntity<CreateOrUpdateSlideDTO> editSlide(@PathVariable int slideId){
     
-        CreateOrUpdateSlideDTO slide = slideService.findById(orgId);
+        CreateOrUpdateSlideDTO slide = slideService.findById(slideId);
         
         if(slide != null){
             return new ResponseEntity<>(slide, HttpStatus.OK);
