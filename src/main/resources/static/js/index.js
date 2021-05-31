@@ -52,7 +52,7 @@ function showSlide(slide){
     labelIndex.classList.add("custom-checkbox");
     labelIndex.setAttribute('for', "flexSwitchCheckDefault" + inpIndexId)
 
-    const deleteIndex = document.createElement('span');
+    const deleteIndex = document.createElement('a');
     deleteIndex.classList.add("delete");
     deleteIndex.addEventListener('click', function(){deleteSlide(slide.id)});
 
