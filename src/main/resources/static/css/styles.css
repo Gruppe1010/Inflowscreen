@@ -230,7 +230,6 @@ th {
 
 label {
   display: inline-block;
-  margin-bottom: 0.5rem;
 }
 
 button {
@@ -2137,9 +2136,10 @@ textarea.form-control {
 }
 
 .form-check-input {
-  position: absolute;
-  margin-top: 0.8rem;
-  margin-left: -8.5rem;
+  position: relative;
+  float: left;
+  top: 9px;
+  left: 8px;
 }
 .form-check-input[disabled] ~ .form-check-label, .form-check-input:disabled ~ .form-check-label {
   color: #6c757d;

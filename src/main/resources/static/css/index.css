@@ -9,7 +9,7 @@
     margin: 3px 3px 3px 3px;
     padding: 0.4em 0.4em 0.4em 0.4em;
     font-size: 1.1em;
-    height: 50px;
+    height: 45px;
 }
 
 #sortable li span{
@@ -23,6 +23,33 @@
 }
 
 .custom-checkbox{
+    position: relative;
+    float: left;
+    left: 20px;
+    top: 1px;
+}
+
+.custom-checkbox:hover {
+    color: lightgrey;
+}
+
+.delete {
+    position: relative;
+    font-size: 30px;
+    float: right;
+    right: 10px;
+    top: -9px;
+}
+
+.delete::after{
     display: inline-block;
-    margin-top: 0.25rem;
+    content: "\00d7"; /* This will render the 'X' */
+}
+
+a.delete {
+    color: white;
+}
+
+a.delete:hover {
+    color: lightgrey;
 }
