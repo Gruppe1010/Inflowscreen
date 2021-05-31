@@ -35,6 +35,19 @@ public class SlideService {
     TextBoxRepository textBoxRepository;
     
     
+    public CreateOrUpdateSlideDTO
+    
+    public HttpStatus deleteSlideById(int slideId){
+        
+        slideRepository.deleteById(slideId);
+        
+        Optional<Slide> slide = slideRepository.findById(slideId);
+        if(slide.isEmpty()){
+            return  HttpStatus.OK;
+        }
+        return HttpStatus.BAD_REQUEST;
+    }
+    
     public HttpStatus createNewSlide(CreateOrUpdateSlideDTO slideDTO, Principal principal){
         
         // vi henter organisationen som skal forbindes til slidet

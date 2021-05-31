@@ -47,24 +47,23 @@ public class SlideRestController
         
     }
     
-
-    @GetMapping("/slideshow/{orgId}")
-    public ResponseEntity<Set<CreateOrUpdateSlideDTO>> slideShow(@PathVariable int orgId){
-
-        try {
-            Set<CreateOrUpdateSlideDTO> slides = slideService.findAllActiveSlides(orgId);
-            //slides.forEach(System.out::println);
-
-            if(slides == null){
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-            }
-
-            return new ResponseEntity<>(slides, HttpStatus.OK);
-
-
-        }catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    @DeleteMapping("/slide/{slideId}")
+    public ResponseEntity<HttpStatus> deleteSlide(@PathVariable int slideId){
+        
+        try{
+            
+            return new ResponseEntity<>(slideService.deleteSlideById(slideId));
+            
+        }catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        
+    }
+    
+    @GetMapping("/slide/{slideId}")
+    public ResponseEntity<Slide> editSlide(@PathVariable int orgId){
+        
+        Slide slide = slideService.findById();
     }
     
 
@@ -78,6 +77,28 @@ public class SlideRestController
         
         return new ResponseEntity<>(httpStatus);
     }
+    
+    
+    
+    @GetMapping("/slideshow/{orgId}")
+    public ResponseEntity<Set<CreateOrUpdateSlideDTO>> slideShow(@PathVariable int orgId){
+        
+        try {
+            Set<CreateOrUpdateSlideDTO> slides = slideService.findAllActiveSlides(orgId);
+            //slides.forEach(System.out::println);
+            
+            if(slides == null){
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
+            
+            return new ResponseEntity<>(slides, HttpStatus.OK);
+            
+            
+        }catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+    
     
     
     
