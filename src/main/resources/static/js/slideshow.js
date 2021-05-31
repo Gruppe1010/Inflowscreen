@@ -26,8 +26,8 @@ let current = 0;
 
 getAllSlides()
     .then(slideJSONs => createSlideDivs(slideJSONs))
-    .then(slides => console.log(slides));
-    /*.then(slideDivs =>
+    //.then(slides => console.log(slides))
+    .then(slideDivs =>
         setInterval( function() {
 
             for (let i = 0; i < slideDivs.length; i++) {
@@ -42,7 +42,7 @@ getAllSlides()
         }, 6000)
     );
 
-     */
+
 
 
 
@@ -58,7 +58,7 @@ function createSlide(slideJSON){
         private String themePath;
     * */
 
-    const ratio = slideBody.offsetHeight / 630;
+    const ratio = slideBody.offsetWidth / 1120;
 
     const slideDiv = document.createElement('div');
     slideDiv.classList.add('fade-slide');
