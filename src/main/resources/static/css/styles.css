@@ -4000,7 +4000,9 @@ input[type=button].btn-block {
   white-space: nowrap;
 }
 .navbar-brand:hover, .navbar-brand:focus {
-  text-decoration: none;
+  text-decoration: underline;
+  font-weight: bold;
+  color: white;
 }
 
 .navbar-nav {
@@ -10123,9 +10125,4 @@ header.masthead .bg-circle-4 {
 
 .activeNavLink {
   text-decoration: underline;
-}
-
-.navbar-hover {
-  color: white;
-  font-weight: bolder;
 }
