@@ -53,3 +53,11 @@ a.delete {
 a.delete:hover {
     color: lightgrey;
 }
+
+a.slide-title {
+    color: white;
+}
+
+a.slide-title:hover {
+    color: lightgrey;
+}
