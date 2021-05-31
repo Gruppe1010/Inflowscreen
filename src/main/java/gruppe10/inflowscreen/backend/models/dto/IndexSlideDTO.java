@@ -64,8 +64,8 @@ public class IndexSlideDTO implements Comparable<IndexSlideDTO> {
     @Override
     public int compareTo(IndexSlideDTO o) {
         
-        if(activeSlideOrder < o.activeSlideOrder) return 1;
-        else if(activeSlideOrder > o.activeSlideOrder) return -1;
+        if(activeSlideOrder < o.activeSlideOrder) return -1;
+        else if(activeSlideOrder > o.activeSlideOrder) return 1;
         return 0;
     }
 }

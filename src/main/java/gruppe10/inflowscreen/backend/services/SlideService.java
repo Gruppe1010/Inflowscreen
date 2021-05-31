@@ -59,6 +59,9 @@ public class SlideService {
             if(optNewlyPersistedSlide.isPresent()){
                 Slide newlyPersistedSlide = optNewlyPersistedSlide.get();
                 
+                // tilføj activeSlideOrder
+                addActiveSlideOrder(newlyPersistedSlide);
+                
                 // læg slideImages i db
                 saveSlideImagesToDb(slide, newlyPersistedSlide);
                 
@@ -71,6 +74,14 @@ public class SlideService {
             else{ return HttpStatus.CONFLICT; }
         }
         return HttpStatus.CONFLICT; // hvis titel er optaget på orgen
+    }
+    public void addActiveSlideOrder(Slide slide){
+        if(slide.isActive()){
+            // hvis det er active, skal den tilføje en slideorder
+            slide.setActiveSlideOrder(slide.getId());
+            // og gemme slidet med den nye order
+            slideRepository.save(slide);
+        }
     }
     
     /**
