@@ -50,13 +50,17 @@ function showSlides(IndexSlideDTO){
     labelIndex.classList.add("custom-checkbox");
     labelIndex.setAttribute('for', "flexSwitchCheckDefault" + inpIndexId)
 
+    const deleteIndex = document.createElement('a');
+    deleteIndex.classList.add("delete");
+    deleteIndex.setAttribute('href', "gør til noget smart");
+
     labelIndex.innerText = IndexSlideDTO.title;
 
 
 
-
-    inpIndex.appendChild(labelIndex);
-    spanIndex.appendChild(inpIndex);
+    liIndex.appendChild(deleteIndex);
+    liIndex.appendChild(labelIndex);
+    liIndex.appendChild(inpIndex);
     liIndex.appendChild(spanIndex);
     ulSlide.appendChild(liIndex);
 }
