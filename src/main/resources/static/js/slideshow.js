@@ -58,7 +58,7 @@ function createSlide(slideJSON){
         private String themePath;
     * */
 
-    const ratio = slideBody.offsetHeight / 630;
+    const ratio = slideBody.offsetWidth / 1120;
 
     const slideDiv = document.createElement('div');
     slideDiv.classList.add('fade-slide');
