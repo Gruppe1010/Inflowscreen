@@ -43,16 +43,11 @@ public class SlideRestController
     
     @DeleteMapping("/slide/{slideId}")
     public ResponseEntity<HttpStatus> deleteSlide(@PathVariable int slideId){
-        System.out.println("Vi er inde i delete");
-        
         try{
-            
             return new ResponseEntity<>(slideService.deleteSlideById(slideId));
-            
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        
     }
     
     @GetMapping("/slide/{slideId}")
@@ -66,7 +61,6 @@ public class SlideRestController
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     
     }
-    
 
     /*
     * For at Spring kan deserialisere JSON vi får fra front, SKAL vi have getters og setters (OG de SKAL have de rigtige navne)
@@ -78,9 +72,7 @@ public class SlideRestController
         
         return new ResponseEntity<>(httpStatus);
     }
-    
-    
-    
+
     @GetMapping("/slideshow/{orgId}")
     public ResponseEntity<Set<CreateOrUpdateSlideDTO>> slideShow(@PathVariable int orgId){
         

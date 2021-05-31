@@ -44,11 +44,26 @@ public class SlideService {
     }
     
     public HttpStatus deleteSlideById(int slideId){
-        
+
+        // vi finder alle slideImage id'er som er tilknyttet slidets id
+        Optional<ArrayList<Integer>> imgIds = slideImageRepository.findImgIdsBySlideId(slideId);
+        //hvis der ER nogle id'er - slet dem fra rep
+        imgIds.ifPresent(integers -> integers.forEach(integer -> slideImageRepository.deleteSlideImageById(integer)));
+
+        // vi finder alle textBoxes id'er som er tilknyttet slidets id
+        Optional<ArrayList<Integer>> textBoxIds = textBoxRepository.findTextBoxIdsBySlideId(slideId);
+        // hvis der ER nogle id'er - slet dem fra rep
+        textBoxIds.ifPresent(integers -> integers.forEach(integer -> textBoxRepository.deleteTextBoxById(integer)));
+
+        // vi sletter slide-obj
         slideRepository.deleteSlideById(slideId);
-        
-        Optional<Slide> slide = slideRepository.findById(slideId);
-        if(slide.isEmpty()){
+
+        // vi henter dem op igen og ser om de er der
+        Optional<Slide> optSlide = slideRepository.findById(slideId);
+        Optional<Set<SlideImage>> optSlideImages = slideImageRepository.findBySlideId(slideId);
+        Optional<Set<TextBox>> optTextBoxes = textBoxRepository.findBySlideId(slideId);
+
+        if(optSlide.isEmpty() && optSlideImages.get().size() == 0 && optTextBoxes.get().size() == 0){
             return  HttpStatus.OK;
         }
         return HttpStatus.BAD_REQUEST;

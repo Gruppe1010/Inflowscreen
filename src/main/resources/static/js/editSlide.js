@@ -324,7 +324,7 @@ function convertTextBoxesToJSON(){
  * */
 function convertImagesToJSON(){
     // returnerer en liste hvor hvert el på imageContainters-listen har undergået makeImageJSON-func
-   return imageContainers.map(div => makeImageJSON(div));
+    return imageContainers.map(div => makeImageJSON(div));
 
     function makeImageJSON(div){
 
@@ -606,7 +606,7 @@ let addImageToSlide = function(event) {
                     maxHeight: 630,
                     maxWidth: 1120,
                     autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
-            });
+                });
         });
 
         // så et nyt billede automatisk kommer ind som det forreste
@@ -677,28 +677,33 @@ function addFocusAndZIndex(el){
 
 }
 
+
 function deleteElement(el){
 
+    alert("hej");
     // hvis det er en textbox
+    console.log(el);
     if(el.classList.contains('dragAndResizeTextBoxContainer')){
         // fjern fra textBox array
+        textBoxesOnSlide.remove(el);
 
+        console.log("textel", el);
         //delete textBoxesOnSlide[textBoxesOnSlide.indexOf(el)];
-        textBoxesOnSlide = textBoxesOnSlide.filter(textBox => textBox !== el);
-        console.log(textBoxesOnSlide);
-
     }
     else{ // er det en img
         // fjern fra img array
+        imageContainers.remove(el);
+        console.log("imgel", el);
 
-        imageContainers = imageContainers.filter(img => img !== el);
         //delete imageContainers[imageContainers.indexOf(el)];
-        console.log(imageContainers);
 
     }
     jQuery(el).fadeOut(function(){el.remove();});
 
+
 }
+
+
 
 
 
