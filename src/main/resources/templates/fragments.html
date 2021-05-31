@@ -31,11 +31,12 @@
 </div>
 
 <!-------------------- ! NAVBAR f-->
-<div th:fragment="navbar(active, orgId)">
+<div th:fragment="navbar(index, createSlide, orgId)">
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top navbar-color">
         <div class="container color">
-            <a class="navbar-brand mr-5" th:href="${'/'}">Alle slides</a>
-            <a class="navbar-brand mr-5" th:href="${'/createSlide'}">Opret slide</a>
+            <!-- <a href="" class="baseclass" th:classappend="${isAdmin} ? adminclass : userclass"></a> -->
+            <a class="navbar-brand mr-5" th:href="${'/'}" th:classappend="${index} ? activeNavLink : null">Alle slides</a>
+            <a class="navbar-brand mr-5" th:href="${'/createSlide'}" th:classappend="${createSlide} ? activeNavLink : null">Opret slide</a>
             <a class="navbar-brand" th:href="${'/slideshow/' + orgId}">Slideshow</a>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">

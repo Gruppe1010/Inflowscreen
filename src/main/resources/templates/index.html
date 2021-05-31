@@ -8,7 +8,7 @@
 </head>
 <body class="body-padding">
     <!-- Navigation-->
-    <div th:insert="fragments :: navbar(active='hej', orgId = ${orgId})"></div>
+    <div th:insert="fragments :: navbar(index = true, createSlide = false, orgId = ${orgId})"></div>
 
     <div>
         <section th:replace="fragments :: section"></section>
