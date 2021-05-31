@@ -35,7 +35,13 @@ public class SlideService {
     TextBoxRepository textBoxRepository;
     
     
-    public CreateOrUpdateSlideDTO
+    public CreateOrUpdateSlideDTO findById(int slideId){
+        Optional<Slide> slide = slideRepository.findById(slideId);
+        if(slide.isPresent()){
+            return slide.get().convertToSlideDTO();
+        }
+        return null;
+    }
     
     public HttpStatus deleteSlideById(int slideId){
         
