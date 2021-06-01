@@ -43,11 +43,9 @@ public class FrontendController {
         return "createSlide";
     }
 
-    @GetMapping("editSlide/{id}")
-    public String editSlide(@PathVariable int id, Model model){
-        model.addAttribute("orgId", orgId);
-
-        model.addAttribute("slideId", id);
+    @GetMapping("editSlide/{slideId}")
+    public String editSlide(@PathVariable int slideId, Model model){
+        model.addAttribute("slideId", slideId);
 
         return "editSlide";
     }

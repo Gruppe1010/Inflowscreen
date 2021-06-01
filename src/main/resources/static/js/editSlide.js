@@ -14,6 +14,60 @@
 // TODO billeder
 //      - ret bug med at man ikke kan tilføje samme billede igen (+ heller ikke hvis man sletter det)
 
+// TODO gør så den ikke siger fejl ved titel ved samme id
+
+async function getSlideToEdit(){
+    //const url = `http://localhost/api/slide/${slideId}`; // localhost
+    const url = `http://inflowscreen.dk/api/slide/${slideId}`; //online
+
+    /*
+    let title = inpTitle.value;
+
+    // hvis de har indtastet en titel
+    if(title.length > 0){
+
+        const textBoxes = convertTextBoxesToJSON();
+
+        // TODO tilføj noget async
+        const images = convertImagesToJSON();
+
+
+        let slide = {
+            "title": title,
+            "slideImageDTOs": images,
+            "textBoxDTOs": textBoxes
+        }
+        */
+
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json', // betyder == vi sender et json i string-format
+        },
+        redirect: 'follow'
+    };
+
+    return await fetch(url, requestOptions)
+        .then(response => response.json())
+        .catch(error => console.log("Fejl i fetch, createSlide.js: ", error));
+}
+
+function displaySlideToEdit(slide){
+
+
+
+}
+
+getSlideToEdit()
+    .then(slide => displaySlideToEdit(slide));
+
+
+
+
+
+
+//----------------------------------------------- FRA CREATESLIDE
+
 
 const slide = document.getElementById("slide");
 
@@ -181,11 +235,9 @@ function setToMarginRight(){
     }
 }
 
-/* TODO List function til text box
 const btnList = document.getElementById("btnList");
 btnList.addEventListener('click', setToList);
 function setToList(){}
- */
 
 const btnFullscreen = document.getElementById("btnFullscreen");
 btnFullscreen.addEventListener('click', makeFullScreen);
@@ -242,9 +294,8 @@ function saveSlide(){
 
         const body = JSON.stringify(slide);
         const requestOptions = {
-            method: 'POST',
+            method: 'PUT',
             headers: {
-
                 'Content-Type': 'application/json', // betyder == vi sender et json i string-format
             },
             body: body
@@ -326,7 +377,7 @@ function convertTextBoxesToJSON(){
  * */
 function convertImagesToJSON(){
     // returnerer en liste hvor hvert el på imageContainters-listen har undergået makeImageJSON-func
-   return imageContainers.map(div => makeImageJSON(div));
+    return imageContainers.map(div => makeImageJSON(div));
 
     function makeImageJSON(div){
 
@@ -608,7 +659,7 @@ let addImageToSlide = function(event) {
                     maxHeight: 630,
                     maxWidth: 1120,
                     autoHide: true // gemmer hive-firkanter når man ikke har musen over elementet
-            });
+                });
         });
 
         // så et nyt billede automatisk kommer ind som det forreste
@@ -679,28 +730,33 @@ function addFocusAndZIndex(el){
 
 }
 
+
 function deleteElement(el){
 
+    alert("hej");
     // hvis det er en textbox
+    console.log(el);
     if(el.classList.contains('dragAndResizeTextBoxContainer')){
         // fjern fra textBox array
+        textBoxesOnSlide.remove(el);
 
+        console.log("textel", el);
         //delete textBoxesOnSlide[textBoxesOnSlide.indexOf(el)];
-        textBoxesOnSlide = textBoxesOnSlide.filter(textBox => textBox !== el);
-        console.log(textBoxesOnSlide);
-
     }
     else{ // er det en img
         // fjern fra img array
+        imageContainers.remove(el);
+        console.log("imgel", el);
 
-        imageContainers = imageContainers.filter(img => img !== el);
         //delete imageContainers[imageContainers.indexOf(el)];
-        console.log(imageContainers);
 
     }
     jQuery(el).fadeOut(function(){el.remove();});
 
+
 }
+
+
 
 
 

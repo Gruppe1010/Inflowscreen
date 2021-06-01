@@ -12,8 +12,8 @@ const ulSlide = document.getElementById('sortable');
 let inpIndexId = 0;
 
 function getAllSlidesByTitle() {
-    const url = `http://localhost/api/slides/${orgId}`; // localhost
-    //const url = `http://inflowscreen.dk/api/slides/${orgId}`; // online
+    //const url = `http://localhost/api/slides/${orgId}`; // localhost
+    const url = `http://inflowscreen.dk/api/slides/${orgId}`; // online
 
 
     const requestOptions = {
@@ -69,8 +69,8 @@ function showSlide(slide){
 }
 
 function deleteSlide(slideId){
-    const url = `http://localhost/api/slide/${slideId}`; // localhost
-    //const url = `http://inflowscreen.dk/api/slide/${slideId}`; // online
+    //const url = `http://localhost/api/slide/${slideId}`; // localhost
+    const url = `http://inflowscreen.dk/api/slide/${slideId}`; // online
 
 
     const requestOptions = {
