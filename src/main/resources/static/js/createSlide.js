@@ -181,9 +181,11 @@ function setToMarginRight(){
     }
 }
 
+/* TODO List function til text box
 const btnList = document.getElementById("btnList");
 btnList.addEventListener('click', setToList);
 function setToList(){}
+ */
 
 const btnFullscreen = document.getElementById("btnFullscreen");
 btnFullscreen.addEventListener('click', makeFullScreen);
@@ -218,8 +220,8 @@ const changeFontColor = function (font) {
  * */
 function saveSlide(){
 
-    const url = `http://localhost/api/saveSlide`; // localhost
-    //const url = `http://inflowscreen.dk/api/saveSlide`; //online
+    //const url = `http://localhost/api/saveSlide`; // localhost
+    const url = `http://inflowscreen.dk/api/saveSlide`; //online
 
     let title = inpTitle.value;
 
