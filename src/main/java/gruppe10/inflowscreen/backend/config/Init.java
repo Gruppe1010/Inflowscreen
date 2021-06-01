@@ -76,8 +76,8 @@ public class Init implements CommandLineRunner {
                                               .build();
         
             Account fysICentrumAccount = Account.builder()
-                                                .email("fystest@hotmail.com")
-                                                .password(passwordEncoder.encode("hejhej"))
+                                                .email("mail@fysicentrum.dk")
+                                                .password(passwordEncoder.encode("g9XZQmUM"))
                                                 .authority(user)
                                                 .organisation(fysICentrumOrg)
                                                 .build();

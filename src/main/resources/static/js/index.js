@@ -1,3 +1,7 @@
+// TODO tilføj pop-op boks som siger: er du sikker på at du vil slette????
+// TODO gør så den ændrer activeSlideOrder når vi rykker på et en slide-boks
+
+
 $( function() {
     $( "#sortable" ).sortable();
     $( "#sortable" ).disableSelection();
