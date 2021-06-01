@@ -220,8 +220,8 @@ const changeFontColor = function (font) {
  * */
 function saveSlide(){
 
-    //const url = `http://localhost/api/saveSlide`; // localhost
-    const url = `http://inflowscreen.dk/api/saveSlide`; //online
+    const url = `http://localhost/api/saveSlide`; // localhost
+    //const url = `http://inflowscreen.dk/api/saveSlide`; //online
 
     let title = inpTitle.value;
 
@@ -612,6 +612,7 @@ let addImageToSlide = function(event) {
         });
 
         // så et nyt billede automatisk kommer ind som det forreste
+        deleteIcon(divImageContainer);
         addFocusAndZIndex(divImageContainer);
 
     }

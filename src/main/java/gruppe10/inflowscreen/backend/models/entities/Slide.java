@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Builder
 @Entity
 @Table(name="slides")
+
 public class Slide {
     
     @Id
