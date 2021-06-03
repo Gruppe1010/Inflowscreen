@@ -85,6 +85,7 @@ public class Init implements CommandLineRunner {
                                                 .authority(user)
                                                 .organisation(fysICentrumOrg)
                                                 .build();
+
             Account keaAccount = Account.builder()
                     .email("kea@kea.dk")
                     .password(passwordEncoder.encode("q8mCtLra"))
