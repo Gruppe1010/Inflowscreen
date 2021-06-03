@@ -90,7 +90,7 @@ public class Init implements CommandLineRunner {
                     .email("kea@kea.dk")
                     .password(passwordEncoder.encode("q8mCtLra"))
                     .authority(user)
-                    .organisation(fysICentrumOrg)
+                    .organisation(keaOrg)
                     .build();
 
          
