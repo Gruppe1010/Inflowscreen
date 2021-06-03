@@ -69,8 +69,8 @@ function showSlide(slide){
 }
 
 function deleteSlide(slideId){
-    const url = `http://localhost/api/slide/${slideId}`; // localhost
-    //const url = `http://inflowscreen.dk/api/slide/${slideId}`; // online
+    //const url = `http://localhost/api/slide/${slideId}`; // localhost
+    const url = `http://inflowscreen.dk/api/slide/${slideId}`; // online
 
 
     const requestOptions = {
