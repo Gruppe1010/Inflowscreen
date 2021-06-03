@@ -62,10 +62,14 @@ public class Init implements CommandLineRunner {
         
             Organisation gruppe10Org = new Organisation("Gruppe 10",
                     "/images/logos/gruppe10logo.png");
+
+            Organisation keaOrg = new Organisation("KEA",
+                    "/images/logos/gruppe10logo.png");
             
             // tilføjer organisationer
             organisationRepository.save(fysICentrumOrg);
             organisationRepository.save(gruppe10Org);
+            organisationRepository.save(keaOrg);
         
             // opretter brugere
             Account gruppe10Account = Account.builder()
@@ -81,11 +85,19 @@ public class Init implements CommandLineRunner {
                                                 .authority(user)
                                                 .organisation(fysICentrumOrg)
                                                 .build();
+            Account keaAccount = Account.builder()
+                    .email("kea@kea.dk")
+                    .password(passwordEncoder.encode("q8mCtLra"))
+                    .authority(user)
+                    .organisation(fysICentrumOrg)
+                    .build();
+
          
             
             // tilføjer accounts
             accountRepository.save(fysICentrumAccount);
             accountRepository.save(gruppe10Account);
+            accountRepository.save(keaAccount);
         }
     }
     
