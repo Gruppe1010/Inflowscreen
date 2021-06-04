@@ -65,12 +65,24 @@ public class Init implements CommandLineRunner {
 
             Organisation keaOrg = new Organisation("KEA",
                     "/images/logos/gruppe10logo.png");
+
+            Organisation tobiasOrg = new Organisation("Tobias",
+                    "/images/logos/gruppe10logo.png");
+
+            Organisation vibeOrg = new Organisation("Vibe",
+                    "/images/logos/gruppe10logo.png");
+
+            Organisation rasmusOrg = new Organisation("Rasmus",
+                    "/images/logos/gruppe10logo.png");
             
             // tilføjer organisationer
             organisationRepository.save(fysICentrumOrg);
             organisationRepository.save(gruppe10Org);
             organisationRepository.save(keaOrg);
-        
+            organisationRepository.save(tobiasOrg);
+            organisationRepository.save(vibeOrg);
+            organisationRepository.save(rasmusOrg);
+
             // opretter brugere
             Account gruppe10Account = Account.builder()
                                               .email("gruppe1010@hotmail.com")
@@ -93,12 +105,38 @@ public class Init implements CommandLineRunner {
                     .organisation(keaOrg)
                     .build();
 
+            Account tobiasAccount = Account.builder()
+                    .email("tobiasbojesen@hotmail.dk")
+                    .password(passwordEncoder.encode("hejhej"))
+                    .authority(admin)
+                    .organisation(tobiasOrg)
+                    .build();
+
+            Account vibeAccount = Account.builder()
+                    .email("vibej@hotmail.com")
+                    .password(passwordEncoder.encode("hejhej"))
+                    .authority(admin)
+                    .organisation(vibeOrg)
+                    .build();
+
+            Account rasmusAccount = Account.builder()
+                    .email("rasmus-roager@hotmail.com")
+                    .password(passwordEncoder.encode("hejhej"))
+                    .authority(admin)
+                    .organisation(rasmusOrg)
+                    .build();
+
          
             
             // tilføjer accounts
             accountRepository.save(fysICentrumAccount);
             accountRepository.save(gruppe10Account);
             accountRepository.save(keaAccount);
+
+            accountRepository.save(tobiasAccount);
+            accountRepository.save(vibeAccount);
+            accountRepository.save(rasmusAccount);
+
         }
     }
     
