@@ -1,4 +1,7 @@
 # Inflowscreen
+
+OBS: Siden er ikke online pt. så nedenstående gælder ikke!
+
 Gå til inflowscreen.dk
 Log ind med følgende:
 Email: kea@kea.dk
