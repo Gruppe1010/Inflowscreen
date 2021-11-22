@@ -3,8 +3,8 @@ const slideBody = document.getElementById('slide');
 
 //https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 async function getAllSlides() {
-    //const url = `http://localhost/api/slideshow/${orgId}`; // localhost
-    const url = `http://inflowscreen.dk/api/slideshow/${orgId}`; // online
+    const url = `http://localhost/api/slideshow/${orgId}`; // localhost
+    //const url = `http://inflowscreen.dk/api/slideshow/${orgId}`; // online
 
 
     const requestOptions = {

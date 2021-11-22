@@ -28,14 +28,17 @@ public class SlideRestController
         
         try {
             ArrayList<IndexSlideDTO> slides = slideService.findAllSlides(orgId);
-            
-            if(slides == null){
+
+
+            // de 4 linjer kunne nok godt laves om med ternary operator:
+            // return slides ? new ResponseEntity<>(slides, HttpStatus.NOT_FOUND) : new ResponseEntity<>(slides, HttpStatus.OK);
+            if(slides == null) {
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
             }
         
             return new ResponseEntity<>(slides, HttpStatus.OK);
             
-        }catch (Exception e){
+        } catch(Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         

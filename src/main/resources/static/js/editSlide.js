@@ -17,8 +17,8 @@
 // TODO gør så den ikke siger fejl ved titel ved samme id
 
 async function getSlideToEdit(){
-    //const url = `http://localhost/api/slide/${slideId}`; // localhost
-    const url = `http://inflowscreen.dk/api/slide/${slideId}`; //online
+    const url = `http://localhost/api/slide/${slideId}`; // localhost
+    //const url = `http://inflowscreen.dk/api/slide/${slideId}`; //online
 
     /*
     let title = inpTitle.value;
@@ -272,8 +272,8 @@ const changeFontColor = function (font) {
  * */
 function saveSlide(){
 
-    //const url = `http://localhost/api/saveSlide`; // localhost
-    const url = `http://inflowscreen.dk/api/saveSlide`; //online
+    const url = `http://localhost/api/saveSlide`; // localhost
+    //const url = `http://inflowscreen.dk/api/saveSlide`; //online
 
     let title = inpTitle.value;
 
